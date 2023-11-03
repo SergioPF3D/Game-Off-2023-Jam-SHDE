@@ -24,7 +24,13 @@ public class MoveObjects : MonoBehaviour
 	float currentDistance;
 
 
+	//Ray
+	[SerializeField]
+	Transform vfxObjective;
 
+	[SerializeField]
+	GameObject vfxRay;
+	
 
 
 	float chasingSpeed;
@@ -60,6 +66,7 @@ public class MoveObjects : MonoBehaviour
 
 					// Set our target variable to be the Transform object we hit with our raycast
 					target = hit.transform;
+					vfxRay.SetActive(true);
 
 					// Disable physics for the object
 					target.GetComponent<Rigidbody>().isKinematic = true;
@@ -84,7 +91,11 @@ public class MoveObjects : MonoBehaviour
 
 				// Set our target variable to null
 				target = null;
+
+				vfxRay.SetActive(false);
 			}
+
+
 			
 		}
 
@@ -98,6 +109,7 @@ public class MoveObjects : MonoBehaviour
 		}
 		
 		
+
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
 		{
@@ -139,7 +151,10 @@ public class MoveObjects : MonoBehaviour
 			target.transform.position = transform.position + transform.forward * currentDistance;
 
 		}
-		
+
+		vfxObjective.position = target.transform.position;
+
+
 	}
 
 	void TargetChasing()
