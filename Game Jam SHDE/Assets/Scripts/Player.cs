@@ -47,9 +47,6 @@ public class Player : MonoBehaviour
     Queue<KeyCode> inputBuffer = new Queue<KeyCode>();
 
 
-    
-
-
     void Start()
     {
         //Set the cursor
