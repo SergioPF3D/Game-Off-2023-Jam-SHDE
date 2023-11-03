@@ -97,7 +97,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":44.66701889038086,"g":12.551591873168946,"b":76.02679443359375,"a":0.0}'
+      m_SerializableObject: '{"r":60.08208084106445,"g":23.035730361938478,"b":95.75637817382813,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -153,7 +153,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.1
+      m_SerializableObject: 0.01
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -2941,7 +2941,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":44.66701889038086,"g":12.551591873168946,"b":76.02679443359375,"a":0.0}'
+      m_SerializableObject: '{"r":60.08208084106445,"g":23.035730361938478,"b":95.75637817382813,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o
@@ -5173,7 +5173,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.1
+      m_SerializableObject: 0.01
     m_Space: 2147483647
   m_Property:
     name: o

@@ -10,47 +10,68 @@ public class ScaleWhileGrabbed : MonoBehaviour
 
     [SerializeField]
     float maxTime;
+
+    [SerializeField]
     float actualTime;
 
-    float t;
+    float interpolation;
+    
+    bool scalating;
+    bool deScalating;
 
     private void Start()
     {
         baseScale = transform.localScale;
     }
 
+    private void Update()
+    {
+        if (scalating)
+        {
+            if (actualTime < maxTime)
+            {
+                actualTime += Time.deltaTime;
+            }
+            
+            interpolation  = actualTime / maxTime;
+            Scalate();
+
+            if (interpolation >= 1)
+            {
+                scalating = false;
+            }
+        }
+        else if (deScalating)
+        {
+            if (actualTime > 0)
+            {
+                actualTime -= Time.deltaTime;
+            }
+
+            interpolation = actualTime / maxTime;
+            Scalate();
+
+            if (interpolation <= 0)
+            {
+                deScalating = false;
+            }
+        }
+    }
+
     private void OnMouseDown()
     {
-        StopCoroutine("DeEscalate");
+        scalating = true;
+        deScalating = false;
     }
-    private void OnMouseDrag()
-    {
-        actualTime += Time.fixedDeltaTime;
-
-
-        t = maxTime / actualTime;
-        Debug.Log(t + "    " + actualTime);
-        
-        transform.localScale = Vector3.Lerp(baseScale, maxScale, t);
-    }
+    
     private void OnMouseUp()
     {
-        StartCoroutine("DeEscalate");
+        scalating = false;
+        deScalating = true;
     }
-    IEnumerator DeEscalate()
+
+    void Scalate()
     {
-        actualTime = 0;
-
-        while (t < 1)
-        {
-            actualTime += Time.deltaTime;
-
-            t = actualTime * 1 / maxTime;
-
-            transform.localScale = Vector3.Lerp(maxScale, baseScale, t);
-            yield return Time.deltaTime;
-        }
-        actualTime = 0;
-        yield return null;
+        transform.localScale = Vector3.Lerp(baseScale, maxScale, interpolation);
     }
 }

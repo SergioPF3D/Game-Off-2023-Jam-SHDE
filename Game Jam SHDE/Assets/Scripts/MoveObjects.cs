@@ -143,6 +143,7 @@ public class MoveObjects : MonoBehaviour
                 {
 					target.transform.position = transform.position + transform.forward * currentDistance;
 				}
+				target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
 			}
 		}
 		else

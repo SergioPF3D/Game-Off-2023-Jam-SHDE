@@ -2111,8 +2111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fff32baf0c3294483be1b5bd8b70a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: {x: 5, y: 5, z: 5}
+  maxScale: {x: 2, y: 2, z: 2}
   maxTime: 1
+  actualTime: 0
 --- !u!1 &1096535994
 GameObject:
   m_ObjectHideFlags: 0
