@@ -1473,9 +1473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
-  m_Bindings:
-  - {fileID: 734228721}
-  - {fileID: 734228720}
+  m_Bindings: []
   m_VisualEffect: {fileID: 734228724}
 --- !u!73398921 &734228723
 VFXRenderer:
@@ -1547,6 +1545,9 @@ VisualEffect:
       - m_Value: {x: -3.1785767, y: 1.4900527, z: -9.56442}
         m_Name: POS_2
         m_Overridden: 1
+      - m_Value: {x: 2.09, y: 2.61, z: 3.25}
+        m_Name: ScaleGrabbed
+        m_Overridden: 0
     m_Vector4f:
       m_Array: []
     m_Uint:
