@@ -635,7 +635,7 @@ MonoBehaviour:
   grabber: {fileID: 958437897}
   chasingSpeed: 0.75
   speedReductionWhenThrown: 2
-  rayVFX: {fileID: 734228718}
+  rayVFX: {fileID: 734228724}
   rayTarget: {fileID: 1648897781}
 --- !u!1 &404688760
 GameObject:
@@ -2364,10 +2364,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectDistant: {fileID: 965642780}
+  minDistance: 0
   minScale: {x: 5, y: 1, z: 1}
+  maxDistance: 0
   maxScale: {x: 1, y: 1, z: 1}
-  distanceMinScale: 5
-  distanceMaxScale: 10
 --- !u!54 &1105762006
 Rigidbody:
   m_ObjectHideFlags: 0

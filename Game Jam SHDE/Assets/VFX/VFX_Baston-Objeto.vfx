@@ -341,8 +341,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Renderer_Mesh_Particle
-    path: Renderer_Mesh_Particle
+  - name: RendererMeshParticle
+    path: RendererMeshParticle
     tooltip: 
     sheetType: m_NamedObject
     realType: Mesh
@@ -19767,7 +19767,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661616508}
-  m_ExposedName: Renderer_Mesh_Particle
+  m_ExposedName: RendererMeshParticle
   m_Exposed: 1
   m_Order: 10
   m_Category: 

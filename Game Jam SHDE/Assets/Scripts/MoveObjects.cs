@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class MoveObjects : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class MoveObjects : MonoBehaviour
 
 	[SerializeField]
 	[Tooltip("The ray VFX gameobject")]
-	GameObject rayVFX;
+	VisualEffect rayVFX;
 
 	[SerializeField]
 	[Tooltip("Final point of the ray")]
@@ -94,7 +95,11 @@ public class MoveObjects : MonoBehaviour
 					baseDistance = Vector3.Distance(transform.position, target.position);
 					baseScale = target.localScale;
 
-					rayVFX.SetActive(true);
+					rayVFX.gameObject.SetActive(true);
+
+					Debug.Log(target.gameObject.GetComponent<MeshFilter>().mesh);
+
+					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
 				}
 			}
 		}
@@ -105,8 +110,8 @@ public class MoveObjects : MonoBehaviour
             {
 				//Al habrá que hacer con esto para que no pueda haber excesos
 				//target.GetComponent<Rigidbody>().velocity /= speedReductionWhenThrown * Vector3.Distance(grabber.position, target.transform.position);
-				
-				rayVFX.SetActive(false);
+
+				rayVFX.gameObject.SetActive(false);
 				target = null;
 			}
 		}
