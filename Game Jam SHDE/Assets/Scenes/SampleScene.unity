@@ -1417,7 +1417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &734228719
 Transform:
   m_ObjectHideFlags: 0
@@ -1441,7 +1441,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734228718}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1515,9 +1515,15 @@ VisualEffect:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: POS_3
         m_Overridden: 1
-      - m_Value: {x: 0, y: 0, z: 0}
+      - m_Value: {x: -3.1785767, y: 1.4900527, z: -9.56442}
         m_Name: RayOrigin
-        m_Overridden: 0
+        m_Overridden: 1
+      - m_Value: {x: -3.46, y: 1.65, z: -7.3100004}
+        m_Name: RayCurve
+        m_Overridden: 1
+      - m_Value: {x: -3.46, y: 1.65, z: -7.3100004}
+        m_Name: RayTarget
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -1536,7 +1542,7 @@ VisualEffect:
       m_Array: []
 --- !u!114 &734228725
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1551,7 +1557,7 @@ MonoBehaviour:
   Target: {fileID: 958437897}
 --- !u!114 &734228726
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1566,7 +1572,7 @@ MonoBehaviour:
   Target: {fileID: 2089111375}
 --- !u!114 &734228727
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
