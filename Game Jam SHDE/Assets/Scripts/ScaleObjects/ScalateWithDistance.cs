@@ -5,48 +5,41 @@ using UnityEngine;
 public class ScalateWithDistance : MonoBehaviour
 {
     [SerializeField]
-    float baseDistance;
-
-    [SerializeField]
+    [Tooltip("what is the object from which it detects distance")]
     Transform ObjectDistant;
 
-    Vector3 baseScale;
+    [SerializeField]
+    [Tooltip("The distance from which, if the ObjectDistant approaches, the scale no longer changes. Must be non negative")]
+    float minDistance;
 
     [SerializeField]
-    float scaleFactor;
-    //Podriamos separar los ejes, con un vector3, velocidad d eescalado
-    //Que pueda ser inversamente proporcional
+    [Tooltip("the scale when the object is at minDistance or less")]
+    Vector3 minScale;
 
     [SerializeField]
-    float minScale;
+    [Tooltip("the distance from which, if the ObjectDistant moves away, the scale does not change any more. Must be greater than minDistance")]
+    float maxDistance;
 
     [SerializeField]
-    float maxScale;
-
-    private void Start()
-    {
-        baseScale = this.transform.localScale;
-    }
+    [Tooltip("the scale when the object is at maxDistance or more")]
+    Vector3 maxScale;
+    
     void Update()
     {
         if (ObjectDistant)
         {
-            if (Vector3.Distance(this.transform.position, ObjectDistant.transform.position) / baseDistance * scaleFactor < minScale)
+            if (Vector3.Distance(this.transform.position, ObjectDistant.transform.position) <= minDistance)
             {
-                this.transform.localScale = baseScale * minScale;
+                this.transform.localScale = minScale;
             }
-            else if (Vector3.Distance(this.transform.position, ObjectDistant.transform.position) / baseDistance * scaleFactor > maxScale)
+            else if (Vector3.Distance(this.transform.position, ObjectDistant.transform.position) >= maxDistance)
             {
-                this.transform.localScale = baseScale * maxScale;
-            }else
-            {
-                this.transform.localScale = baseScale * Vector3.Distance(this.transform.position, ObjectDistant.transform.position) / baseDistance * scaleFactor;
+                this.transform.localScale = maxScale;
             }
-
-
-            //Donde meto ScaleFactor para que al estar dentro de basedistance se haga pequeño mas rapido y fuera se haga grande mas rapido
-            //Ademas poder hacerlo al reves
-            //this.transform.localScale = baseScale * Vector3.Distance(this.transform.position, ObjectDistant.transform.position) / baseDistance;
+            else
+            {
+                this.transform.localScale = Vector3.Lerp(minScale, maxScale, (Vector3.Distance(this.transform.position, ObjectDistant.transform.position) - minDistance) / (maxDistance - minDistance));
+            }
         }
     }
 }

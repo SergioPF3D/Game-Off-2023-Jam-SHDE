@@ -5,19 +5,20 @@ using UnityEngine;
 public class ScaleWhileGrabbed : MonoBehaviour
 {
     Vector3 baseScale;
-    [SerializeField]
-    Vector3 maxScale;
 
     [SerializeField]
-    float maxTime;
+    [Tooltip("The scale that the object reachs while grabbed")]
+    Vector3 grabbedScale;
 
     [SerializeField]
-    float actualTime;
+    [Tooltip("The time that the object late scalating")]
+    float timeToScale;
 
-    float interpolation;
+    float actualTime; //The time that the objetc has been scalating
+    float interpolation; //The percentaje of the time that the object has been scalating
     
-    bool scalating;
-    bool deScalating;
+    bool scalating; //If the object is scalating
+    bool deScalating; //If the object is de-scalating
 
     private void Start()
     {
@@ -26,14 +27,15 @@ public class ScaleWhileGrabbed : MonoBehaviour
 
     private void Update()
     {
+        //Is is scalating, calculate the percentaje of time and interpolate between de grabbed scale an its base scale
         if (scalating)
         {
-            if (actualTime < maxTime)
+            if (actualTime < timeToScale)
             {
                 actualTime += Time.deltaTime;
             }
             
-            interpolation  = actualTime / maxTime;
+            interpolation  = actualTime / timeToScale;
             Scalate();
 
             if (interpolation >= 1)
@@ -41,6 +43,7 @@ public class ScaleWhileGrabbed : MonoBehaviour
                 scalating = false;
             }
         }
+        //scalating inverted
         else if (deScalating)
         {
             if (actualTime > 0)
@@ -48,7 +51,7 @@ public class ScaleWhileGrabbed : MonoBehaviour
                 actualTime -= Time.deltaTime;
             }
 
-            interpolation = actualTime / maxTime;
+            interpolation = actualTime / timeToScale;
             Scalate();
 
             if (interpolation <= 0)
@@ -72,6 +75,6 @@ public class ScaleWhileGrabbed : MonoBehaviour
 
     void Scalate()
     {
-        transform.localScale = Vector3.Lerp(baseScale, maxScale, interpolation);
+        transform.localScale = Vector3.Lerp(baseScale, grabbedScale, interpolation);
     }
 }

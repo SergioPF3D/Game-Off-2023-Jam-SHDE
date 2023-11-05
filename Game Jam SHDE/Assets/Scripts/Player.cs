@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     Vector2 InputMovement;
 
     [SerializeField]
+    [Tooltip("")]
     float movementSpeed;
 
     [Space(20)]
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour
         rigi = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
         camRotX = cam.rotation.x;
+
+        StartCoroutine("VerifyHigh");
     }
     
     void Update()
@@ -126,5 +130,16 @@ public class Player : MonoBehaviour
         {
             inputBuffer.Dequeue();
         }
+    }
+
+    //check if your height is very low, so you went through the ground somehow
+    IEnumerator VerifyHigh()
+    {
+        if (transform.position.y < -50)
+        {
+            SceneManager.LoadScene(0);
+        }
+        yield return new WaitForSeconds(5);
+        StartCoroutine("VerifyHigh");
     }
 }

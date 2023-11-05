@@ -12,14 +12,16 @@ public class ScaleWithSpeed : MonoBehaviour
     float speed;
 
     [SerializeField]
-    float minScale;
+    [Tooltip("The scale when the object isnt moving")]
+    float staticScale;
 
     [SerializeField]
-    float maxScale;
+    [Tooltip("The scale when the object is moving")]
+    float movingScale;
 
     [SerializeField]
+    [Tooltip("The target that we moves")]
     float scaleFactor;
-
 
     private void Start()
     {
@@ -34,13 +36,13 @@ public class ScaleWithSpeed : MonoBehaviour
 
         speed *= scaleFactor;
 
-        if (speed < minScale)
+        if (speed < staticScale)
         {
-            speed = minScale;
+            speed = staticScale;
         }
-        else if (speed > maxScale)
+        else if (speed > movingScale)
         {
-            speed = maxScale;
+            speed = movingScale;
         }
         
         transform.localScale = baseScale * speed;
