@@ -96,9 +96,6 @@ public class MoveObjects : MonoBehaviour
 					baseScale = target.localScale;
 
 					rayVFX.gameObject.SetActive(true);
-
-					Debug.Log(target.gameObject.GetComponent<MeshFilter>().mesh);
-
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
 				}
 			}
@@ -153,5 +150,6 @@ public class MoveObjects : MonoBehaviour
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
 		
 		rayTarget.position = target.position;
+		rayTarget.localScale = target.localScale;
 	}
 }
