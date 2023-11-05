@@ -19,9 +19,9 @@ public class Player : MonoBehaviour
     Vector2 inputRotation;
     float camRotX;
     Transform cam;
-
-    [SerializeField]
-    float mouseSensibility;
+    
+    //Cambialo con un metodo
+    public float mouseSensibility;
 
     [SerializeField]
     float maxCamRotationUp;

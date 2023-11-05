@@ -5,175 +5,148 @@ using UnityEngine;
 public class MoveObjects : MonoBehaviour
 {
 	[Header("Components")]
-	public Transform target;            // The target object we picked up for scaling
 
-	[Header("Parameters")]
 	[SerializeField]
+	[Tooltip("The target that we moves")]
+	Transform target;
+
+	[Header("Base Parameters")]
+
+	[SerializeField]
+	[Tooltip("Layermask to detect the Movable and Scalable objects")]
 	LayerMask targetMask;
-	[SerializeField]			// The layer mask used to hit only potential targets with a raycast
-	LayerMask ignoreTargetMask;  // The layer mask used to ignore the player and target objects while raycasting
 	[SerializeField]
-	float offsetFactor;
-	[SerializeField]            // The offset amount for positioning the object so it doesn't clip into walls
+	[Tooltip("Layermask that excludes the Movable and Scalable objects to detect just the envyroment and move them")]
+	LayerMask ignoreTargetMask;
+
+	[SerializeField]
+	[Tooltip("The empty object that places where we need to place the target to direct it")]
 	float maxDistance;
 
-	float originalDistance;             // The original distance between the player camera and the target
-	float originalScale;                // The original scale of the target objects prior to being resized
-	Vector3 targetScale;                // The scale we want our object to be set to each frame
+	
+	[Header("Movement")]
 
+	[SerializeField]
+	[Tooltip("The empty object that places where we need to place the target to direct it")]
+	Transform grabber;
+
+	[SerializeField]
+	[Tooltip("Multiplied by the sensitivity and the distance between the target and the objective, it decides the speed at which the target goes towards the desired point")]
+	float chasingSpeed;
+
+	[SerializeField]
+	[Tooltip("The reduction factor when the object is thrown")]
+	float speedReductionWhenThrown;
+	
+	//Mouse
+	float mouseSensibility;
+
+	//[Header("Scale")]
+	float baseDistance;
+	Vector3 baseScale;           
 	float currentDistance;
 
+	[Header("Ray VFX")]
 
-	//Ray
 	[SerializeField]
-	Transform grabber;
+	[Tooltip("The ray VFX gameobject")]
+	GameObject rayVFX;
+
 	[SerializeField]
+	[Tooltip("Final point of the ray")]
 	Transform rayTarget;
-
-	[SerializeField]
-	GameObject vfxRay;
 	
-
-
-	float chasingSpeed;
 	void Start()
 	{
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+
+		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
+		mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
 	}
 
 	void Update()
 	{
-		HandleInput();
+		DetectInputs();
 
 		MoveTarget();
 	}
 
-	void HandleInput()
+	void DetectInputs()
 	{
-		// Check for left mouse click
+
 		if (Input.GetMouseButtonDown(0))
 		{
-			// If we do not currently have a target
+			//If we dont have a target, we release it;
 			if (target == null)
 			{
-				// Fire a raycast with the layer mask that only hits potential targets
 				RaycastHit hit;
 				if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, targetMask))
 				{
+					//If we are so far of the target, then we dont set it
                     if (Vector3.Distance(hit.transform.position, transform.position) > maxDistance)
                     {
 						return;
                     }
 
-					// Set our target variable to be the Transform object we hit with our raycast
 					target = hit.transform;
-					vfxRay.SetActive(true);
+					
+					baseDistance = Vector3.Distance(transform.position, target.position);
+					baseScale = target.localScale;
 
-					// Disable physics for the object
-					//target.GetComponent<Rigidbody>().isKinematic = true;
-
-					// Calculate the distance between the camera and the object
-					originalDistance = Vector3.Distance(transform.position, target.position);
-
-					// Save the original scale of the object into our originalScale Vector3 variabble
-					originalScale = target.localScale.x;
-
-					// Set our target scale to be the same as the original for the time being
-					targetScale = target.localScale;
+					rayVFX.SetActive(true);
 				}
 			}
 		}
         if (Input.GetMouseButtonUp(0))
         {
-            if (target)
+			//If we have a target, we have to release it
+			if (target)
             {
-				// Reactivate physics for the target object
-				target.GetComponent<Rigidbody>().isKinematic = false;
-
-				// Set our target variable to null
+				//Al habrá que hacer con esto para que no pueda haber excesos
+				//target.GetComponent<Rigidbody>().velocity /= speedReductionWhenThrown * Vector3.Distance(grabber.position, target.transform.position);
+				
+				rayVFX.SetActive(false);
 				target = null;
-
-				vfxRay.SetActive(false);
 			}
-
-
-			
 		}
-
 	}
 
 	void MoveTarget()
 	{
+		//If theres no target, we return
 		if (!target)
 		{
 			return;
 		}
 
+		//If we have someting in front, we move the object towards it and scale if necesary, if not, move the object with distance
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
 		{
-			//Make a media of the scales of the object, to aproximate the offset that the object may have
-			float scaleMedia = (target.localScale.x + target.localScale.y + target.localScale.z) / 3;//(targetScale.x + targetScale.y + targetScale.z) / 3;
-
-			currentDistance = Vector3.Distance(transform.position, target.position);
-
-
-
+			//We move the target
 			grabber.position = hit.point;
 
-
+			currentDistance = Vector3.Distance(transform.position, target.position);
+			
+			//If its scalable, we scale it
 			if (target.gameObject.layer == 6)
 			{
-				//target.position = hit.point - transform.forward * offsetFactor * scaleMedia;
-				//target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
-
 				// Calculate the ratio between the current distance and the original distance
-				float s = currentDistance / originalDistance;
-				// Set the scale Vector3 variable to be the ratio of the distances
-				targetScale.x = targetScale.y = targetScale.z = s;
-
-
-				// Set the scale for the target objectm, multiplied by the original scale
-				target.localScale = targetScale * originalScale;
-			}
-			else
-			{
+				float ratio = currentDistance / baseDistance;
 				
-                if (Vector3.Distance(transform.position, hit.point + (hit.normal.normalized * scaleMedia / 2)) < Vector3.Distance(transform.position, transform.position + transform.forward * currentDistance))
-                {
-					//target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
-                }
-                else
-                {
-					//target.transform.position = transform.position + transform.forward * currentDistance;
-				}
-
-				//target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
-
-				//target.transform.position = transform.position + transform.forward * currentDistance;
+				//Scale the object
+				target.localScale = ratio * baseScale;
 			}
 		}
 		else
 		{
-			//target.position = transform.posi
-			//target.transform.position = transform.position + transform.forward * currentDistance;
-
 			grabber.position = transform.position + transform.forward * currentDistance;
 		}
 
-
-		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position);
+		//Set the speed of the target
+		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+		
 		rayTarget.position = target.position;
-		//Lo de kinematik
-	}
-
-	void TargetChasing()
-    {
-		Transform target = this.transform;
-		Transform chasedPoint = this.transform;
-
-		target.GetComponent<Rigidbody>().velocity = (chasedPoint.position - target.position).normalized * Vector3.Distance(chasedPoint.position, target.position) * chasingSpeed;
-
 	}
 }
