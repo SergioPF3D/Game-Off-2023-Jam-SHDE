@@ -26,7 +26,9 @@ public class MoveObjects : MonoBehaviour
 
 	//Ray
 	[SerializeField]
-	Transform vfxObjective;
+	Transform grabber;
+	[SerializeField]
+	Transform rayTarget;
 
 	[SerializeField]
 	GameObject vfxRay;
@@ -69,7 +71,7 @@ public class MoveObjects : MonoBehaviour
 					vfxRay.SetActive(true);
 
 					// Disable physics for the object
-					target.GetComponent<Rigidbody>().isKinematic = true;
+					//target.GetComponent<Rigidbody>().isKinematic = true;
 
 					// Calculate the distance between the camera and the object
 					originalDistance = Vector3.Distance(transform.position, target.position);
@@ -107,8 +109,6 @@ public class MoveObjects : MonoBehaviour
 		{
 			return;
 		}
-		
-		
 
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
@@ -117,11 +117,16 @@ public class MoveObjects : MonoBehaviour
 			float scaleMedia = (target.localScale.x + target.localScale.y + target.localScale.z) / 3;//(targetScale.x + targetScale.y + targetScale.z) / 3;
 
 			currentDistance = Vector3.Distance(transform.position, target.position);
-			
+
+
+
+			grabber.position = hit.point;
+
+
 			if (target.gameObject.layer == 6)
 			{
 				//target.position = hit.point - transform.forward * offsetFactor * scaleMedia;
-				target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
+				//target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
 
 				// Calculate the ratio between the current distance and the original distance
 				float s = currentDistance / originalDistance;
@@ -137,28 +142,30 @@ public class MoveObjects : MonoBehaviour
 				
                 if (Vector3.Distance(transform.position, hit.point + (hit.normal.normalized * scaleMedia / 2)) < Vector3.Distance(transform.position, transform.position + transform.forward * currentDistance))
                 {
-					target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
+					//target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
                 }
                 else
                 {
-					target.transform.position = transform.position + transform.forward * currentDistance;
+					//target.transform.position = transform.position + transform.forward * currentDistance;
 				}
 
 				//target.position = hit.point + (hit.normal.normalized * scaleMedia / 2);
 
-				target.transform.position = transform.position + transform.forward * currentDistance;
+				//target.transform.position = transform.position + transform.forward * currentDistance;
 			}
 		}
 		else
 		{
 			//target.position = transform.posi
-			target.transform.position = transform.position + transform.forward * currentDistance;
+			//target.transform.position = transform.position + transform.forward * currentDistance;
 
+			grabber.position = transform.position + transform.forward * currentDistance;
 		}
 
-		vfxObjective.position = target.transform.position;
 
-
+		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position);
+		rayTarget.position = target.position;
+		//Lo de kinematik
 	}
 
 	void TargetChasing()

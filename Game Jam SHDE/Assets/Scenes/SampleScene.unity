@@ -575,6 +575,7 @@ Transform:
   m_Children:
   - {fileID: 1956111624}
   - {fileID: 958437897}
+  - {fileID: 1648897781}
   m_Father: {fileID: 604728383}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -632,7 +633,8 @@ MonoBehaviour:
     m_Bits: 55
   offsetFactor: 0
   maxDistance: 100
-  vfxObjective: {fileID: 958437897}
+  grabber: {fileID: 958437897}
+  rayTarget: {fileID: 1648897781}
   vfxRay: {fileID: 734228718}
 --- !u!1 &404688760
 GameObject:
@@ -1459,7 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Property:
     m_Name: POS_1
-  Target: {fileID: 958437897}
+  Target: {fileID: 1648897781}
 --- !u!114 &734228722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,7 +1475,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
-  m_Bindings: []
+  m_Bindings:
+  - {fileID: 734228721}
+  - {fileID: 734228720}
   m_VisualEffect: {fileID: 734228724}
 --- !u!73398921 &734228723
 VFXRenderer:
@@ -1548,6 +1552,9 @@ VisualEffect:
       - m_Value: {x: 2.09, y: 2.61, z: 3.25}
         m_Name: ScaleGrabbed
         m_Overridden: 0
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: POS_3
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -2835,6 +2842,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1648897780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648897781}
+  m_Layer: 0
+  m_Name: RayTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1648897781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648897780}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658050264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3561,7 +3599,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2089111375}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: RayOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
