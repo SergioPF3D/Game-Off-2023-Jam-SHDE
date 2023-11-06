@@ -3509,7 +3509,7 @@ MonoBehaviour:
   ignoreTargetMask:
     serializedVersion: 2
     m_Bits: 55
-  maxDistance: 20
+  maxDistance: 30
   grabber: {fileID: 958437897}
   chasingSpeed: 0.75
   speedReductionWhenThrown: 2
