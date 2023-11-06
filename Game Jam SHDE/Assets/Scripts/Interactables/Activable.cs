@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Activable : MonoBehaviour
 {
+    //Condition
+    [SerializeField]
+    float inputs;
+
+    public float actualInputs;
+
+    //Things to activate
     BoxCollider colider;
     MeshRenderer render;
     private void Start()
