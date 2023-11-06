@@ -79,9 +79,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: -3428
-    y: -2928
+    y: -2897
     width: 8702
-    height: 6447
+    height: 6416
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1795,11 +1795,6 @@ MonoBehaviour:
     position: {x: 322.0227, y: 3177.7317}
     expandedSlots: []
     expanded: 0
-  - m_Id: 1
-    linkedSlots: []
-    position: {x: 30, y: -1518}
-    expandedSlots: []
-    expanded: 0
 --- !u!114 &8926484042661614676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,7 +1879,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614678}
       inputSlot: {fileID: 8926484042661616997}
-    position: {x: 1865.9001, y: -963.0001}
+    position: {x: 1841, y: -898}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614678
@@ -24508,7 +24503,7 @@ MonoBehaviour:
         m_SerializableType: UnityEditor.VFX.DirectionType, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"direction":{"x":0.0,"y":1.0,"z":0.0}}'
-    m_Space: 0
+    m_Space: 1
   m_Property:
     name: RotationAxis
     m_serializedType:
@@ -25035,7 +25030,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -25094,7 +25089,7 @@ MonoBehaviour:
         m_SerializableType: UnityEditor.VFX.Transform, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}'
-    m_Space: 0
+    m_Space: 1
   m_Property:
     name: o
     m_serializedType:
