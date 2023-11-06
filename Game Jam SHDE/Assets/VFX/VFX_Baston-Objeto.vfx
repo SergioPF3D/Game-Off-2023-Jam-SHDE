@@ -67,8 +67,8 @@ MonoBehaviour:
   - title: PENDIENTE
     position:
       serializedVersion: 2
-      x: -239
-      y: -1899
+      x: -241
+      y: -1901
       width: 389
       height: 302
     contents: 'Player position y bound size, Crear los transform y atachar el player
@@ -311,7 +311,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 200
+      m_SerializableObject: 100
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -14025,7 +14025,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 200
+      m_SerializableObject: 100
     m_Space: 2147483647
   m_Property:
     name: o
@@ -19560,7 +19560,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":1.2000000476837159,"y":1.2000000476837159,"z":1.2000000476837159}'
+      m_SerializableObject: '{"x":1.0,"y":1.0,"z":1.0}'
     m_Space: 2147483647
   m_Property:
     name: b
@@ -20903,7 +20903,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2488, y: 1616}
+  m_UIPosition: {x: 2595, y: 1616}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -20980,7 +20980,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.05
+      m_SerializableObject: 0.01
     m_Space: 2147483647
   m_Property:
     name: b
@@ -21149,7 +21149,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.1
+      m_SerializableObject: 0.025
     m_Space: 2147483647
   m_Property:
     name: max

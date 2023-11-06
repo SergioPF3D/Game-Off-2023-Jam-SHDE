@@ -3023,7 +3023,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
@@ -3112,7 +3112,7 @@ Transform:
   - {fileID: 958437897}
   - {fileID: 1648897781}
   m_Father: {fileID: 604728383}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -3982,7 +3982,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &404688765
 Rigidbody:
@@ -4093,7 +4093,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -4243,7 +4243,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425546037
 GameObject:
@@ -4408,7 +4408,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475777476
 GameObject:
@@ -5998,9 +5998,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 734228719}
   - {fileID: 330585546}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &604728384
 Rigidbody:
@@ -7354,13 +7355,15 @@ GameObject:
   - component: {fileID: 734228726}
   - component: {fileID: 734228725}
   - component: {fileID: 734228729}
+  - component: {fileID: 734228730}
+  - component: {fileID: 734228731}
   m_Layer: 0
   m_Name: VFX_Baston-Objeto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &734228719
 Transform:
   m_ObjectHideFlags: 0
@@ -7369,11 +7372,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734228718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.799995, y: 0, z: 30.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 604728383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!73398921 &734228723
@@ -7384,7 +7387,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734228718}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -7442,8 +7445,23 @@ VisualEffect:
       - m_Value: 10
         m_Name: InicializeSpeed
         m_Overridden: 1
+      - m_Value: 100
+        m_Name: TrailSpawnRate
+        m_Overridden: 1
+      - m_Value: 0.2
+        m_Name: Speed
+        m_Overridden: 1
+      - m_Value: 0.05
+        m_Name: Thickness
+        m_Overridden: 1
     m_Vector2f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.1, y: 0.2}
+        m_Name: (A-X / B-Y)LifeTimeParticlesGrabbed
+        m_Overridden: 1
+      - m_Value: {x: 0.1, y: 0.15}
+        m_Name: (A-X / B-Y)LifeTimeParticlesTrailGrabbed
+        m_Overridden: 1
     m_Vector3f:
       m_Array:
       - m_Value: {x: -3.46, y: 1.65, z: -7.3100004}
@@ -7458,20 +7476,50 @@ VisualEffect:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: POS_3
         m_Overridden: 1
-      - m_Value: {x: -3.1785767, y: 1.4900527, z: -9.56442}
+      - m_Value: {x: 21.181423, y: 1.4900527, z: 13.045581}
         m_Name: RayOrigin
         m_Overridden: 1
-      - m_Value: {x: -3.46, y: 1.65, z: -7.3100004}
+      - m_Value: {x: 20.9, y: 1.65, z: 15.3}
         m_Name: RayCurve
         m_Overridden: 1
-      - m_Value: {x: -3.46, y: 1.65, z: -7.3100004}
+      - m_Value: {x: 20.9, y: 1.65, z: 15.3}
         m_Name: RayTarget
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
         m_Name: ScaleGrabbed_scale
         m_Overridden: 1
+      - m_Value: {x: -0, y: 0, z: 0}
+        m_Name: ScaleGrabbed_angles
+        m_Overridden: 1
+      - m_Value: {x: 20.9, y: 1.65, z: 15.3}
+        m_Name: ScaleGrabbed_position
+        m_Overridden: 1
+      - m_Value: {x: 100, y: 100, z: 100}
+        m_Name: BoundSize
+        m_Overridden: 1
+      - m_Value: {x: -0, y: 0, z: 0}
+        m_Name: PlayerPosition_angles
+        m_Overridden: 1
+      - m_Value: {x: 20.9, y: 1, z: 12.3}
+        m_Name: PlayerPosition_position
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1}
+        m_Name: PlayerPosition_scale
+        m_Overridden: 1
+      - m_Value: {x: 20.9, y: 1.65, z: 12.3}
+        m_Name: (PickCamera)StaffOrientation_position
+        m_Overridden: 1
+      - m_Value: {x: -0, y: 0, z: 0}
+        m_Name: (PickCamera)StaffOrientation_angles
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1}
+        m_Name: (PickCamera)StaffOrientation_scale
+        m_Overridden: 1
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 60.08208, y: 23.03573, z: 95.75638, w: 0}
+        m_Name: Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -7479,7 +7527,77 @@ VisualEffect:
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.05
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.7491394
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.9397888
+            value: 0
+            inSlope: -1.7095798
+            outSlope: -1.7095798
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: LightningIntensityCurves
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.15
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.5
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0.15
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: LightningThickCurves
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:
@@ -7552,10 +7670,12 @@ MonoBehaviour:
   - {fileID: 734228726}
   - {fileID: 734228725}
   - {fileID: 734228729}
+  - {fileID: 734228730}
+  - {fileID: 734228731}
   m_VisualEffect: {fileID: 734228724}
 --- !u!114 &734228729
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7568,6 +7688,36 @@ MonoBehaviour:
   m_Property:
     m_Name: ScaleGrabbed
   Target: {fileID: 1648897781}
+--- !u!114 &734228730
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734228718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Property:
+    m_Name: PlayerPosition
+  Target: {fileID: 604728383}
+--- !u!114 &734228731
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734228718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Property:
+    m_Name: (PickCamera)StaffOrientation
+  Target: {fileID: 330585546}
 --- !u!1 &748758205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7858,7 +8008,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &792665953
 GameObject:
@@ -8621,7 +8771,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839572236
 GameObject:
@@ -9722,7 +9872,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958247934
 GameObject:
@@ -9897,7 +10047,7 @@ Transform:
   - {fileID: 1844575144}
   - {fileID: 144880768}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &965642776
 GameObject:
@@ -9996,7 +10146,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &965642781
 MonoBehaviour:
@@ -10610,7 +10760,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1012661395
 Rigidbody:
@@ -10741,7 +10891,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1016816543
 MonoBehaviour:
@@ -11726,7 +11876,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1094772091
 MonoBehaviour:
@@ -11837,7 +11987,7 @@ Transform:
   - {fileID: 1952263296}
   - {fileID: 1931332586}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1104767341
 GameObject:
@@ -12033,7 +12183,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1105762005
 MonoBehaviour:
@@ -14020,7 +14170,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 42.479, y: 34.008, z: -1.578}
 --- !u!1 &1274338719
 GameObject:
@@ -15767,7 +15917,7 @@ RectTransform:
   m_Children:
   - {fileID: 104850412}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15924,7 +16074,7 @@ Transform:
   - {fileID: 1600630754}
   - {fileID: 1853002032}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1484217242
 GameObject:
@@ -17610,7 +17760,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1623617239
 MonoBehaviour:
@@ -17951,7 +18101,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1658050269
 Rigidbody:
@@ -19036,7 +19186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1800131969
 MonoBehaviour:
