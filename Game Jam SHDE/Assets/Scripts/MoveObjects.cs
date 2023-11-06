@@ -36,6 +36,10 @@ public class MoveObjects : MonoBehaviour
 	float chasingSpeed;
 
 	[SerializeField]
+	[Tooltip("limit the moving speed, if its 0 or negative its limitless, also its funnier")]
+	float maxSpeed;
+
+	[SerializeField]
 	[Tooltip("The reduction factor when the object is thrown")]
 	float speedReductionWhenThrown;
 	
@@ -112,6 +116,15 @@ public class MoveObjects : MonoBehaviour
 				//Al habrá que hacer con esto para que no pueda haber excesos
 				//target.GetComponent<Rigidbody>().velocity /= speedReductionWhenThrown * Vector3.Distance(grabber.position, target.transform.position);
 
+				float media = (Mathf.Abs(target.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.y) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.z)) / 3;
+				
+				if (maxSpeed > 0)
+				{
+					target.GetComponent<Rigidbody>().velocity *= (maxSpeed/media);
+				}
+
+
+
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 				rayVFX.gameObject.SetActive(false);
@@ -156,7 +169,7 @@ public class MoveObjects : MonoBehaviour
 
 		//Set the speed of the target
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
-		
+
 		rayTarget.position = target.position;
 		rayTarget.localScale = target.localScale;
 	}
