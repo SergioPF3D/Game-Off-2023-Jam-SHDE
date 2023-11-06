@@ -25,19 +25,28 @@ public class Interactable : MonoBehaviour
     }
     public virtual void Activate()
     {
-        foreach (var actibable in actibables)
+        if (!activated)
         {
-            actibable.Activate();
+            foreach (var actibable in actibables)
+            {
+                //actibable.Activate();
+                actibable.AddInput();
+            }
+            activated = true;
         }
-        activated = true;
     }
 
     public virtual void DeActivate()
     {
-        foreach (var actibable in actibables)
+        if (activated)
         {
-            actibable.DeActivate();
+            foreach (var actibable in actibables)
+            {
+                //actibable.DeActivate();
+                actibable.RemoveInput();
+            }
         }
+        
         activated = false;
     }
 }

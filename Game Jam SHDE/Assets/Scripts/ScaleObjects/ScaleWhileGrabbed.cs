@@ -64,14 +64,15 @@ public class ScaleWhileGrabbed : MonoBehaviour
 
             this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
         }
-
-        
     }
 
     private void OnMouseDown()
     {
-        scalating = true;
-        deScalating = false;
+        if (GameObject.FindObjectOfType<MoveObjects>().target == this.transform)
+        {
+            scalating = true;
+            deScalating = false;
+        }
     }
     
     private void OnMouseUp()

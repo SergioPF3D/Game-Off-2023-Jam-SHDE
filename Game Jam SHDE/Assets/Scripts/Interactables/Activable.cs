@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Activable : MonoBehaviour
 {
+    [SerializeField]
+    bool baseActivated;
+
     //Condition
     [SerializeField]
     float inputs;
-
-    public float actualInputs;
+    [SerializeField]
+    float actualInputs;
 
     //Things to activate
     BoxCollider colider;
@@ -17,16 +20,57 @@ public class Activable : MonoBehaviour
     {
         colider = this.gameObject.GetComponent<BoxCollider>();
         render = this.gameObject.GetComponent<MeshRenderer>();
+
+        if (!baseActivated)
+        {
+            DeActivate();
+        }
     }
 
-    public void Activate()
+    void Activate()
     {
         colider.enabled = true;
         render.enabled = true;
     }
-    public void DeActivate()
+    void DeActivate()
     {
         colider.enabled = false;
         render.enabled = false;
+    }
+
+    void seeIfActivate()
+    {
+        if (actualInputs >= inputs)
+        {
+            if (baseActivated)
+            {
+                DeActivate();
+            }
+            else
+            {
+                Activate();
+            }
+        }
+        else
+        {
+            if (baseActivated)
+            {
+                Activate();
+            }
+            else
+            {
+                DeActivate();
+            }
+        }
+    }
+    public void AddInput()
+    {
+        actualInputs++;
+        seeIfActivate();
+    }
+    public void RemoveInput()
+    {
+        actualInputs--;
+        seeIfActivate();
     }
 }

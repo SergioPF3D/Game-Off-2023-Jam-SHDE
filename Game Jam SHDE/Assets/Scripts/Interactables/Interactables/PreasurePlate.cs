@@ -28,33 +28,26 @@ public class PreasurePlate : Interactable
         {
             objectsInThePlate.Add(other.gameObject.GetComponent<Rigidbody>());
 
-            
             totalMass += other.gameObject.GetComponent<Rigidbody>().mass;
             if (totalMass >= massToInteract)
             {
-                DeActivate();
-            }
-            
+                Activate();
+            } 
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
-    {
-        
+    { 
         if (other.gameObject.GetComponent<Rigidbody>())
         {
             objectsInThePlate.Remove(other.gameObject.GetComponent<Rigidbody>());
-
             
             totalMass -= other.gameObject.GetComponent<Rigidbody>().mass;
             if (totalMass < massToInteract)
             {
-                Activate();
+                DeActivate();
             }
-            
         }
-        
     }
 
     private void OnTriggerStay(Collider other)
@@ -67,15 +60,13 @@ public class PreasurePlate : Interactable
         }
 
         totalMass = massInside;
-
         if (totalMass >= massToInteract)
         {
-            DeActivate();
-            
+            Activate();
         }
         if (totalMass < massToInteract)
         {
-            Activate();
+            DeActivate();
         }
         
     }

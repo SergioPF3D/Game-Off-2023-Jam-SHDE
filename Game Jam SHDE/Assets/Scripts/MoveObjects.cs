@@ -8,9 +8,8 @@ public class MoveObjects : MonoBehaviour
 {
 	[Header("Components")]
 
-	[SerializeField]
 	[Tooltip("The target that we moves")]
-	Transform target;
+	public Transform target;
 
 	[Header("Base Parameters")]
 
