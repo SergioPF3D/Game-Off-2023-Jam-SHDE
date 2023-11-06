@@ -10,6 +10,11 @@ public class PreasurePlate : Interactable
     [SerializeField]
     float massToInteract;
 
+    [SerializeField]
+    float totalMass;
+
+    [SerializeField]
+    List<Rigidbody> objectsInThePlate;
 
     public override void Interact()
     {
@@ -18,21 +23,59 @@ public class PreasurePlate : Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (objectsInTrigger <= 0)
-        {
-            Interact();
-        }
-        objectsInTrigger++;
         
+        if (other.gameObject.GetComponent<Rigidbody>())
+        {
+            objectsInThePlate.Add(other.gameObject.GetComponent<Rigidbody>());
+
+            
+            totalMass += other.gameObject.GetComponent<Rigidbody>().mass;
+            if (totalMass >= massToInteract)
+            {
+                DeActivate();
+            }
+            
+        }
         
     }
 
     private void OnTriggerExit(Collider other)
     {
-        objectsInTrigger--;
-        if (objectsInTrigger <= 0)
+        
+        if (other.gameObject.GetComponent<Rigidbody>())
         {
-            Interact();
+            objectsInThePlate.Remove(other.gameObject.GetComponent<Rigidbody>());
+
+            
+            totalMass -= other.gameObject.GetComponent<Rigidbody>().mass;
+            if (totalMass < massToInteract)
+            {
+                Activate();
+            }
+            
+        }
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        float massInside = 0;
+
+        foreach (var rigi in objectsInThePlate)
+        {
+            massInside += rigi.mass;
+        }
+
+        totalMass = massInside;
+
+        if (totalMass >= massToInteract)
+        {
+            DeActivate();
+            
+        }
+        if (totalMass < massToInteract)
+        {
+            Activate();
         }
         
     }

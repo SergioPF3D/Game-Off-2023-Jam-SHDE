@@ -14,19 +14,30 @@ public class Interactable : MonoBehaviour
     {
         if (activated)
         {
-            foreach (var actibable in actibables)
-            {
-                actibable.Activate();
-            }
+            Activate();
         }
         else
         {
-            foreach (var actibable in actibables)
-            {
-                actibable.DeActivate();
-            }
+            DeActivate();
         }
 
-        activated = !activated;
+        //activated = !activated;
+    }
+    public virtual void Activate()
+    {
+        foreach (var actibable in actibables)
+        {
+            actibable.Activate();
+        }
+        activated = true;
+    }
+
+    public virtual void DeActivate()
+    {
+        foreach (var actibable in actibables)
+        {
+            actibable.DeActivate();
+        }
+        activated = false;
     }
 }

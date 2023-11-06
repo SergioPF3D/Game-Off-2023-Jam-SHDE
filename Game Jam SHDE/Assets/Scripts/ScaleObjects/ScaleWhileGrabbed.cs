@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ScaleWhileGrabbed : MonoBehaviour
 {
     Vector3 baseScale;
@@ -42,6 +43,8 @@ public class ScaleWhileGrabbed : MonoBehaviour
             {
                 scalating = false;
             }
+
+            this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
         }
         //scalating inverted
         else if (deScalating)
@@ -58,7 +61,11 @@ public class ScaleWhileGrabbed : MonoBehaviour
             {
                 deScalating = false;
             }
+
+            this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
         }
+
+        
     }
 
     private void OnMouseDown()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ScaleWithMouseWheel : MonoBehaviour
 {
     [SerializeField]
@@ -24,6 +25,7 @@ public class ScaleWithMouseWheel : MonoBehaviour
             if (transform.localScale.x + Input.GetAxis("Mouse ScrollWheel") <= maxScale || transform.localScale.y + Input.GetAxis("Mouse ScrollWheel") <= maxScale || transform.localScale.z + Input.GetAxis("Mouse ScrollWheel") <= maxScale)
             {
                 transform.localScale += Input.GetAxis("Mouse ScrollWheel") * scaleSpeed;
+                this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
             }
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
@@ -32,7 +34,8 @@ public class ScaleWithMouseWheel : MonoBehaviour
             if (transform.localScale.x + Input.GetAxis("Mouse ScrollWheel") >= minScale || transform.localScale.y + Input.GetAxis("Mouse ScrollWheel") >= minScale || transform.localScale.z + Input.GetAxis("Mouse ScrollWheel") >= minScale)
             {
                 transform.localScale += Input.GetAxis("Mouse ScrollWheel") * scaleSpeed;
+                this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
             }
-        }
+        }  
     }
 }

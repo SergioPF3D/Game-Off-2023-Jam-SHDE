@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
+[RequireComponent(typeof(Camera))]
 public class MoveObjects : MonoBehaviour
 {
 	[Header("Components")]
@@ -44,7 +45,8 @@ public class MoveObjects : MonoBehaviour
 
 	//[Header("Scale")]
 	float baseDistance;
-	Vector3 baseScale;           
+	Vector3 baseScale;
+	float baseMass;
 	float currentDistance;
 
 	[Header("Ray VFX")]
@@ -91,9 +93,12 @@ public class MoveObjects : MonoBehaviour
                     }
 
 					target = hit.transform;
-					
+					target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
 					baseDistance = Vector3.Distance(transform.position, target.position);
 					baseScale = target.localScale;
+					baseMass = target.GetComponent<Rigidbody>().mass;
+					target.GetComponent<Rigidbody>().isKinematic = false;
 
 					rayVFX.gameObject.SetActive(true);
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
@@ -108,7 +113,10 @@ public class MoveObjects : MonoBehaviour
 				//Al habrá que hacer con esto para que no pueda haber excesos
 				//target.GetComponent<Rigidbody>().velocity /= speedReductionWhenThrown * Vector3.Distance(grabber.position, target.transform.position);
 
+				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
 				rayVFX.gameObject.SetActive(false);
+
 				target = null;
 			}
 		}
@@ -139,6 +147,7 @@ public class MoveObjects : MonoBehaviour
 				
 				//Scale the object
 				target.localScale = ratio * baseScale;
+				target.GetComponent<Rigidbody>().mass = ratio * baseMass;
 			}
 		}
 		else
