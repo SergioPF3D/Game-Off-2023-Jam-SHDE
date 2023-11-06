@@ -23932,7 +23932,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661616911}
   m_OutputSlots: []
-  m_Disabled: 1
+  m_Disabled: 0
   attribute: position
   Composition: 0
   Source: 0
@@ -23955,7 +23955,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661616912}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661616911}
   m_MasterData:
@@ -23972,8 +23972,7 @@ MonoBehaviour:
       m_SerializableType: UnityEditor.VFX.Position, Unity.VisualEffectGraph.Editor,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661616933}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661616912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23993,7 +23992,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616914}
   - {fileID: 8926484042661616915}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661616911}
   m_MasterData:
@@ -24124,7 +24123,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1620, y: -1773}
+  m_UIPosition: {x: 1640, y: -1719}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -24716,8 +24715,7 @@ MonoBehaviour:
       m_SerializableType: UnityEditor.VFX.Position, Unity.VisualEffectGraph.Editor,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 8926484042661616911}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661616934
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -120,10 +120,23 @@ public class MoveObjects : MonoBehaviour
 				
 				if (maxSpeed > 0)
 				{
-					target.GetComponent<Rigidbody>().velocity *= (maxSpeed/media);
+                    if (media > maxSpeed)
+                    {
+						target.GetComponent<Rigidbody>().velocity *= (maxSpeed / media);
+					}
+
+					/*
+					//Sumarle la media
+					if (Vector3.Distance(target.transform.position, grabber.position) > 1.25)
+                    {
+						target.GetComponent<Rigidbody>().velocity *= (maxSpeed / media);
+                    }
+                    else
+                    {
+						target.GetComponent<Rigidbody>().velocity = Vector3.zero;
+					}
+					*/
 				}
-
-
 
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
@@ -168,7 +181,19 @@ public class MoveObjects : MonoBehaviour
 		}
 
 		//Set the speed of the target
+		//Irrelevante
+		/*
+        if (Vector3.Distance(target.transform.position, grabber.position) > 1.25)
+        {
+			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+        }
+        else
+        {
+			target.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		}
+		*/
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+
 
 		rayTarget.position = target.position;
 		rayTarget.localScale = target.localScale;
