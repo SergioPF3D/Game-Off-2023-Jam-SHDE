@@ -113,29 +113,14 @@ public class MoveObjects : MonoBehaviour
 			//If we have a target, we have to release it
 			if (target)
             {
-				//Al habrá que hacer con esto para que no pueda haber excesos
-				//target.GetComponent<Rigidbody>().velocity /= speedReductionWhenThrown * Vector3.Distance(grabber.position, target.transform.position);
-
+				//Limit the speed
 				float media = (Mathf.Abs(target.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.y) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.z)) / 3;
-				
 				if (maxSpeed > 0)
 				{
                     if (media > maxSpeed)
                     {
 						target.GetComponent<Rigidbody>().velocity *= (maxSpeed / media);
-					}
-
-					/*
-					//Sumarle la media
-					if (Vector3.Distance(target.transform.position, grabber.position) > 1.25)
-                    {
-						target.GetComponent<Rigidbody>().velocity *= (maxSpeed / media);
                     }
-                    else
-                    {
-						target.GetComponent<Rigidbody>().velocity = Vector3.zero;
-					}
-					*/
 				}
 
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
@@ -159,8 +144,16 @@ public class MoveObjects : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
 		{
-			//We move the target
-			grabber.position = hit.point;
+
+			//We set the grabber
+            if (Vector3.Distance(transform.position, hit.point) > maxDistance)
+            {
+				grabber.position = transform.position + transform.forward * currentDistance;
+            }
+            else
+            {
+				grabber.position = hit.point;
+			}
 
 			currentDistance = Vector3.Distance(transform.position, target.position);
 			
@@ -174,28 +167,27 @@ public class MoveObjects : MonoBehaviour
 				target.localScale = ratio * baseScale;
 				target.GetComponent<Rigidbody>().mass = ratio * baseMass;
 			}
+			
 		}
 		else
 		{
-			grabber.position = transform.position + transform.forward * currentDistance;
+            if (currentDistance > maxDistance)
+            {
+				grabber.position = transform.position + transform.forward * maxDistance;
+			}
+            else
+            {
+				grabber.position = transform.position + transform.forward * currentDistance;//currentDistance
+			}
 		}
 
-		//Set the speed of the target
-		//Irrelevante
-		/*
-        if (Vector3.Distance(target.transform.position, grabber.position) > 1.25)
-        {
-			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
-        }
-        else
-        {
-			target.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		}
-		*/
+		//We move the target
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
-
 
 		rayTarget.position = target.position;
 		rayTarget.localScale = target.localScale;
+
+
+		//que lances el rayo pero no llegue y no se pongan las particulas de lfinal
 	}
 }

@@ -21,9 +21,12 @@ public class ScaleWhileGrabbed : MonoBehaviour
     bool scalating; //If the object is scalating
     bool deScalating; //If the object is de-scalating
 
+    MoveObjects player;
+
     private void Start()
     {
         baseScale = transform.localScale;
+        player = GameObject.FindObjectOfType<MoveObjects>();
     }
 
     private void Update()
@@ -31,20 +34,24 @@ public class ScaleWhileGrabbed : MonoBehaviour
         //Is is scalating, calculate the percentaje of time and interpolate between de grabbed scale an its base scale
         if (scalating)
         {
-            if (actualTime < timeToScale)
+            if (player.target == this.transform)
             {
-                actualTime += Time.deltaTime;
+                if (actualTime < timeToScale)
+                {
+                    actualTime += Time.deltaTime;
+                }
+
+                interpolation = actualTime / timeToScale;
+                Scalate();
+
+                if (interpolation >= 1)
+                {
+                    scalating = false;
+                }
+
+                this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
             }
             
-            interpolation  = actualTime / timeToScale;
-            Scalate();
-
-            if (interpolation >= 1)
-            {
-                scalating = false;
-            }
-
-            this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
         }
         //scalating inverted
         else if (deScalating)
@@ -68,11 +75,8 @@ public class ScaleWhileGrabbed : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameObject.FindObjectOfType<MoveObjects>().target == this.transform)
-        {
-            scalating = true;
-            deScalating = false;
-        }
+        scalating = true;
+        deScalating = false;
     }
     
     private void OnMouseUp()
