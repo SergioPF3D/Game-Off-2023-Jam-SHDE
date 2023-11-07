@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaleWithSpeed : MonoBehaviour
+public class ScaleWithSpeed : ScalableObject
 {
     
     Vector3 previousPosition;

@@ -90,7 +90,6 @@ public class Player : MonoBehaviour
 
             Debug.Log(1 + "    " + inputBuffer.Count);
         }
-
         //Player is in the ground
         if (Physics.Raycast(transform.position - transform.up * 0.95f, -transform.up, out RaycastHit groundRaycast, 0.08f, jumpLayers))
         {
@@ -125,10 +124,7 @@ public class Player : MonoBehaviour
             {
                 staffAnimationController.SetBool("Falling", true);
             }
-        }
-
-
-
+        }   
     }
 
     private void FixedUpdate()

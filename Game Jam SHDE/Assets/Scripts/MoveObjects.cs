@@ -52,7 +52,7 @@ public class MoveObjects : MonoBehaviour
 	float baseMass;
 	float currentDistance;
 
-	[Header("Ray VFX")]
+	[Header("Aesthetics")]
 
 	[SerializeField]
 	[Tooltip("The ray VFX gameobject")]
@@ -61,6 +61,24 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Final point of the ray")]
 	Transform rayTarget;
+
+	[SerializeField]
+	Material sphereMaterial;
+
+	[SerializeField]
+	float shaderEmisiveIntensity;
+
+	[SerializeField]
+	float rayEmisiveInetnsity;
+
+	//_FresnelColor
+	/*
+	[SerializeField]
+	float intensidad;
+
+	[SerializeField]
+	Material materi;
+	*/
 
 	[Header("Animation")]
 	[SerializeField]
@@ -75,6 +93,9 @@ public class MoveObjects : MonoBehaviour
 		mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
 
 		//staffAnimationController = GameObject.FindObjectOfType<Player>().staffAnimationController;
+
+		//emisiveColor = sphereMaterial.GetColor("_FresnelColor");
+		sphereMaterial.SetColor("_FresnelColor", Color.black);
 	}
 
 	void Update()
@@ -86,7 +107,6 @@ public class MoveObjects : MonoBehaviour
 
 	void DetectInputs()
 	{
-
 		if (Input.GetMouseButtonDown(0))
 		{
 			//If we dont have a target, we release it;
@@ -111,6 +131,8 @@ public class MoveObjects : MonoBehaviour
 
 					rayVFX.gameObject.SetActive(true);
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
+					//rayVFX.SetVector4("Color", target.GetComponent<ScalableObject>().emisiveColor * rayEmisiveInetnsity);
+					sphereMaterial.SetColor("_FresnelColor", target.GetComponent<ScalableObject>().emisiveColor * shaderEmisiveIntensity);
 
 					staffAnimationController.SetBool("Grabbing", true);
 				}
@@ -134,6 +156,7 @@ public class MoveObjects : MonoBehaviour
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 				rayVFX.gameObject.SetActive(false);
+				sphereMaterial.SetColor("_FresnelColor", Color.black);
 
 				staffAnimationController.SetBool("Grabbing", false);
 

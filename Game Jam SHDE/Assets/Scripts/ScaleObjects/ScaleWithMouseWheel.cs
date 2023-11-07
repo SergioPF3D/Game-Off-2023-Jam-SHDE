@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ScaleWithMouseWheel : MonoBehaviour
+public class ScaleWithMouseWheel : ScalableObject
 {
     [SerializeField]
     [Tooltip("The speed at which the object scales")]

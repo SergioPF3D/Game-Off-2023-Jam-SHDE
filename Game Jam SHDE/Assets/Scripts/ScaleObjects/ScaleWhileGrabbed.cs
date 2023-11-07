@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ScaleWhileGrabbed : MonoBehaviour
+public class ScaleWhileGrabbed : ScalableObject
 {
     Vector3 baseScale;
 

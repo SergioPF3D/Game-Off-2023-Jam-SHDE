@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ScalateWithDistance : MonoBehaviour
+public class ScalateWithDistance : ScalableObject
 {
     [SerializeField]
     [Tooltip("what is the object from which it detects distance")]
