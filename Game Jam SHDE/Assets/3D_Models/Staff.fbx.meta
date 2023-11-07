@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sphere
-    second: {fileID: 2100000, guid: ec17cd90933840c42ae288d9e52b11fb, type: 2}
+    second: {fileID: 2100000, guid: a71703cd9ecce8b42b465bc4d23ede55, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Staff
-    second: {fileID: 2100000, guid: f25b42864cb42fe4a9f1b98720a0d116, type: 2}
+    second: {fileID: 2100000, guid: b68428c907d22694f993fd29eb415ca1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
