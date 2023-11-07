@@ -61,7 +61,11 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Final point of the ray")]
 	Transform rayTarget;
-	
+
+	[Header("Animation")]
+	[SerializeField]
+	Animator staffAnimationController;
+
 	void Start()
 	{
 		Cursor.visible = false;
@@ -69,6 +73,8 @@ public class MoveObjects : MonoBehaviour
 
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
 		mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
+
+		//staffAnimationController = GameObject.FindObjectOfType<Player>().staffAnimationController;
 	}
 
 	void Update()
@@ -105,6 +111,8 @@ public class MoveObjects : MonoBehaviour
 
 					rayVFX.gameObject.SetActive(true);
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
+
+					staffAnimationController.SetBool("Grabbing", true);
 				}
 			}
 		}
@@ -126,6 +134,8 @@ public class MoveObjects : MonoBehaviour
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 				rayVFX.gameObject.SetActive(false);
+
+				staffAnimationController.SetBool("Grabbing", false);
 
 				target = null;
 			}

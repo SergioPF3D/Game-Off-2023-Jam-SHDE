@@ -51,10 +51,9 @@ public class Player : MonoBehaviour
 
     Queue<KeyCode> inputBuffer = new Queue<KeyCode>();
 
-
     [Header("Animation")]
+    [SerializeField]
     Animator staffAnimationController;
-
 
     void Start()
     {
@@ -74,7 +73,16 @@ public class Player : MonoBehaviour
     {
         InputMovement = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         inputRotation = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        
+
+        if (InputMovement != Vector2.zero)
+        {
+            staffAnimationController.SetBool("Walking", true);
+        }
+        else
+        {
+            staffAnimationController.SetBool("Walking", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             inputBuffer.Enqueue(KeyCode.Space);
@@ -96,6 +104,8 @@ public class Player : MonoBehaviour
             }
 
             timeInAir = 0;
+
+            staffAnimationController.SetBool("Falling", false);
         }
         else
         {
@@ -109,6 +119,11 @@ public class Player : MonoBehaviour
 
                     jumped = true;
                 }
+            }
+
+            if (rigi.velocity.y < 0)
+            {
+                staffAnimationController.SetBool("Falling", true);
             }
         }
 

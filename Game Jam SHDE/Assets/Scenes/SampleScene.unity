@@ -4162,6 +4162,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274745228}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &287625748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 287625749}
+  m_Layer: 0
+  m_Name: Staff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &287625749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287625748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49, y: -0.503, z: 0.3370018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1623049294}
+  m_Father: {fileID: 330585546}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311156728
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,7 +4569,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1623049294}
+  - {fileID: 287625749}
   - {fileID: 958437897}
   - {fileID: 1648897781}
   m_Father: {fileID: 604728383}
@@ -4602,6 +4634,7 @@ MonoBehaviour:
   speedReductionWhenThrown: 2
   rayVFX: {fileID: 734228724}
   rayTarget: {fileID: 1648897781}
+  staffAnimationController: {fileID: 1623049296}
 --- !u!4 &346746126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
@@ -5498,9 +5531,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 593a62326fc1ba64c965d50d5ba50768,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 593a62326fc1ba64c965d50d5ba50768,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bdd8fb001c83582429ed6abf6a6c673e, type: 2}
+      objectReference: {fileID: 2100000, guid: 17cd2cebb45870748bed5dda580ef3f9, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 593a62326fc1ba64c965d50d5ba50768,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17cd2cebb45870748bed5dda580ef3f9, type: 2}
     - target: {fileID: 919132149155446097, guid: 593a62326fc1ba64c965d50d5ba50768,
         type: 3}
       propertyPath: m_Name
@@ -5672,7 +5715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2606634bf1b838488376b6cd32619e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSpeed: {x: 1, y: 1, z: 1}
+  scaleSpeed: {x: 0.5, y: 1, z: 2}
   minScale: 0.3
   maxScale: 2
 --- !u!65 &413437477
@@ -7845,7 +7888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604728379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9, y: 1.426, z: 42.84}
+  m_LocalPosition: {x: -3.09, y: 1.426, z: 45.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7891,6 +7934,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   coyoteTime: 0
+  staffAnimationController: {fileID: 1623049296}
 --- !u!1 &620310496
 GameObject:
   m_ObjectHideFlags: 0
@@ -11508,7 +11552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2606634bf1b838488376b6cd32619e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSpeed: {x: 1, y: 1, z: 1}
+  scaleSpeed: {x: 1, y: 1.3, z: 1.3}
   minScale: 0.8
   maxScale: 1.8
 --- !u!65 &839572239
@@ -22933,7 +22977,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 330585546}
+    m_TransformParent: {fileID: 287625749}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
@@ -22943,17 +22987,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68799996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.503
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3370018
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
@@ -22973,7 +23017,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.24321122
+      value: -0.24321124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
@@ -22993,7 +23037,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_Name
-      value: Staff
+      value: StaffModel
       objectReference: {fileID: 0}
     - target: {fileID: 8536097048983877239, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
@@ -26505,7 +26549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2606634bf1b838488376b6cd32619e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSpeed: {x: 1, y: 1, z: 1}
+  scaleSpeed: {x: 1.3, y: 1, z: 1}
   minScale: 2.3
   maxScale: 6
 --- !u!65 &1989907484
@@ -26579,7 +26623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989907481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.371513, y: 17.007534, z: 1.1664696}
+  m_LocalPosition: {x: -14.14, y: 17.007534, z: 3.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27156,7 +27200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2606634bf1b838488376b6cd32619e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSpeed: {x: 1, y: 1, z: 1}
+  scaleSpeed: {x: 1, y: 0.2, z: 1}
   minScale: 1
   maxScale: 4
 --- !u!65 &2066334505
