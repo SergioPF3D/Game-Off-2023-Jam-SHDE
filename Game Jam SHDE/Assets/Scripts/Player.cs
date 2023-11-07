@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
 
     [Header("Animation")]
-    Animator animationControler;
+    Animator staffAnimationController;
 
 
     void Start()
