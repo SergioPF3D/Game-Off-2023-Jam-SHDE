@@ -21,6 +21,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 3202f41728154964995ee24fbe1b126c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_b2e01d21c39744c9898dce65df842ab9_Texture_1:
         m_Texture: {fileID: 2800000, guid: b6ad9d2715b3fe648bb8cc184c5c95e2, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -30,7 +34,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_ecb3b573242c4b4e904e466f488659c4_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 51fd32aeca91da043abfdce83d6a3475, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3202f41728154964995ee24fbe1b126c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_ee52bdac01424adfb04b725c9d05ca03_Texture_1:
@@ -51,7 +55,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EmisiveIntensity: 1.6
+    - _EmisiveIntensity: 1
     - _EmisiveZoneMetalic: 0.55
     - _EmisiveZoneRoughness: 0.3
     - _NormalIntensity: 0

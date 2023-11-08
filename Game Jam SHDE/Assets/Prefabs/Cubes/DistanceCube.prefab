@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a0b6017a7483449978acf673b28d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emisiveColor: {r: 1, g: 0.6725613, b: 0, a: 0}
+  emisiveColor: {r: 1, g: 0.6745098, b: 0, a: 0}
   baseEmisiveIntensity: 0
   ObjectDistant: {fileID: 0}
   minDistance: 3

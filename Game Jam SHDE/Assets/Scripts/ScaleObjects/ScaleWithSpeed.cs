@@ -33,6 +33,8 @@ public class ScaleWithSpeed : ScalableObject
     private void FixedUpdate()
     {       
         speed = Vector3.Distance(previousPosition, transform.position);
+        //speed = (this.gameObject.GetComponent<Rigidbody>().velocity.x + this.gameObject.GetComponent<Rigidbody>().velocity.y + this.gameObject.GetComponent<Rigidbody>().velocity.z) / 3;
+
         previousPosition = transform.position;
 
         speed *= scaleFactor;
