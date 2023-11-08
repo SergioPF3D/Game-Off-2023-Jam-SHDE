@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cube
+  m_Shader: {fileID: -6465566751694194690, guid: 96fe879b981028c4994c332c110533ec,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_b2e01d21c39744c9898dce65df842ab9_Texture_1:
+        m_Texture: {fileID: 2800000, guid: b6ad9d2715b3fe648bb8cc184c5c95e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_b9cf72d3afc54bdd89362e18e49aaef2_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 0a59d2df3bb57ed44a0d7befbcc3a86d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_ecb3b573242c4b4e904e466f488659c4_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 51fd32aeca91da043abfdce83d6a3475, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_ee52bdac01424adfb04b725c9d05ca03_Texture_1:
+        m_Texture: {fileID: 2800000, guid: cd933d4d814b14d4bb3716b9eba0bb63, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EmisiveIntensity: 1.6
+    - _EmisiveZoneMetalic: 0.55
+    - _EmisiveZoneRoughness: 0.3
+    - _NormalIntensity: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - _EmisiveColor: {r: 0.8723916, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &6181870794094732479
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

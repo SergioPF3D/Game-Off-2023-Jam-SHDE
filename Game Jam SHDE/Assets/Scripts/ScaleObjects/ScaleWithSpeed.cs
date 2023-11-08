@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScaleWithSpeed : ScalableObject
 {
-    
+    [Header("ScaleWithSpeed")]
     Vector3 previousPosition;
     
     Vector3 baseScale;
@@ -20,11 +20,12 @@ public class ScaleWithSpeed : ScalableObject
     float movingScale;
 
     [SerializeField]
-    [Tooltip("The target that we moves")]
+    [Tooltip("multiply the speed")]
     float scaleFactor;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         previousPosition = transform.position;
         baseScale = transform.localScale;
     }

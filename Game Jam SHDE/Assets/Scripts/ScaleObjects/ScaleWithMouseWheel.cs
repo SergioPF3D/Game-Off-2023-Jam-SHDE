@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ScaleWithMouseWheel : ScalableObject
 {
+    [Header("ScaleWithMouseWheel")]
+
     [SerializeField]
     [Tooltip("The speed at which the object scales")]
     Vector3 scaleSpeed;

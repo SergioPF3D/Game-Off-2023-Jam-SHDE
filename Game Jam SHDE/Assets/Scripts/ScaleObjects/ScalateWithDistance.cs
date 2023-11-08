@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ScalateWithDistance : ScalableObject
 {
+    [Header("ScalateWithDistance")]
+
     [SerializeField]
     [Tooltip("what is the object from which it detects distance")]
     Transform ObjectDistant;

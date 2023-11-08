@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ScaleWhileGrabbed : ScalableObject
 {
+    [Header("ScaleWhileGrabbed")]
+
     Vector3 baseScale;
 
     [SerializeField]
@@ -23,8 +25,9 @@ public class ScaleWhileGrabbed : ScalableObject
 
     MoveObjects player;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         baseScale = transform.localScale;
         player = GameObject.FindObjectOfType<MoveObjects>();
     }
