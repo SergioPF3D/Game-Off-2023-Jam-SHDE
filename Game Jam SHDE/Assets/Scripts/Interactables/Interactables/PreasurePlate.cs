@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PreasurePlate : Interactable
 {
+    //Mass
     [SerializeField]
     float massToInteract;
 
@@ -18,12 +19,14 @@ public class PreasurePlate : Interactable
     [SerializeField]
     List<Rigidbody> objectsInThePlate;
 
-    //Bajar la placa
+    //PlateMovement
     Vector3 initialPosition;
+    BoxCollider coll;
 
     private void Start()
     {
         initialPosition = transform.position;
+        coll = gameObject.GetComponent<BoxCollider>();
     }
     public override void Interact()
     {
@@ -50,7 +53,7 @@ public class PreasurePlate : Interactable
             {
                 DeActivate();
                 transform.position = initialPosition;
-                gameObject.GetComponent<BoxCollider>().center = Vector3.zero;
+                coll.center = Vector3.zero;
             }
         }
     }
@@ -69,18 +72,30 @@ public class PreasurePlate : Interactable
         if (totalMass >= massToInteract && totalMass < maximunMass)
         {
             Activate();
-            transform.position = initialPosition - Vector3.up;
-            gameObject.GetComponent<BoxCollider>().center = Vector3.up;
+
+            transform.position = initialPosition - Vector3.up * 0.6f;// 
+            coll.center = Vector3.up * coll.size.y;
         }
         if (totalMass < massToInteract || totalMass > maximunMass)
         {
             DeActivate();
-            transform.position = initialPosition - Vector3.up * (massInside / massToInteract);
-            gameObject.GetComponent<BoxCollider>().center = Vector3.up * (massInside / massToInteract);
+
+            if (massInside / massToInteract <= 1)
+            {
+                transform.position = initialPosition - Vector3.up * 0.6f * (massInside / massToInteract);
+                coll.center = Vector3.up * coll.size.y * (massInside / massToInteract);
+            }
+            else
+            {
+                transform.position = initialPosition - Vector3.up * 0.6f;
+                coll.center = Vector3.up * coll.size.y;
+            }            
         }
     }
     #endregion
 
+    #region Collider
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Rigidbody>())
@@ -127,4 +142,6 @@ public class PreasurePlate : Interactable
             }
         }
     }
+    */
+    #endregion
 }
