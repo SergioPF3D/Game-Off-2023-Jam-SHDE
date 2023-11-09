@@ -32,7 +32,7 @@ public class Interactable : MonoBehaviour
                 foreach (var actibable in actibables)
                 {
                     //actibable.Activate();
-                    actibable.AddInput();
+                    actibable.AddInput(1);
                 }
                 activated = true;
             }
@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
             foreach (var actibable in actibables)
             {
                 //actibable.DeActivate();
-                actibable.RemoveInput();
+                actibable.RemoveInput(1);
             }
         }
         

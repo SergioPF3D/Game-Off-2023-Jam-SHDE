@@ -4,73 +4,43 @@ using UnityEngine;
 
 public class Activable : MonoBehaviour
 {
+    [Header("Activable")]
+
     [SerializeField]
-    bool baseActivated;
+    public bool baseActivated;
 
     //Condition
     [SerializeField]
-    float inputs;
+    public float inputs;
+
     [SerializeField]
-    float actualInputs;
+    public float actualInputs;
 
-    //Things to activate
-    BoxCollider colider;
-    MeshRenderer render;
-    private void Start()
+    
+    public virtual void Start()
     {
-        colider = this.gameObject.GetComponent<BoxCollider>();
-        render = this.gameObject.GetComponent<MeshRenderer>();
-
         if (!baseActivated)
         {
             DeActivate();
         }
     }
 
-    void Activate()
+    public virtual void Activate()
     {
-        colider.enabled = true;
-        render.enabled = true;
+
     }
-    void DeActivate()
+    public virtual void DeActivate()
     {
-        colider.enabled = false;
-        render.enabled = false;
+
     }
 
-    void seeIfActivate()
+   
+    public virtual void AddInput(float inputs)
     {
-        if (actualInputs >= inputs)
-        {
-            if (baseActivated)
-            {
-                DeActivate();
-            }
-            else
-            {
-                Activate();
-            }
-        }
-        else
-        {
-            if (baseActivated)
-            {
-                Activate();
-            }
-            else
-            {
-                DeActivate();
-            }
-        }
+        actualInputs += inputs;
     }
-    public void AddInput()
+    public virtual void RemoveInput(float inputs)
     {
-        actualInputs++;
-        seeIfActivate();
-    }
-    public void RemoveInput()
-    {
-        actualInputs--;
-        seeIfActivate();
+        actualInputs -= inputs;
     }
 }
