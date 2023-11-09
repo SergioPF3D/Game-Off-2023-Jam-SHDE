@@ -27,12 +27,15 @@ public class Interactable : MonoBehaviour
     {
         if (!activated)
         {
-            foreach (var actibable in actibables)
+            if (actibables.Count > 0)
             {
-                //actibable.Activate();
-                actibable.AddInput();
+                foreach (var actibable in actibables)
+                {
+                    //actibable.Activate();
+                    actibable.AddInput();
+                }
+                activated = true;
             }
-            activated = true;
         }
     }
 

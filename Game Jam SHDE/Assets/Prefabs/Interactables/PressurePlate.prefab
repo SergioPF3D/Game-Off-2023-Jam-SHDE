@@ -208,8 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748dad0ae0fb493439dc5da03f65cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actibables:
-  - {fileID: 0}
+  actibables: []
   activated: 0
   massToInteract: 2
   maximunMass: 100
