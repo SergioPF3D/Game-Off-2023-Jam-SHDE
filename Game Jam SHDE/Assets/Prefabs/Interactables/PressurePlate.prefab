@@ -212,7 +212,7 @@ MonoBehaviour:
   - {fileID: 0}
   activated: 0
   massToInteract: 2
-  maximunMass: 0
+  maximunMass: 100
   totalMass: 0
   objectsInThePlate: []
 --- !u!1 &7069384073221545076
