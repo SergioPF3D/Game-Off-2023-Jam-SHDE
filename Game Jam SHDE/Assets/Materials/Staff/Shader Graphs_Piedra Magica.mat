@@ -45,10 +45,14 @@ Material:
     - Vector1_5c3d863746c94620aed853c45efc487f: 600
     - Vector1_693c83d18f13490497e12240fdd267ef: 0.25
     - Vector1_fecda3fb2aa44119a03c246a65c833e8: 0
+    - _DecalMeshBiasType: 0
+    - _DecalMeshDepthBias: 0
+    - _DecalMeshViewBias: 0
+    - _DrawOrder: 0
     - _FresnelPower: 8
     - _MainColorGradient: 1
     - _MinScale: 0.76
-    - _NoiseContrast: 0.1
+    - _NoiseContrast: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScaleAmount: 0.1
@@ -56,7 +60,7 @@ Material:
     m_Colors:
     - Color_c04ff695c45b4f61b10348f36ac90dc5: {r: 2.101961, g: 1.160784, b: 5.427451,
         a: 0}
-    - _CenterColor: {r: 1, g: 0, b: 0.61711216, a: 0}
+    - _CenterColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 0}
     - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2127389034403148358
