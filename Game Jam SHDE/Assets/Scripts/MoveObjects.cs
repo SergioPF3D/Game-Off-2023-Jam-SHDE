@@ -222,6 +222,10 @@ public class MoveObjects : MonoBehaviour
 		rayTarget.position = target.position;
 		rayTarget.localScale = target.localScale;
 
+        if (target.GetComponent<ScaleWithMouseWheel>())
+        {
+			target.GetComponent<ScaleWithMouseWheel>().Scalate();
+		}
 
 		//que lances el rayo pero no llegue y no se pongan las particulas de lfinal
 	}

@@ -19,7 +19,7 @@ public class ScaleWithMouseWheel : ScalableObject
     [Tooltip("The maximun scale you can aply to the object")]
     float maxScale;
 
-    private void OnMouseOver()
+    public void Scalate()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
