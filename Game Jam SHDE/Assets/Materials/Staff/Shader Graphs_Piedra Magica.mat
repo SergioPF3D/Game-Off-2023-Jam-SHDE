@@ -60,7 +60,7 @@ Material:
     m_Colors:
     - Color_c04ff695c45b4f61b10348f36ac90dc5: {r: 2.101961, g: 1.160784, b: 5.427451,
         a: 0}
-    - _CenterColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 0}
+    - _CenterColor: {r: 1, g: 1, b: 1, a: 0}
     - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2127389034403148358

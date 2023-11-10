@@ -42,14 +42,23 @@ public class Player : MonoBehaviour
     [SerializeField]
     LayerMask jumpLayers;
 
+    [SerializeField]
+    [Tooltip("The list of casters that check if the player is touching the ground")]
+    List<Transform> rayCasters;
+
+    //Coyote Time
+    /*
     float timeInAir;
 
     [SerializeField]
     float coyoteTime;
 
     bool jumped = false;
-
+    */
+    //Input buffer
+    /*
     Queue<KeyCode> inputBuffer = new Queue<KeyCode>();
+    */
 
     [Header("Animation")]
     [SerializeField]
@@ -83,16 +92,46 @@ public class Player : MonoBehaviour
             staffAnimationController.SetBool("Walking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            inputBuffer.Enqueue(KeyCode.Space);
-            //Invoke("InputDeQueue", 5);
 
-            Debug.Log(1 + "    " + inputBuffer.Count);
-        }
+        
+
         //Player is in the ground
+        foreach (var caster in rayCasters)
+        {
+            float distance = Mathf.Abs(1 - caster.position.y);
+            //Debug.Log(distance);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //Debug.Log(distance + "  " + -(transform.up * 0.95f + transform.up * distance));
+                //-(transform.up * 0.95f + transform.up * distance)
+            }
+
+            if (Physics.Raycast(caster.position, -transform.up, out RaycastHit raycastHit, 0.08f, jumpLayers))
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+
+                    Debug.Log(distance);
+                    rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                }
+
+                staffAnimationController.SetBool("Falling", false);
+            }
+            else
+            {
+                if (rigi.velocity.y < 0)
+                {
+                    staffAnimationController.SetBool("Falling", true);
+                }
+            }
+        }
+
+        #region CoyoteAndInput
+        /*
         if (Physics.Raycast(transform.position - transform.up * 0.95f, -transform.up, out RaycastHit groundRaycast, 0.08f, jumpLayers))
         {
+            
             jumped = false;
             if (inputBuffer.Count > 0)
             {
@@ -102,12 +141,23 @@ public class Player : MonoBehaviour
                 jumped = true;
             }
 
-            timeInAir = 0;
+            //timeInAir = 0;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //inputBuffer.Enqueue(KeyCode.Space);
+                //Invoke("InputDeQueue", 5);
+
+                //Debug.Log(1 + "    " + inputBuffer.Count);
+
+                rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            }
 
             staffAnimationController.SetBool("Falling", false);
         }
         else
         {
+            
             timeInAir += Time.deltaTime;
             if (timeInAir < coyoteTime)// && !jumped
             {
@@ -119,12 +169,14 @@ public class Player : MonoBehaviour
                     jumped = true;
                 }
             }
-
+            
             if (rigi.velocity.y < 0)
             {
                 staffAnimationController.SetBool("Falling", true);
             }
-        }   
+        }
+        */
+        #endregion
     }
 
     private void FixedUpdate()
@@ -142,6 +194,7 @@ public class Player : MonoBehaviour
 
     }
 
+    /*
     void InputDeQueue()
     {
         if (inputBuffer.Count > 0)
@@ -149,6 +202,7 @@ public class Player : MonoBehaviour
             inputBuffer.Dequeue();
         }
     }
+    */
 
     //check if your height is very low, so you went through the ground somehow
     IEnumerator VerifyHigh()
@@ -160,7 +214,4 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5);
         StartCoroutine("VerifyHigh");
     }
-    
-
-
 }
