@@ -16,6 +16,8 @@ public class Activable : MonoBehaviour
     [SerializeField]
     public float actualInputs;
 
+    public List<Interactable> interactables;
+
     
     public virtual void Start()
     {

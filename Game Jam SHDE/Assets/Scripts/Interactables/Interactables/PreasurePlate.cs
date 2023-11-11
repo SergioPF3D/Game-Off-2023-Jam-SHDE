@@ -23,8 +23,10 @@ public class PreasurePlate : Interactable
     Vector3 initialPosition;
     BoxCollider coll;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+
         initialPosition = transform.position;
         coll = gameObject.GetComponent<BoxCollider>();
     }

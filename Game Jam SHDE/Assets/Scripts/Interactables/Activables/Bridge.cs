@@ -11,6 +11,8 @@ public class Bridge : Activable
 
     [SerializeField]
     bool activated;
+
+    float swich;
     public override void Activate()
     {
         activated = false;
@@ -24,8 +26,12 @@ public class Bridge : Activable
     {
         if (actualInputs > 0)
         {
-            //Rota hacia un lado
+            //Rota hacia un ladoS 
+        }
+        else if (actualInputs < 0)
+        {
             //Rota hacia otro lado
         }
     }
 }
+

@@ -91,29 +91,24 @@ public class Player : MonoBehaviour
         {
             staffAnimationController.SetBool("Walking", false);
         }
-
-
         
-
         //Player is in the ground
+        bool jumped = false;
         foreach (var caster in rayCasters)
         {
-            float distance = Mathf.Abs(1 - caster.position.y);
-            //Debug.Log(distance);
+            float distance = caster.position.y - (transform.position.y - 1.02f);
+            Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //Debug.Log(distance + "  " + -(transform.up * 0.95f + transform.up * distance));
-                //-(transform.up * 0.95f + transform.up * distance)
-            }
-
-            if (Physics.Raycast(caster.position, -transform.up, out RaycastHit raycastHit, 0.08f, jumpLayers))
+            if (Physics.Raycast(caster.position, -transform.up, out RaycastHit raycastHit, distance, jumpLayers))
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-
                     Debug.Log(distance);
-                    rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    if (!jumped)
+                    {
+                        rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                        jumped = true;
+                    }
                 }
 
                 staffAnimationController.SetBool("Falling", false);

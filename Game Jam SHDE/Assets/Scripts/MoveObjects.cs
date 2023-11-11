@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 public class MoveObjects : MonoBehaviour
 {
 	[Header("Components")]
-
+	
 	[Tooltip("The target that we moves")]
 	public Transform target;
 

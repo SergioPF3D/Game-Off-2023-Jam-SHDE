@@ -5,11 +5,18 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
-    List<Activable> actibables;
+    List<Activable> activables;
 
     [SerializeField]
     bool activated;
 
+    public virtual void Start()
+    {
+        foreach (var activable in activables)
+        {
+            activable.interactables.Add(this);
+        }
+    }
     public virtual void Interact()
     {
         if (activated)
@@ -27,9 +34,9 @@ public class Interactable : MonoBehaviour
     {
         if (!activated)
         {
-            if (actibables.Count > 0)
+            if (activables.Count > 0)
             {
-                foreach (var actibable in actibables)
+                foreach (var actibable in activables)
                 {
                     //actibable.Activate();
                     actibable.AddInput(1);
@@ -43,7 +50,7 @@ public class Interactable : MonoBehaviour
     {
         if (activated)
         {
-            foreach (var actibable in actibables)
+            foreach (var actibable in activables)
             {
                 //actibable.DeActivate();
                 actibable.RemoveInput(1);
