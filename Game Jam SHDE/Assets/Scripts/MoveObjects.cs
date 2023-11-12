@@ -131,7 +131,7 @@ public class MoveObjects : MonoBehaviour
 
 					rayVFX.gameObject.SetActive(true);
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
-					//rayVFX.SetVector4("Color", target.GetComponent<ScalableObject>().emisiveColor * rayEmisiveInetnsity);
+					rayVFX.SetVector4("Color", target.GetComponent<ScalableObject>().emisiveColor * rayEmisiveInetnsity);
 					sphereMaterial.SetColor("_FresnelColor", target.GetComponent<ScalableObject>().emisiveColor * shaderEmisiveIntensity);
 					target.gameObject.GetComponent<MeshRenderer>().material.SetFloat("_EmisiveIntensity", shaderEmisiveIntensity);
 
