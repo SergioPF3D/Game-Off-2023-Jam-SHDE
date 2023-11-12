@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Debug.Log(distance);
                     if (!jumped)
                     {
                         rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -178,10 +177,10 @@ public class Player : MonoBehaviour
     {
         //Move and rotate the player
         rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime + new Vector3(0,rigi.velocity.y,0);
-        transform.Rotate(0, inputRotation.x * mouseSensibility * Time.deltaTime, 0);
+        transform.Rotate(0, inputRotation.x * mouseSensibility, 0);// * Time.deltaTime
 
         //Rotate the Camera
-        camRotX -= inputRotation.y * mouseSensibility * Time.deltaTime;
+        camRotX -= inputRotation.y * mouseSensibility;// * Time.deltaTime
         camRotX = Mathf.Clamp(camRotX, -maxCamRotationUp, maxCamRotationDown);
 
         cam.localRotation = Quaternion.Euler(camRotX, cam.localRotation.y, cam.localRotation.z);

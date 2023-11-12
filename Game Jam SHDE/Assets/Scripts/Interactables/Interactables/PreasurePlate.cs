@@ -91,7 +91,7 @@ public class PreasurePlate : Interactable
             {
                 transform.position = initialPosition - Vector3.up * 0.6f;
                 coll.center = Vector3.up * coll.size.y;
-            }            
+            }
         }
     }
     #endregion

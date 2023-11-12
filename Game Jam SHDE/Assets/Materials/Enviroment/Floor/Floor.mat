@@ -34,6 +34,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseTexture:
+        m_Texture: {fileID: 2800000, guid: d2ef0b7d4b4cbe34aaf9ba0a6dfa39c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: d2ef0b7d4b4cbe34aaf9ba0a6dfa39c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_7ae65f2f7ade4d039cc227732e9a45ce_Texture_1:
         m_Texture: {fileID: 2800000, guid: 9fac58eadffd9fe4e9e1af6d290a7a25, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -56,8 +64,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Metalic: 0
+    - _NormalIntensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Roughness: 0.2
     - _Tiling: 0.37
     m_Colors:
     - _Tint: {r: 0.99056596, g: 0.7657825, b: 0.34109107, a: 0}

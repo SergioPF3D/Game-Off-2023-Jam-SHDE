@@ -10,6 +10,10 @@ public class Interactable : MonoBehaviour
     [SerializeField]
     bool activated;
 
+    [SerializeField]
+    [Tooltip("How important the interactable in question is for activatables. If it is negative, instead of activating, deactivate")]
+    int weight;
+
     public virtual void Start()
     {
         foreach (var activable in activables)
@@ -39,7 +43,7 @@ public class Interactable : MonoBehaviour
                 foreach (var actibable in activables)
                 {
                     //actibable.Activate();
-                    actibable.AddInput(1);
+                    actibable.AddInput(weight);
                 }
                 activated = true;
             }
@@ -53,7 +57,7 @@ public class Interactable : MonoBehaviour
             foreach (var actibable in activables)
             {
                 //actibable.DeActivate();
-                actibable.RemoveInput(1);
+                actibable.RemoveInput(weight);
             }
         }
         
