@@ -73,12 +73,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _Metalic: 0
+<<<<<<< Updated upstream
     - _NormalIntensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Roughness: 0.2
     - _RoughnessIntensity: 0.7
     - _Tiling: 0.25
+=======
+    - _NormalIntensity: 0.3
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Roughness: 0.2
+    - _Tiling: 0.2
+>>>>>>> Stashed changes
     m_Colors:
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
