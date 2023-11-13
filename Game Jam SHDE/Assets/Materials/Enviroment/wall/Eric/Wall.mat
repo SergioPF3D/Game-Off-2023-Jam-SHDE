@@ -35,11 +35,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 36a79942c24d8c74abe2e8ae937a3f97, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1b972fed37a1a02448a8256d840825db, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 7d79c46399ba8014eb0686ffe58fe24e, type: 3}
+        m_Texture: {fileID: 2800000, guid: a2e10c33725eac24482813d28c368d68, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness:
+        m_Texture: {fileID: 2800000, guid: fefffbf05e7ee8a4eb42d270f3a94476, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness_1:
+        m_Texture: {fileID: 2800000, guid: fefffbf05e7ee8a4eb42d270f3a94476, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_7ae65f2f7ade4d039cc227732e9a45ce_Texture_1:
@@ -65,10 +73,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Metalic: 0
-    - _NormalIntensity: 0.35
+    - _NormalIntensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Roughness: 0.2
+    - _RoughnessIntensity: 0.7
     - _Tiling: 0.25
     m_Colors:
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
