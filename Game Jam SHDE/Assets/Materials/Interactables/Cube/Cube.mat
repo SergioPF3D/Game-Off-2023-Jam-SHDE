@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cube
-  m_Shader: {fileID: -6465566751694194690, guid: 96fe879b981028c4994c332c110533ec,
+  m_Shader: {fileID: -6465566751694194690, guid: e0a9961d9cdd25341b2255bd51e1c84c,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,15 +22,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 3202f41728154964995ee24fbe1b126c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 70452fab322aa8f46bea40d29f6088f7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_9f42c1fce5b9465e858c9899e3f8f7a2_Texture_1:
+        m_Texture: {fileID: 2800000, guid: fef2536f4b6fb5a47abd0884a9f27809, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_b2e01d21c39744c9898dce65df842ab9_Texture_1:
-        m_Texture: {fileID: 2800000, guid: b6ad9d2715b3fe648bb8cc184c5c95e2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_b9cf72d3afc54bdd89362e18e49aaef2_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 0a59d2df3bb57ed44a0d7befbcc3a86d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4914743488312ee49a5cc42cae01b5f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_ecb3b573242c4b4e904e466f488659c4_Texture_1:
@@ -38,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_ee52bdac01424adfb04b725c9d05ca03_Texture_1:
-        m_Texture: {fileID: 2800000, guid: cd933d4d814b14d4bb3716b9eba0bb63, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -56,13 +60,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _EmisiveIntensity: 1
-    - _EmisiveZoneMetalic: 0.55
+    - _EmisiveZoneMetalic: 0
     - _EmisiveZoneRoughness: 0.3
     - _NormalIntensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _EmisiveColor: {r: 1, g: 0.6600375, b: 0, a: 0}
+    - _EmisiveColor: {r: 1, g: 0.65882355, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6181870794094732479
 MonoBehaviour:
