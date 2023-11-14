@@ -94,6 +94,35 @@ public class PreasurePlate : Interactable
             }
         }
     }
+
+
+    public override void Activate()
+    {
+        if (!activated)
+        {
+            if (activables.Count > 0)
+            {
+                foreach (var actibable in activables)
+                {
+                    actibable.AddInput(weight);
+                }
+                activated = true;
+            }
+        }
+    }
+
+    public override void DeActivate()
+    {
+        if (activated)
+        {
+            foreach (var actibable in activables)
+            {
+                actibable.RemoveInput(weight);
+            }
+        }
+
+        activated = false;
+    }
     #endregion
 
     #region Collider

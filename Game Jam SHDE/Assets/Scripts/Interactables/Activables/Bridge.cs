@@ -23,6 +23,18 @@ public class Bridge : Activable
 
     private void FixedUpdate()
     {
+        /*
+        foreach (var item in collection)
+        {
+
+        }
+        */
+
+
+
+
+
+
         if (actualInputs > 0)
         {
             //Rota hacia un ladoS 

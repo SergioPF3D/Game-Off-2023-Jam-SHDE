@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField]
-    List<Activable> activables;
+    public List<Activable> activables;
 
-    [SerializeField]
-    bool activated;
+    public bool activated;
 
-    [SerializeField]
     [Tooltip("How important the interactable in question is for activatables. If it is negative, instead of activating, deactivate")]
-    int weight;
+    public int weight;
 
     public virtual void Start()
     {
