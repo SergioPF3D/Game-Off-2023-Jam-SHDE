@@ -11,6 +11,10 @@ public class Interactable : MonoBehaviour
     [Tooltip("How important the interactable in question is for activatables. If it is negative, instead of activating, deactivate")]
     public int weight;
 
+    //Decalls
+    [SerializeField]
+    List<GameObject> decalls;
+
     public virtual void Start()
     {
         foreach (var activable in activables)
@@ -44,6 +48,13 @@ public class Interactable : MonoBehaviour
                 }
                 activated = true;
             }
+            if (decalls.Count > 0)
+            {
+                foreach (var decall in decalls)
+                {
+                    decall.SetActive(true);
+                }
+            }
         }
     }
 
@@ -55,6 +66,13 @@ public class Interactable : MonoBehaviour
             {
                 //actibable.DeActivate();
                 actibable.RemoveInput(weight);
+            }
+            if (decalls.Count > 0)
+            {
+                foreach (var decall in decalls)
+                {
+                    decall.SetActive(false);
+                }
             }
         }
         

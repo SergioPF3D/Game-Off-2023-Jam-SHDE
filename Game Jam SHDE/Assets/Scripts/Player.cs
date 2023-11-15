@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     [Tooltip("The list of casters that check if the player is touching the ground")]
     List<Transform> rayCasters;
 
+    [SerializeField]
+    float falseGravity;
+
     //Coyote Time
     /*
     float timeInAir;
@@ -185,7 +188,7 @@ public class Player : MonoBehaviour
 
         cam.localRotation = Quaternion.Euler(camRotX, cam.localRotation.y, cam.localRotation.z);
         //cam.Rotate(-inputRotation.y * mouseSensibility, 0, 0);
-
+        rigi.AddForce(-Vector3.up * falseGravity, ForceMode.Force);
     }
 
     /*
