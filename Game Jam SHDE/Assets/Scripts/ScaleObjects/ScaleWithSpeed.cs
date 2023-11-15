@@ -49,5 +49,6 @@ public class ScaleWithSpeed : ScalableObject
         }
         
         transform.localScale = baseScale * speed;
+        ChangeMass();
     }
 }

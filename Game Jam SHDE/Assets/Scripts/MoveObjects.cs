@@ -40,9 +40,9 @@ public class MoveObjects : MonoBehaviour
 	float maxSpeed;
 
 	[SerializeField]
-	[Tooltip("The reduction factor when the object is thrown")]
-	float speedReductionWhenThrown;
-	
+	[Tooltip("nearer than that distance, When you let go of the cube, it will have no speed.")]
+	float distanceToThrow;
+
 	//Mouse
 	float mouseSensibility;
 
@@ -144,16 +144,25 @@ public class MoveObjects : MonoBehaviour
 			//If we have a target, we have to release it
 			if (target)
             {
-				//Limit the speed
-				float media = (Mathf.Abs(target.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.y) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.z)) / 3;
-				if (maxSpeed > 0)
-				{
-                    if (media > maxSpeed)
-                    {
-						target.GetComponent<Rigidbody>().velocity *= (maxSpeed / media);
-                    }
-				}
+                if (Vector3.Distance(target.position, grabber.position) < distanceToThrow)
+                {
+					//Make Speed 0
+					target.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
+				}
+                else
+                {
+					//Limit the speed
+					float media = (Mathf.Abs(target.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.y) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.z)) / 3;
+					if (maxSpeed > 0)
+					{
+						if (media > maxSpeed)
+						{
+							target.GetComponent<Rigidbody>().velocity *= (maxSpeed / media);
+						}
+					}
+				}
+				
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 				rayVFX.gameObject.SetActive(false);

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class ScalateWithDistance : ScalableObject
 {
     [Header("ScalateWithDistance")]
@@ -44,7 +43,7 @@ public class ScalateWithDistance : ScalableObject
                 this.transform.localScale = Vector3.Lerp(minScale, maxScale, (Vector3.Distance(this.transform.position, ObjectDistant.transform.position) - minDistance) / (maxDistance - minDistance));
             }
         }
-        
-        this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
+
+        ChangeMass();
     }
 }

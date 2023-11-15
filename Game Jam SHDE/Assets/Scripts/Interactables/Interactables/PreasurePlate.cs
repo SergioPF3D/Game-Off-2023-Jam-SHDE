@@ -75,7 +75,7 @@ public class PreasurePlate : Interactable
         {
             Activate();
 
-            transform.position = initialPosition - Vector3.up * 0.6f;// 
+            transform.position = initialPosition - (Vector3.up * 0.6f * transform.lossyScale.y);// 
             coll.center = Vector3.up * coll.size.y;
         }
         if (totalMass < massToInteract || totalMass > maximunMass)
@@ -84,12 +84,12 @@ public class PreasurePlate : Interactable
 
             if (massInside / massToInteract <= 1)
             {
-                transform.position = initialPosition - Vector3.up * 0.6f * (massInside / massToInteract);
+                transform.position = initialPosition - (Vector3.up * 0.6f * (massInside / massToInteract) * transform.lossyScale.y);// 
                 coll.center = Vector3.up * coll.size.y * (massInside / massToInteract);
             }
             else
             {
-                transform.position = initialPosition - Vector3.up * 0.6f;
+                transform.position = initialPosition - (Vector3.up * 0.6f * transform.lossyScale.y);//
                 coll.center = Vector3.up * coll.size.y;
             }
         }

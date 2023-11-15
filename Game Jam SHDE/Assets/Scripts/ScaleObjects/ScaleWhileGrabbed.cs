@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+
 public class ScaleWhileGrabbed : ScalableObject
 {
     [Header("ScaleWhileGrabbed")]
@@ -52,7 +52,7 @@ public class ScaleWhileGrabbed : ScalableObject
                     scalating = false;
                 }
 
-                this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
+                ChangeMass();
             }
             
         }
@@ -72,7 +72,7 @@ public class ScaleWhileGrabbed : ScalableObject
                 deScalating = false;
             }
 
-            this.GetComponent<Rigidbody>().mass = (this.transform.localScale.x + this.transform.localScale.y + this.transform.localScale.z) / 3;
+            ChangeMass();
         }
     }
 
