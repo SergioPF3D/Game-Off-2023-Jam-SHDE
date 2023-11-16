@@ -38,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 43e8aa99fbe108b429d5ccbbbe102502, type: 3}
+        m_Texture: {fileID: 2800000, guid: 13cd4765e02b4af41b4e15328cc5a363, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
