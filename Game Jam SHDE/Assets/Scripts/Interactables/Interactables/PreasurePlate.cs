@@ -29,6 +29,11 @@ public class PreasurePlate : Interactable
 
         initialPosition = transform.position;
         coll = gameObject.GetComponent<BoxCollider>();
+
+        foreach (var decall in decalls)
+        {
+            decall.SetActive(false);
+        }
     }
     public override void Interact()
     {
