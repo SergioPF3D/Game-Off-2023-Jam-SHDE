@@ -106,6 +106,11 @@ public class PreasurePlate : Interactable
                 {
                     actibable.AddInput(weight);
                 }
+
+                foreach (var decall in decalls)
+                {
+                    decall.SetActive(true);
+                }
                 activated = true;
             }
         }
@@ -118,6 +123,11 @@ public class PreasurePlate : Interactable
             foreach (var actibable in activables)
             {
                 actibable.RemoveInput(weight);
+            }
+
+            foreach (var decall in decalls)
+            {
+                decall.SetActive(false);
             }
         }
 
