@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
     {
         foreach (var activable in activables)
         {
-            activable.interactables.Add(this);
+            //activable.interactables.Add(this);
         }
     }
     public virtual void Interact()

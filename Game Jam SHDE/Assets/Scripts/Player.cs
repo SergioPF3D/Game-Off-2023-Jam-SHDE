@@ -49,6 +49,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float falseGravity;
 
+    [SerializeField]
+    bool grounded;
+
     //Coyote Time
     /*
     float timeInAir;
@@ -97,6 +100,7 @@ public class Player : MonoBehaviour
         
         //Player is in the ground
         bool jumped = false;
+        bool groundDetected = false;
         foreach (var caster in rayCasters)
         {
             float distance = caster.position.y - (transform.position.y - 1.02f);
@@ -104,12 +108,16 @@ public class Player : MonoBehaviour
 
             if (Physics.Raycast(caster.position, -transform.up, out RaycastHit raycastHit, distance, jumpLayers))
             {
+                groundDetected = true;
+                grounded = true;
+
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if (!jumped)
                     {
                         rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
                         jumped = true;
+
                     }
                 }
 
@@ -121,6 +129,12 @@ public class Player : MonoBehaviour
                 {
                     staffAnimationController.SetBool("Falling", true);
                 }
+
+                if (!groundDetected)
+                {
+                    grounded = false;
+                }
+                
             }
         }
 
@@ -179,7 +193,15 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         //Move and rotate the player
-        rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
+        if (grounded)
+        {
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime;// + new Vector3(0, rigi.velocity.y, 0)
+
+        }
+        else
+        {
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
+        }
         transform.Rotate(0, inputRotation.x * mouseSensibility, 0);// * Time.deltaTime
 
         //Rotate the Camera
@@ -201,14 +223,30 @@ public class Player : MonoBehaviour
     }
     */
 
+
+
+    void Death()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     //check if your height is very low, so you went through the ground somehow
     IEnumerator VerifyHigh()
     {
         if (transform.position.y < -50)
         {
-            SceneManager.LoadScene(0);
+            Death();
         }
         yield return new WaitForSeconds(5);
         StartCoroutine("VerifyHigh");
+    }
+
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            Death();
+        }
     }
 }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : Activable
+public class Door : ObjectThatMoves
 {
+    [Header("Door")]
     //Things to activate
-    [HideInInspector]
     BoxCollider colider;
-    [HideInInspector]
     MeshRenderer render;
+
+   
 
     public override void Start()
     {
@@ -20,13 +21,11 @@ public class Door : Activable
 
     public override void Activate()
     {
-        colider.enabled = true;
-        render.enabled = true;
+        StartCoroutine(MoveDoor(transform.position, finalPosition.position));
     }
     public override void DeActivate()
     {
-        colider.enabled = false;
-        render.enabled = false;
+        StartCoroutine(MoveDoor(transform.position, initialPosition.position));
     }
 
     public void seeIfActivate()
@@ -65,4 +64,6 @@ public class Door : Activable
         base.RemoveInput(inputs);
         seeIfActivate();
     }
+
+    
 }

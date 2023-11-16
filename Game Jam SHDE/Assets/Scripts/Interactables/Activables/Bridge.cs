@@ -23,6 +23,7 @@ public class Bridge : Activable
 
     private void FixedUpdate()
     {
+        //Que se adapte a la masa
         /*
         foreach (var item in collection)
         {
