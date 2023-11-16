@@ -12,13 +12,13 @@ public class Interactable : MonoBehaviour
     public int weight;
 
     //Decalls
-    [SerializeField]
-    List<GameObject> decalls;
+    public List<GameObject> decalls;
 
     public virtual void Start()
     {
         foreach (var activable in activables)
         {
+            //Para las placas de presion
             //activable.interactables.Add(this);
         }
     }
