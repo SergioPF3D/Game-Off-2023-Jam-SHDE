@@ -10828,6 +10828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 400
+  movementSpeedInAir: 200
   mouseSensibility: 10
   maxCamRotationUp: 70
   maxCamRotationDown: 100

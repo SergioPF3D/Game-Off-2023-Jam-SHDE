@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     [Tooltip("")]
     float movementSpeed;
 
+    [SerializeField]
+    [Tooltip("")]
+    float movementSpeedInAir;
+
     [Space(20)]
     //Camera
     Vector2 inputRotation;
@@ -125,7 +129,6 @@ public class Player : MonoBehaviour
                     {
                         rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
                         jumped = true;
-
                     }
                 }
 
@@ -223,7 +226,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeedInAir * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
         }
         transform.Rotate(0, inputRotation.x * mouseSensibility, 0);// * Time.deltaTime
 
