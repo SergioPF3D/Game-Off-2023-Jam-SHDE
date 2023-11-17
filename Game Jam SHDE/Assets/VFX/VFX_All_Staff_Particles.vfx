@@ -37168,7 +37168,7 @@ MonoBehaviour:
   - {fileID: 8926484042661617503}
   m_ExposedName: Size
   m_Exposed: 1
-  m_Order: 22
+  m_Order: 21
   m_Category: 
   m_Min:
     m_Type:
@@ -37291,7 +37291,7 @@ MonoBehaviour:
   - {fileID: 8926484042661617505}
   m_ExposedName: ParticleSpawnRate
   m_Exposed: 1
-  m_Order: 23
+  m_Order: 22
   m_Category: 
   m_Min:
     m_Type:
