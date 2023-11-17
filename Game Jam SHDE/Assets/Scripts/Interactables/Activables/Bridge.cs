@@ -36,6 +36,7 @@ public class Bridge : Activable
 
 
 
+
         if (actualInputs > 0)
         {
             //Rota hacia un ladoS 
