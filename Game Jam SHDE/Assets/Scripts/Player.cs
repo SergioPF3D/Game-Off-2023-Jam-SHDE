@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool grounded;
 
+    float angle;
+
     //Coyote Time
     /*
     float timeInAir;
@@ -111,6 +113,12 @@ public class Player : MonoBehaviour
                 groundDetected = true;
                 grounded = true;
 
+                //
+                //Debug.Log(Vector3.Angle(raycastHit.normal, transform.up));
+                angle = Vector3.Angle(raycastHit.normal, transform.up);
+
+
+                //Jump
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if (!jumped)
@@ -195,8 +203,23 @@ public class Player : MonoBehaviour
         //Move and rotate the player
         if (grounded)
         {
-            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime;// + new Vector3(0, rigi.velocity.y, 0)
+            //angulo para escalar rapido
+            float multiplier = 0;
+            if (angle / 60 < 1)
+            {
+                multiplier = angle / 60;
+            }
+            else
+            {
+                multiplier = 1;
+            }
+            multiplier *= 2;
+            if (multiplier < 1)
+            {
+                multiplier = 1;
+            }
 
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;// + new Vector3(0, rigi.velocity.y, 0)
         }
         else
         {
