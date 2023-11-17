@@ -207,21 +207,12 @@ public class Player : MonoBehaviour
         if (grounded)
         {
             //angulo para escalar rapido
-            float multiplier = 0;
-            if (angle / 60 < 1)
-            {
-                multiplier = angle / 60;
-            }
-            else
-            {
-                multiplier = 1;
-            }
-            multiplier *= 2;
+            float multiplier = Mathf.Clamp(angle / 60, 0, 1)*2;
             if (multiplier < 1)
             {
                 multiplier = 1;
             }
-
+            
             rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;// + new Vector3(0, rigi.velocity.y, 0)
         }
         else
