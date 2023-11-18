@@ -4771,6 +4771,13 @@ MonoBehaviour:
     position: {x: 1745, y: -606}
     expandedSlots: []
     expanded: 0
+  - m_Id: 1
+    linkedSlots:
+    - outputSlot: {fileID: 8926484042661614794}
+      inputSlot: {fileID: 8926484042661614983}
+    position: {x: 2831.7273, y: 248.4675}
+    expandedSlots: []
+    expanded: 0
 --- !u!114 &8926484042661614794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4809,6 +4816,7 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614612}
+  - {fileID: 8926484042661614983}
 --- !u!114 &8926484042661614795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5273,8 +5281,8 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":-0.07987534999847412,"y":0.36923301219940188,"z":0.20121359825134278},"size":{"x":3.709437847137451,"y":3.0992510318756105,"z":2.5473875999450685}}'
-    m_Space: 1
+      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":3.709437847137451,"y":3.0992510318756105,"z":2.5473875999450685}}'
+    m_Space: 0
   m_Property:
     name: bounds
     m_serializedType:
@@ -5452,7 +5460,8 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661614794}
 --- !u!114 &8926484042661614984
 MonoBehaviour:
   m_ObjectHideFlags: 0
