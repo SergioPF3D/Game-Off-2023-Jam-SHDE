@@ -42,6 +42,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal_map:
         m_Texture: {fileID: 2800000, guid: 4760a37e681962741aea861c3833a8ac, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -63,12 +67,12 @@ Material:
     - Brightness_Rim: 2
     - Rim_Power: 5
     - Toon_Ramp_Offset: 0.5
-    - Toon_Ramp_Smoothness: 0
-    - _Ambient: 0
+    - Toon_Ramp_Smoothness: 0.087
+    - _Ambient: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Toon_Ramp_Offset_Point: 0.5
     m_Colors:
-    - Toon_Ramp_Tint: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 1}
+    - Toon_Ramp_Tint: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
