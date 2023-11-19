@@ -21,15 +21,29 @@ public class MoveObjects : MonoBehaviour
 	LayerMask ignoreTargetMask;
 
 	[SerializeField]
-	[Tooltip("The empty object that places where we need to place the target to direct it")]
+	[Tooltip("")]
 	float maxDistance;
 
-	
+	[SerializeField]
+	[Tooltip("")]
+	float minDistance;
+
+	//Movement
 	[Header("Movement")]
 
 	[SerializeField]
 	[Tooltip("The empty object that places where we need to place the target to direct it")]
 	Transform grabber;
+
+
+		//Scrollwheel
+	[SerializeField]
+	float distance;
+	[SerializeField]
+	bool moveOrInteract;
+	[SerializeField]
+	float scrollWheel;
+
 
 	[SerializeField]
 	[Tooltip("Multiplied by the sensitivity and the distance between the target and the objective, it decides the speed at which the target goes towards the desired point")]
@@ -50,6 +64,7 @@ public class MoveObjects : MonoBehaviour
 	float baseDistance;
 	Vector3 baseScale;
 	float baseMass;
+
 	float currentDistance;
 
 	[Header("Aesthetics")]
@@ -123,8 +138,7 @@ public class MoveObjects : MonoBehaviour
 
 					target = hit.transform;
 					target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-
-					baseDistance = Vector3.Distance(transform.position, target.position);
+					distance = baseDistance = Vector3.Distance(transform.position, target.position);
 					baseScale = target.localScale;
 					baseMass = target.GetComponent<Rigidbody>().mass;
 					target.GetComponent<Rigidbody>().isKinematic = false;
@@ -174,6 +188,12 @@ public class MoveObjects : MonoBehaviour
 				target = null;
 			}
 		}
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+			moveOrInteract = !moveOrInteract;
+
+		}
 	}
 
 	void MoveTarget()
@@ -184,57 +204,47 @@ public class MoveObjects : MonoBehaviour
 			return;
 		}
 
-		//If we have someting in front, we move the object towards it and scale if necesary, if not, move the object with distance
-		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
-		{
-
-			//We set the grabber
-            if (Vector3.Distance(transform.position, hit.point) > maxDistance)
-            {
-				grabber.position = transform.position + transform.forward * currentDistance;
-            }
-            else
-            {
-				grabber.position = hit.point;
-			}
-
-			currentDistance = Vector3.Distance(transform.position, target.position);
-			
-			//If its scalable, we scale it
-			if (target.gameObject.layer == 6)
+        if (!moveOrInteract)
+        {
+			//Interact
+			if (target.GetComponent<ScaleWithMouseWheel>())
 			{
-				// Calculate the ratio between the current distance and the original distance
-				float ratio = currentDistance / baseDistance;
-				
-				//Scale the object
-				target.localScale = ratio * baseScale;
-				target.GetComponent<Rigidbody>().mass = ratio * baseMass;
+				target.GetComponent<ScaleWithMouseWheel>().Scalate();
 			}
-			
+        }
+        else
+        {
+			distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, maxDistance);
 		}
-		else
+		
+		//Set the grabber
+		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, ignoreTargetMask))
 		{
-            if (currentDistance > maxDistance)
-            {
-				grabber.position = transform.position + transform.forward * maxDistance;
-			}
-            else
-            {
-				grabber.position = transform.position + transform.forward * currentDistance;//currentDistance
+			grabber.position = hit.point;
+        }
+        else
+        {
+			if (moveOrInteract)
+			{
+				grabber.position = transform.position + transform.forward * distance;
 			}
 		}
 
+		//If its scalable, we scale it
+		if (target.gameObject.layer == 6)
+		{
+			currentDistance = Vector3.Distance(transform.position, target.position);
+			//Calculate the ratio between the current distance and the original distance
+			//Scale the object
+			target.localScale = currentDistance / baseDistance * baseScale;
+			target.GetComponent<Rigidbody>().mass = currentDistance / baseDistance * baseMass;
+		}
+		
 		//We move the target
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
 
 		rayTarget.position = target.position;
 		rayTarget.localScale = target.localScale;
-
-        if (target.GetComponent<ScaleWithMouseWheel>())
-        {
-			target.GetComponent<ScaleWithMouseWheel>().Scalate();
-		}
 
 		//que lances el rayo pero no llegue y no se pongan las particulas de lfinal
 	}
