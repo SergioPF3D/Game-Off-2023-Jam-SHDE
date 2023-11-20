@@ -63,13 +63,13 @@ public class Door : ObjectThatMoves
     public override IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
         ActivateParticles(true);
-
+        
         //base.MoveDoor(position1, position2);
         float timePassed = 0;
-        while (timePassed / timeToOpen < 1)
+        while (timePassed / timeToMove < 1)
         {
             timePassed += Time.fixedDeltaTime;
-            transform.position = Vector3.Lerp(position1, position2, timePassed / timeToOpen);
+            transform.position = Vector3.Lerp(position1, position2, timePassed / timeToMove);
             yield return new WaitForFixedUpdate();
         }
         transform.position = position2;

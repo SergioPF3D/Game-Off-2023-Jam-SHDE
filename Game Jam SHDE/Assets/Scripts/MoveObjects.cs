@@ -57,10 +57,13 @@ public class MoveObjects : MonoBehaviour
 	[Tooltip("nearer than that distance, When you let go of the cube, it will have no speed.")]
 	float distanceToThrow;
 
+	[SerializeField]
+	bool fly;
+
 	//Mouse
 	float mouseSensibility;
 
-	//[Header("Scale")]
+	[Header("Scale")]
 	float baseDistance;
 	Vector3 baseScale;
 	float baseMass;
@@ -86,6 +89,12 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	float rayEmisiveInetnsity;
 
+	[SerializeField]
+	Color moveColor;
+
+	[SerializeField]
+	Color scalateColor;
+
 	//_FresnelColor
 	/*
 	[SerializeField]
@@ -110,6 +119,8 @@ public class MoveObjects : MonoBehaviour
 		//staffAnimationController = GameObject.FindObjectOfType<Player>().staffAnimationController;
 
 		//emisiveColor = sphereMaterial.GetColor("_FresnelColor");
+		ChangeColor();
+
 		sphereMaterial.SetColor("_FresnelColor", Color.black);
 	}
 
@@ -145,8 +156,6 @@ public class MoveObjects : MonoBehaviour
 
 					rayVFX.gameObject.SetActive(true);
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
-					rayVFX.SetVector4("Color", target.GetComponent<ScalableObject>().emisiveColor * rayEmisiveInetnsity);
-					sphereMaterial.SetColor("_FresnelColor", target.GetComponent<ScalableObject>().emisiveColor * shaderEmisiveIntensity);
 					target.gameObject.GetComponent<MeshRenderer>().material.SetFloat("_EmisiveIntensity", shaderEmisiveIntensity);
 
 					staffAnimationController.SetBool("Grabbing", true);
@@ -155,6 +164,8 @@ public class MoveObjects : MonoBehaviour
 		}
         if (Input.GetMouseButtonUp(0))
         {
+
+			Debug.Log(1);
 			//If we have a target, we have to release it
 			if (target)
             {
@@ -192,7 +203,7 @@ public class MoveObjects : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
 			moveOrInteract = !moveOrInteract;
-
+			ChangeColor();
 		}
 	}
 
@@ -239,13 +250,36 @@ public class MoveObjects : MonoBehaviour
 			target.localScale = currentDistance / baseDistance * baseScale;
 			target.GetComponent<Rigidbody>().mass = currentDistance / baseDistance * baseMass;
 		}
-		
-		//We move the target
-		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
 
 		rayTarget.position = target.position;
 		rayTarget.localScale = target.localScale;
 
-		//que lances el rayo pero no llegue y no se pongan las particulas de lfinal
+		//We move the target
+		if (!fly)
+        {
+            if (Physics.Raycast(target.position, grabber.position - target.position, out RaycastHit hitted, distance))
+            {
+                if (hitted.collider.gameObject.layer == 3)
+                {
+					return;
+				}
+            }
+		}
+
+		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+	}
+
+	void ChangeColor()
+    {
+		if (moveOrInteract)
+		{
+			rayVFX.SetVector4("Color", moveColor * rayEmisiveInetnsity);
+			sphereMaterial.SetColor("_FresnelColor", moveColor * shaderEmisiveIntensity);
+		}
+		else
+		{
+			rayVFX.SetVector4("Color", scalateColor * rayEmisiveInetnsity);
+			sphereMaterial.SetColor("_FresnelColor", scalateColor * shaderEmisiveIntensity);
+		}
 	}
 }
