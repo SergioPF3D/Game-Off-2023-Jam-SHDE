@@ -3433,7 +3433,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614819}
   - {fileID: 8926484042661614820}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   mode: 0
   radiusMode: 0
   roughSurface: 0
@@ -3464,7 +3464,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Plane, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"position":{"x":0.0,"y":3.658979892730713,"z":59.357994079589847},"normal":{"x":0.0,"y":1.0,"z":0.0}}'
+      m_SerializableObject: '{"position":{"x":0.0,"y":1.5299999713897706,"z":59.357994079589847},"normal":{"x":0.0,"y":1.0,"z":0.0}}'
     m_Space: 1
   m_Property:
     name: Plane
@@ -3508,8 +3508,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661614913}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661614811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4708,9 +4707,7 @@ MonoBehaviour:
   m_Tooltip: 
   m_Nodes:
   - m_Id: 0
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614913}
-      inputSlot: {fileID: 8926484042661614810}
+    linkedSlots: []
     position: {x: 1704.9001, y: 714.85004}
     expandedSlots:
     - {fileID: 8926484042661614912}
@@ -4787,8 +4784,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 8926484042661614810}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661614914
 MonoBehaviour:
   m_ObjectHideFlags: 0
