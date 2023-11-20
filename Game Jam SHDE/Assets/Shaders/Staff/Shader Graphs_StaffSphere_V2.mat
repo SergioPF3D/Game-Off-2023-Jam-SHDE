@@ -52,7 +52,7 @@ Material:
     - Color_c04ff695c45b4f61b10348f36ac90dc5: {r: 2.101961, g: 1.160784, b: 5.427451,
         a: 0}
     - _CenterColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FresnelColor: {r: 15.167109, g: 1.5584877, b: 19.435255, a: 0}
+    - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6153292906203608275
 MonoBehaviour:

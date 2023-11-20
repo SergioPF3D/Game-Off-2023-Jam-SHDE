@@ -59,6 +59,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DissolveAmount: 0.15
+    - _DissolveScale: 10
+    - _DissolveWidth: 0.025
     - _EmisiveIntensity: 1
     - _EmisiveZoneMetalic: 0
     - _EmisiveZoneRoughness: 0.3
@@ -66,6 +69,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _DissolveColor: {r: 2.9960785, g: 1.0352942, b: 0, a: 0}
     - _EmisiveColor: {r: 1, g: 0.65882355, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6181870794094732479
