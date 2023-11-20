@@ -164,8 +164,6 @@ public class MoveObjects : MonoBehaviour
 		}
         if (Input.GetMouseButtonUp(0))
         {
-
-			Debug.Log(1);
 			//If we have a target, we have to release it
 			if (target)
             {
@@ -225,18 +223,23 @@ public class MoveObjects : MonoBehaviour
         }
         else
         {
-			distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, maxDistance);
+			//distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, maxDistance);
 		}
 		
 		//Set the grabber
 		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, ignoreTargetMask))
 		{
+            if (moveOrInteract)
+            {
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, distance);
+			}
 			grabber.position = hit.point;
         }
         else
         {
 			if (moveOrInteract)
 			{
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
 		}

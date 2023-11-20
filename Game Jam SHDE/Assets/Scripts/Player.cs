@@ -117,7 +117,10 @@ public class Player : MonoBehaviour
                 groundDetected = true;
                 grounded = true;
 
-                //
+                if (raycastHit.collider.gameObject.layer == 11)
+                {
+                    transform.SetParent(raycastHit.collider.gameObject.transform);
+                }
                 //Debug.Log(Vector3.Angle(raycastHit.normal, transform.up));
                 angle = Vector3.Angle(raycastHit.normal, transform.up);
 
@@ -203,6 +206,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         //Move and rotate the player
         if (grounded)
         {
@@ -228,19 +232,8 @@ public class Player : MonoBehaviour
         cam.localRotation = Quaternion.Euler(camRotX, cam.localRotation.y, cam.localRotation.z);
         //cam.Rotate(-inputRotation.y * mouseSensibility, 0, 0);
         rigi.AddForce(-Vector3.up * falseGravity, ForceMode.Force);
+        
     }
-
-    /*
-    void InputDeQueue()
-    {
-        if (inputBuffer.Count > 0)
-        {
-            inputBuffer.Dequeue();
-        }
-    }
-    */
-
-
 
     void Death()
     {
