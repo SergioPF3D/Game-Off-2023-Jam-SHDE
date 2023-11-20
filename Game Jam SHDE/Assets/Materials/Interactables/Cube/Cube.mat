@@ -15,7 +15,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3001
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -66,7 +66,7 @@ Material:
     - _EmisiveZoneMetalic: 0
     - _EmisiveZoneRoughness: 0.3
     - _NormalIntensity: 1
-    - _QueueControl: 0
+    - _QueueControl: 1
     - _QueueOffset: 0
     m_Colors:
     - _DissolveColor: {r: 2.9960785, g: 1.0352942, b: 0, a: 0}

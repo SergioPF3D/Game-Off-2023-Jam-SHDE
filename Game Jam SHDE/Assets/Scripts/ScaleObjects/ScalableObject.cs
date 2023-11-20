@@ -18,6 +18,7 @@ public class ScalableObject : MonoBehaviour
         basePosition = transform.position;
 
         this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_EmisiveColor",emisiveColor);
+        this.gameObject.GetComponent<MeshRenderer>().materials[1].SetColor("_Color", emisiveColor);
         baseEmisiveIntensity = this.gameObject.GetComponent<MeshRenderer>().material.GetFloat("_EmisiveIntensity");
 
         ChangeMass();

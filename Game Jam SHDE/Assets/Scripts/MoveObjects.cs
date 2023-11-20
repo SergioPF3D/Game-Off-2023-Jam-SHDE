@@ -95,6 +95,15 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	Color scalateColor;
 
+	[SerializeField]
+	Material outline;
+
+	[SerializeField]
+	GameObject outlined;
+
+	[SerializeField]
+	float outlineWidth; //1.09
+
 	//_FresnelColor
 	/*
 	[SerializeField]
@@ -202,6 +211,36 @@ public class MoveObjects : MonoBehaviour
         {
 			moveOrInteract = !moveOrInteract;
 			ChangeColor();
+		}
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitted, maxDistance, targetMask))
+        {
+
+            if (!target)
+            {
+				if (outlined && outlined != hitted.collider.gameObject)
+				{
+
+					outlined.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", 0.1f);
+
+					hitted.collider.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", outlineWidth);
+					outlined = hitted.collider.gameObject;
+				}
+
+				if (!outlined)
+				{
+					hitted.collider.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", outlineWidth);
+					outlined = hitted.collider.gameObject;
+				}
+			}
+		}
+        else
+        {
+            if (!target && outlined)
+            {
+				outlined.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", 0.1f);
+				outlined = null;
+			}
 		}
 	}
 
