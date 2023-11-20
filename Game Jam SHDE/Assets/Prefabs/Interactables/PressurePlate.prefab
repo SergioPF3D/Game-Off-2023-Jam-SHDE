@@ -211,6 +211,7 @@ MonoBehaviour:
   activables: []
   activated: 0
   weight: 1
+  decalls: []
   massToInteract: 2
   maximunMass: 100
   totalMass: 0

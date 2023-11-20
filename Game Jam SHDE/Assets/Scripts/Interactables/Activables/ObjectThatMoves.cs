@@ -10,7 +10,7 @@ public class ObjectThatMoves : Activable
     [SerializeField]
     float timeToOpen;
     
-    public IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
+    public virtual IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
         float timePassed = 0;
         while (timePassed / timeToOpen < 1)
