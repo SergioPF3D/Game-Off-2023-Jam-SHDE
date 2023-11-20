@@ -6,16 +6,12 @@ public class Door : ObjectThatMoves
 {
     [Header("Door")]
     //Things to activate
-    BoxCollider colider;
-    MeshRenderer render;
-
+    
+    [SerializeField]
     List<GameObject> particles;
 
     public override void Start()
     {
-        colider = this.gameObject.GetComponent<BoxCollider>();
-        render = this.gameObject.GetComponent<MeshRenderer>();
-
         base.Start();
     }
 
@@ -67,16 +63,25 @@ public class Door : ObjectThatMoves
     public override IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
         ActivateParticles(true);
-        base.MoveDoor(position1, position2);
+
+        //base.MoveDoor(position1, position2);
+        float timePassed = 0;
+        while (timePassed / timeToOpen < 1)
+        {
+            timePassed += Time.fixedDeltaTime;
+            transform.position = Vector3.Lerp(position1, position2, timePassed / timeToOpen);
+            yield return new WaitForFixedUpdate();
+        }
+        transform.position = position2;
+
         ActivateParticles(false);
-        yield return null;
     }
 
     void ActivateParticles(bool active)
     {
         foreach (var particle in particles)
         {
-            //particle.SetActive(active);
+            particle.SetActive(active);
         }
     }
 

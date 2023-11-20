@@ -6,9 +6,8 @@ public class ObjectThatMoves : Activable
 {
     public Transform initialPosition;
     public Transform finalPosition;
-
-    [SerializeField]
-    float timeToOpen;
+    
+    public float timeToOpen;
     
     public virtual IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
