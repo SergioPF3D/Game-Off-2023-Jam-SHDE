@@ -68,7 +68,7 @@ Material:
     - Rim_Power: 5
     - Toon_Ramp_Offset: 0.5
     - Toon_Ramp_Smoothness: 0.087
-    - _Ambient: 0.01
+    - _Ambient: 0.045
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Toon_Ramp_Offset_Point: 0.5
