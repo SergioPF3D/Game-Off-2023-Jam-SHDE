@@ -206,8 +206,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
         //Move and rotate the player
+        
         if (grounded)
         {
             //angulo para escalar rapido
@@ -223,12 +224,13 @@ public class Player : MonoBehaviour
         {
             rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeedInAir * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
         }
+        
         transform.Rotate(0, inputRotation.x * mouseSensibility, 0);// * Time.deltaTime
 
         //Rotate the Camera
         camRotX -= inputRotation.y * mouseSensibility;// * Time.deltaTime
         camRotX = Mathf.Clamp(camRotX, -maxCamRotationUp, maxCamRotationDown);
-
+        
         cam.localRotation = Quaternion.Euler(camRotX, cam.localRotation.y, cam.localRotation.z);
         //cam.Rotate(-inputRotation.y * mouseSensibility, 0, 0);
         rigi.AddForce(-Vector3.up * falseGravity, ForceMode.Force);
