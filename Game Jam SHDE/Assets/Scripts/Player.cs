@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
     float speedLimit;
 
     [SerializeField]
-    Vector3 lastSpeed;
+    Vector3 actualSpeed;
     [SerializeField]
-    Vector3 lastSpeedAdded;
+    Vector3 inputSpeed;
 
     [Space(20)]
 
@@ -215,10 +215,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         //Move and rotate the player
-        //lastSpeed = rigi.velocity - lastSpeedAdded;
-
         if (grounded)
         {
             //angulo para escalar rapido
@@ -229,18 +226,26 @@ public class Player : MonoBehaviour
             }
 
 
-            //rigi.velocity = Vector3.ClampMagnitude(lastSpeed - lastSpeedAdded + ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier, speedLimit);
-            lastSpeedAdded = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
-            rigi.velocity = lastSpeed + lastSpeedAdded;
-            lastSpeed = rigi.velocity - lastSpeedAdded;
+            if (InputMovement == Vector2.zero)
+            {
+                actualSpeed = new Vector3(rigi.velocity.x, 0, rigi.velocity.z); //rigi.velocity;
+                actualSpeed = rigi.velocity; //rigi.velocity;
+            }
+            
 
-            //lastSpeedAdded = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
-            //Speed Limit
-            //speedLimit
+            inputSpeed = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
+            rigi.velocity = Vector3.ClampMagnitude(actualSpeed + inputSpeed, speedLimit);
+
+            actualSpeed = new Vector3(rigi.velocity.x, 0, rigi.velocity.z) - inputSpeed;
+            actualSpeed = rigi.velocity - inputSpeed;
+
+
+            //Sumarle inputs a la velocidad
+            //Porblema: Deslizamiento
             //rigi.velocity = Vector3.ClampMagnitude(rigi.velocity + (((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier), speedLimit);
 
-
-
+            //La velocidad son los inputs
+            //Problema: No te pegas al puente
             //rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
         }
         else
