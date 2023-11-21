@@ -38,7 +38,7 @@ Material:
     - _EmisiveIntensity: 1
     - _Float: 0.0005
     - _Outline: 1.09
-    - _OutlineWidth: 1.15
+    - _OutlineWidth: 0
     - _QueueControl: 1
     - _QueueOffset: 0
     m_Colors:
