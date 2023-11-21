@@ -213,6 +213,7 @@ public class MoveObjects : MonoBehaviour
 			ChangeColor();
 		}
 
+		//Set outline
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitted, maxDistance, targetMask))
         {
 
@@ -246,6 +247,7 @@ public class MoveObjects : MonoBehaviour
 				outlined = null;
 			}
 		}
+
 	}
 
 	void MoveTarget()
@@ -262,6 +264,9 @@ public class MoveObjects : MonoBehaviour
 			if (target.GetComponent<ScaleWithMouseWheel>())
 			{
 				target.GetComponent<ScaleWithMouseWheel>().Scalate();
+
+				distance = Mathf.Clamp(distance, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
+				grabber.position = transform.position + transform.forward * distance;
 			}
         }
 		
@@ -270,7 +275,7 @@ public class MoveObjects : MonoBehaviour
 		{
             if (moveOrInteract)
             {
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, distance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
 			}
 			grabber.position = hit.point;
         }
@@ -278,9 +283,11 @@ public class MoveObjects : MonoBehaviour
         {
 			if (moveOrInteract)
 			{
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, maxDistance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
+
+			
 		}
 
 		//If its scalable, we scale it

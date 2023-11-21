@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     [Tooltip("")]
+    float rampSpeedMultiplier;
+
+    [SerializeField]
+    [Tooltip("")]
     float speedLimit;
 
     [SerializeField]
@@ -219,26 +223,25 @@ public class Player : MonoBehaviour
         if (grounded)
         {
             //angulo para escalar rapido
-            float multiplier = Mathf.Clamp(angle / 60, 0, 1)*2;
+            float multiplier = Mathf.Clamp(angle / 60, 0, 1)* rampSpeedMultiplier;
             if (multiplier < 1)
             {
                 multiplier = 1;
             }
 
-
+            /*
             if (InputMovement == Vector2.zero)
             {
                 actualSpeed = new Vector3(rigi.velocity.x, 0, rigi.velocity.z); //rigi.velocity;
                 actualSpeed = rigi.velocity; //rigi.velocity;
             }
             
-
             inputSpeed = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
             rigi.velocity = Vector3.ClampMagnitude(actualSpeed + inputSpeed, speedLimit);
 
             actualSpeed = new Vector3(rigi.velocity.x, 0, rigi.velocity.z) - inputSpeed;
             actualSpeed = rigi.velocity - inputSpeed;
-
+            */
 
             //Sumarle inputs a la velocidad
             //Porblema: Deslizamiento
@@ -246,7 +249,7 @@ public class Player : MonoBehaviour
 
             //La velocidad son los inputs
             //Problema: No te pegas al puente
-            //rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
         }
         else
         {

@@ -40,9 +40,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _EmisiveIntensity: 1
-    - _Float: 0.0005
+    - _Float: 2
     - _Outline: 1.09
-    - _OutlineWidth: 0.9
+    - _OutlineWidth: 0.1
     - _QueueControl: 1
     - _QueueOffset: 0
     m_Colors:

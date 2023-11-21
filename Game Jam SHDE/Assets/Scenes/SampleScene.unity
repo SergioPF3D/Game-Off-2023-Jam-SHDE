@@ -6764,7 +6764,7 @@ Transform:
   - {fileID: 676297578}
   - {fileID: 294158006}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &315734767 stripped
 Transform:
@@ -6967,7 +6967,7 @@ MonoBehaviour:
   sphereMaterial: {fileID: 2100000, guid: 9babe3cf6b445034fa1a7665a703e97e, type: 2}
   shaderEmisiveIntensity: 2
   rayEmisiveInetnsity: 15
-  moveColor: {r: 0.53626186, g: 1, b: 0.4481132, a: 0}
+  moveColor: {r: 0.18285835, g: 1, b: 0.023584902, a: 0}
   scalateColor: {r: 1, g: 0, b: 0.956861, a: 0}
   outline: {fileID: 2100000, guid: c1f5e1f234685aa4eb366936f310c18f, type: 2}
   outlined: {fileID: 0}
@@ -12549,7 +12549,7 @@ Transform:
   - {fileID: 330585546}
   - {fileID: 589966958}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &604728384
 Rigidbody:
@@ -14813,6 +14813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7649858437605728647, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
+      propertyPath: minScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649858437605728647, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
+        type: 3}
       propertyPath: emisiveColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -14834,17 +14839,17 @@ PrefabInstance:
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.893999
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.16
+      value: 3.871
       objectReference: {fileID: 0}
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.087006
+      value: 14.73
       objectReference: {fileID: 0}
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
@@ -15766,7 +15771,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!73398921 &734228723
 VFXRenderer:
@@ -16552,7 +16557,7 @@ Transform:
   - {fileID: 1545483589}
   - {fileID: 755902324}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &749228562 stripped
 Transform:
@@ -31987,7 +31992,7 @@ Transform:
   m_Children:
   - {fileID: 963548036}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1433369457
 PrefabInstance:
@@ -33712,7 +33717,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 890cbb2816256a14197d6670f3e6b09f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 890cbb2816256a14197d6670f3e6b09f,
         type: 3}
@@ -35203,7 +35208,7 @@ Transform:
   - {fileID: 1891976576}
   - {fileID: 784148589}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1586038839
 PrefabInstance:
