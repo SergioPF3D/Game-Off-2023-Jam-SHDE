@@ -158,6 +158,9 @@
     "m_StickyNoteDatas": [
         {
             "m_Id": "e551d27b9ec64a30aa8ac38253339670"
+        },
+        {
+            "m_Id": "e8554ab9a440469ea4c59efcaca273dd"
         }
     ],
     "m_Edges": [
@@ -4207,6 +4210,26 @@
         "serializedVersion": "2",
         "x": -304.0,
         "y": 1527.0,
+        "width": 200.0,
+        "height": 122.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "e8554ab9a440469ea4c59efcaca273dd",
+    "m_Title": "Dissolve Effect",
+    "m_Content": "Como has puesto eso\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -475.0,
+        "y": 1779.0,
         "width": 200.0,
         "height": 122.0
     },

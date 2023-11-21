@@ -23,12 +23,23 @@ public class Player : MonoBehaviour
     [Tooltip("")]
     float movementSpeedInAir;
 
+    [SerializeField]
+    [Tooltip("")]
+    float speedLimit;
+
+    [SerializeField]
+    Vector3 lastSpeed;
+    [SerializeField]
+    Vector3 lastSpeedAdded;
+
     [Space(20)]
+
     //Camera
     Vector2 inputRotation;
     float camRotX;
     Transform cam;
-    
+
+    [Space(20)]
     //Cambialo con un metodo
     public float mouseSensibility;
 
@@ -124,7 +135,6 @@ public class Player : MonoBehaviour
                 //Debug.Log(Vector3.Angle(raycastHit.normal, transform.up));
                 angle = Vector3.Angle(raycastHit.normal, transform.up);
 
-
                 //Jump
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -148,7 +158,6 @@ public class Player : MonoBehaviour
                 {
                     grounded = false;
                 }
-                
             }
         }
 
@@ -208,7 +217,8 @@ public class Player : MonoBehaviour
     {
 
         //Move and rotate the player
-        
+        //lastSpeed = rigi.velocity - lastSpeedAdded;
+
         if (grounded)
         {
             //angulo para escalar rapido
@@ -217,22 +227,38 @@ public class Player : MonoBehaviour
             {
                 multiplier = 1;
             }
-            
-            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;// + new Vector3(0, rigi.velocity.y, 0)
+
+
+            //rigi.velocity = Vector3.ClampMagnitude(lastSpeed - lastSpeedAdded + ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier, speedLimit);
+            lastSpeedAdded = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
+            rigi.velocity = lastSpeed + lastSpeedAdded;
+            lastSpeed = rigi.velocity - lastSpeedAdded;
+
+            //lastSpeedAdded = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
+            //Speed Limit
+            //speedLimit
+            //rigi.velocity = Vector3.ClampMagnitude(rigi.velocity + (((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier), speedLimit);
+
+
+
+            //rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
         }
         else
         {
             rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeedInAir * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
         }
         
+
+
+
         transform.Rotate(0, inputRotation.x * mouseSensibility, 0);// * Time.deltaTime
 
         //Rotate the Camera
         camRotX -= inputRotation.y * mouseSensibility;// * Time.deltaTime
         camRotX = Mathf.Clamp(camRotX, -maxCamRotationUp, maxCamRotationDown);
+
         
         cam.localRotation = Quaternion.Euler(camRotX, cam.localRotation.y, cam.localRotation.z);
-        //cam.Rotate(-inputRotation.y * mouseSensibility, 0, 0);
         rigi.AddForce(-Vector3.up * falseGravity, ForceMode.Force);
         
     }

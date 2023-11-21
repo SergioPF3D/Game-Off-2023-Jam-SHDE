@@ -221,15 +221,18 @@ public class MoveObjects : MonoBehaviour
 				if (outlined && outlined != hitted.collider.gameObject)
 				{
 
-					outlined.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", 0.1f);
+					outlined.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
+					outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().layer;
 
-					hitted.collider.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", outlineWidth);
+					hitted.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
+					hitted.collider.gameObject.layer = 12;
 					outlined = hitted.collider.gameObject;
 				}
 
 				if (!outlined)
 				{
-					hitted.collider.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", outlineWidth);
+					hitted.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
+					hitted.collider.gameObject.layer = 12;
 					outlined = hitted.collider.gameObject;
 				}
 			}
@@ -238,7 +241,8 @@ public class MoveObjects : MonoBehaviour
         {
             if (!target && outlined)
             {
-				outlined.gameObject.GetComponent<MeshRenderer>().materials[1].SetFloat("_OutlineWidth", 0.1f);
+				outlined.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
+				outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().layer;
 				outlined = null;
 			}
 		}
@@ -260,10 +264,6 @@ public class MoveObjects : MonoBehaviour
 				target.GetComponent<ScaleWithMouseWheel>().Scalate();
 			}
         }
-        else
-        {
-			//distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance, maxDistance);
-		}
 		
 		//Set the grabber
 		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, ignoreTargetMask))

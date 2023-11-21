@@ -10,6 +10,8 @@ public class ScalableObject : MonoBehaviour
     public Color emisiveColor;
     public float baseEmisiveIntensity;
 
+    public int layer;
+
     //Return to initial position
     Vector3 basePosition;
 
@@ -17,11 +19,13 @@ public class ScalableObject : MonoBehaviour
     {
         basePosition = transform.position;
 
+        layer = gameObject.layer;
         this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_EmisiveColor",emisiveColor);
-        this.gameObject.GetComponent<MeshRenderer>().materials[1].SetColor("_Color", emisiveColor);
+        this.gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", emisiveColor);
         baseEmisiveIntensity = this.gameObject.GetComponent<MeshRenderer>().material.GetFloat("_EmisiveIntensity");
 
         ChangeMass();
+
     }
     public virtual void ChangeMass()
     {

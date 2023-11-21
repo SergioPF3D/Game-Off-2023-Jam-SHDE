@@ -11,13 +11,13 @@ TagManager:
   - Player
   - Water
   - UI
-  - Scalable
+  - PerspectiveScale
   - Movable
   - Interactable
   - Staff
   - Void
   - BridgesAndPlatforms
-  - 
+  - OutlinedCube
   - 
   - 
   - 

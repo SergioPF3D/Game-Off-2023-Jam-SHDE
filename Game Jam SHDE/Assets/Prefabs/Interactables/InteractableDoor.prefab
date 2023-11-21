@@ -344,7 +344,7 @@ MonoBehaviour:
   interactables: []
   initialPosition: {fileID: 4539588448836478575}
   finalPosition: {fileID: 4539588446899547941}
-  timeToOpen: 2
+  timeToMove: 2
   particles:
   - {fileID: 1916126699795870460}
   - {fileID: 3498620014848041455}
