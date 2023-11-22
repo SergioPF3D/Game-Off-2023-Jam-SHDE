@@ -57,8 +57,17 @@ public class MoveObjects : MonoBehaviour
 	[Tooltip("nearer than that distance, When you let go of the cube, it will have no speed.")]
 	float distanceToThrow;
 
+	[Space(20)]
+
 	[SerializeField]
 	bool fly;
+
+	[SerializeField]
+	float angle;
+
+	[SerializeField]
+	float distancetoFly;
+
 
 	//Mouse
 	float mouseSensibility;
@@ -102,16 +111,7 @@ public class MoveObjects : MonoBehaviour
 	GameObject outlined;
 
 	[SerializeField]
-	float outlineWidth; //1.09
-
-	//_FresnelColor
-	/*
-	[SerializeField]
-	float intensidad;
-
-	[SerializeField]
-	Material materi;
-	*/
+	float outlineWidth;
 
 	[Header("Animation")]
 	[SerializeField]
@@ -119,9 +119,6 @@ public class MoveObjects : MonoBehaviour
 
 	void Start()
 	{
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
 		mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
 
@@ -148,13 +145,18 @@ public class MoveObjects : MonoBehaviour
 			if (target == null)
 			{
 				RaycastHit hit;
+				if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
+				{
+					return;
+				}
+
 				if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, targetMask))
 				{
 					//If we are so far of the target, then we dont set it
-                    if (Vector3.Distance(hit.transform.position, transform.position) > maxDistance)
-                    {
+					if (Vector3.Distance(hit.transform.position, transform.position) > maxDistance)
+					{
 						return;
-                    }
+					}
 
 					target = hit.transform;
 					target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -169,6 +171,7 @@ public class MoveObjects : MonoBehaviour
 
 					staffAnimationController.SetBool("Grabbing", true);
 				}
+
 			}
 		}
         if (Input.GetMouseButtonUp(0))
@@ -306,6 +309,7 @@ public class MoveObjects : MonoBehaviour
 		//We move the target
 		if (!fly)
         {
+			//Si el jugador esta entre el objeto y el grabber
             if (Physics.Raycast(target.position, grabber.position - target.position, out RaycastHit hitted, distance))
             {
                 if (hitted.collider.gameObject.layer == 3)
@@ -313,6 +317,21 @@ public class MoveObjects : MonoBehaviour
 					return;
 				}
             }
+
+			float angulo = Vector3.Angle(grabber.position - target.transform.position, transform.parent.position - target.transform.position);
+			Debug.Log(angulo);
+			if (angulo < angle)
+            {
+				
+				Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
+				Debug.DrawRay(target.transform.position, transform.parent.position - target.transform.position, Color.red);
+				if (Vector3.Distance(grabber.position, transform.parent.position) < distancetoFly * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3)
+				{
+					return;
+				}
+			}
+            
+
 		}
 
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;

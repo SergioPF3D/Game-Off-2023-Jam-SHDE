@@ -73,27 +73,18 @@ public class Player : MonoBehaviour
 
     float angle;
 
-    //Coyote Time
-    /*
-    float timeInAir;
-
-    [SerializeField]
-    float coyoteTime;
-
-    bool jumped = false;
-    */
-    //Input buffer
-    /*
-    Queue<KeyCode> inputBuffer = new Queue<KeyCode>();
-    */
-
     [Header("Animation")]
     [SerializeField]
     Animator staffAnimationController;
 
+    [Header("Menu")]
+    [SerializeField]
+    bool menuactivated;
+    [SerializeField]
+    GameObject menu;
+
     void Start()
     {
-        //Set the cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -101,12 +92,16 @@ public class Player : MonoBehaviour
         rigi = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
         camRotX = cam.rotation.x;
-
-        StartCoroutine("VerifyHigh");
     }
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetMenu();
+        }
+
+        //Detect Input
         InputMovement = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         inputRotation = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
@@ -131,12 +126,7 @@ public class Player : MonoBehaviour
             {
                 groundDetected = true;
                 grounded = true;
-
-                if (raycastHit.collider.gameObject.layer == 11)
-                {
-                    transform.SetParent(raycastHit.collider.gameObject.transform);
-                }
-                //Debug.Log(Vector3.Angle(raycastHit.normal, transform.up));
+                
                 angle = Vector3.Angle(raycastHit.normal, transform.up);
 
                 //Jump
@@ -164,57 +154,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
-        #region CoyoteAndInput
-        /*
-        if (Physics.Raycast(transform.position - transform.up * 0.95f, -transform.up, out RaycastHit groundRaycast, 0.08f, jumpLayers))
-        {
-            
-            jumped = false;
-            if (inputBuffer.Count > 0)
-            {
-                rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-                InputDeQueue();
-
-                jumped = true;
-            }
-
-            //timeInAir = 0;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                //inputBuffer.Enqueue(KeyCode.Space);
-                //Invoke("InputDeQueue", 5);
-
-                //Debug.Log(1 + "    " + inputBuffer.Count);
-
-                rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-            }
-
-            staffAnimationController.SetBool("Falling", false);
-        }
-        else
-        {
-            
-            timeInAir += Time.deltaTime;
-            if (timeInAir < coyoteTime)// && !jumped
-            {
-                if (inputBuffer.Count > 0)
-                {
-                    rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-                    InputDeQueue();
-
-                    jumped = true;
-                }
-            }
-            
-            if (rigi.velocity.y < 0)
-            {
-                staffAnimationController.SetBool("Falling", true);
-            }
-        }
-        */
-        #endregion
     }
 
     private void FixedUpdate()
@@ -277,15 +216,6 @@ public class Player : MonoBehaviour
     }
 
     //check if your height is very low, so you went through the ground somehow
-    IEnumerator VerifyHigh()
-    {
-        if (transform.position.y < -50)
-        {
-            Death();
-        }
-        yield return new WaitForSeconds(5);
-        StartCoroutine("VerifyHigh");
-    }
 
     
     private void OnCollisionEnter(Collision collision)
@@ -294,5 +224,34 @@ public class Player : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void SetMenu()
+    {
+        if (menuactivated)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Time.timeScale = 1;
+
+            menu.SetActive(false);
+            menuactivated = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            Time.timeScale = 0;
+
+            menu.SetActive(true);
+            menuactivated = true;
+        }
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

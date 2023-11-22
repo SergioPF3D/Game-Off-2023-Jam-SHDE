@@ -37,10 +37,15 @@ public class Bridge : Activable
 
 
 
+    
+    }
+    private void Update()
+    {
         if (actualInputs > 0)
         {
             //Rota hacia un ladoS 
             rigi.MoveRotation(Quaternion.Euler(transform.rotation.eulerAngles + (rotationDirection * rotationSpeed * Time.deltaTime)));// + 
+            
         }
         else if (actualInputs < 0)
         {

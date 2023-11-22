@@ -10,6 +10,8 @@ public class Door : ObjectThatMoves
     [SerializeField]
     List<GameObject> particles;
 
+    public bool blocked;
+
     public override void Start()
     {
         base.Start();
@@ -17,15 +19,27 @@ public class Door : ObjectThatMoves
 
     public override void Activate()
     {
+        if (blocked)
+        {
+            return;
+        }
         StartCoroutine(MoveDoor(transform.position, finalPosition.position));
     }
     public override void DeActivate()
     {
+        if (blocked)
+        {
+            return;
+        }
         StartCoroutine(MoveDoor(transform.position, initialPosition.position));
     }
 
     public void seeIfActivate()
     {
+        if (blocked)
+        {
+            return;
+        }
         if (actualInputs >= inputs)
         {
             if (baseActivated)
