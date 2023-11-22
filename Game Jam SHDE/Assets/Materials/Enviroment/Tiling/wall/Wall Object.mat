@@ -73,6 +73,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Boolean: 1
+    - _IntersectionDeph: 0.85
     - _Metalic: 0
     - _NormalIntensity: 0.55
     - _Object_World: 0

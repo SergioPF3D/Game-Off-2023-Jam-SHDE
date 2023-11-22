@@ -144,21 +144,23 @@ public class MoveObjects : MonoBehaviour
 			//If we dont have a target, we release it;
 			if (target == null)
 			{
-				RaycastHit hit;
-				if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, ignoreTargetMask))
-				{
-					return;
-				}
+				RaycastHit cubeDetected;
+				
 
-				if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, targetMask))
+				if (Physics.Raycast(transform.position, transform.forward, out cubeDetected, Mathf.Infinity, targetMask))
 				{
 					//If we are so far of the target, then we dont set it
-					if (Vector3.Distance(hit.transform.position, transform.position) > maxDistance)
+					if (Vector3.Distance(cubeDetected.transform.position, transform.position) > maxDistance)
+					{
+						return;
+                    }
+					//Si hay algo en medio
+					if (Physics.Raycast(transform.position, transform.forward, out RaycastHit obstacle, Vector3.Distance(transform.position, cubeDetected.point), ignoreTargetMask))
 					{
 						return;
 					}
 
-					target = hit.transform;
+					target = cubeDetected.transform;
 					target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 					distance = baseDistance = Vector3.Distance(transform.position, target.position);
 					baseScale = target.localScale;
@@ -217,27 +219,32 @@ public class MoveObjects : MonoBehaviour
 		}
 
 		//Set outline
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitted, maxDistance, targetMask))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit cubeToOutline, maxDistance, targetMask))
         {
+			//Si hay algo en medio
+			if (Physics.Raycast(transform.position, transform.forward, out RaycastHit obstacle, Vector3.Distance(transform.position, cubeToOutline.point), ignoreTargetMask))
+			{
+				return;
+			}
 
-            if (!target)
+			if (!target)
             {
-				if (outlined && outlined != hitted.collider.gameObject)
+				if (outlined && outlined != cubeToOutline.collider.gameObject)
 				{
 
 					outlined.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
 					outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().layer;
 
-					hitted.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
-					hitted.collider.gameObject.layer = 12;
-					outlined = hitted.collider.gameObject;
+					cubeToOutline.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
+					cubeToOutline.collider.gameObject.layer = 12;
+					outlined = cubeToOutline.collider.gameObject;
 				}
 
 				if (!outlined)
 				{
-					hitted.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
-					hitted.collider.gameObject.layer = 12;
-					outlined = hitted.collider.gameObject;
+					cubeToOutline.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
+					cubeToOutline.collider.gameObject.layer = 12;
+					outlined = cubeToOutline.collider.gameObject;
 				}
 			}
 		}

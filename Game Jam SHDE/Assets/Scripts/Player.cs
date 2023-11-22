@@ -114,32 +114,45 @@ public class Player : MonoBehaviour
             staffAnimationController.SetBool("Walking", false);
         }
         
+
         //Player is in the ground
         bool jumped = false;
         bool groundDetected = false;
+        
         foreach (var caster in rayCasters)
         {
             float distance = caster.position.y - (transform.position.y - 1.02f);
             Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
 
-            if (Physics.Raycast(caster.position, -transform.up, out RaycastHit raycastHit, distance, jumpLayers))
+            if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))
             {
                 groundDetected = true;
                 grounded = true;
                 
-                angle = Vector3.Angle(raycastHit.normal, transform.up);
+                angle = Vector3.Angle(floor.normal, transform.up);
 
                 //Jump
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if (!jumped)
                     {
+                        rigi.isKinematic = false;
+
                         rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
                         jumped = true;
+
+                        //quitar hijo de puente
+                        transform.SetParent(null);
                     }
                 }
 
                 staffAnimationController.SetBool("Falling", false);
+
+                //Hacer hijo de puente
+                if (floor.collider.gameObject.layer == 11)
+                {
+                    transform.SetParent(floor.collider.gameObject.transform);
+                }
             }
             else
             {
@@ -154,6 +167,19 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        //Lo ponemos kinematiko
+        if (grounded)
+        {
+            if (InputMovement != Vector2.zero)
+            {
+                rigi.isKinematic = false;
+            }
+            else
+            {
+                rigi.isKinematic = true;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -161,6 +187,8 @@ public class Player : MonoBehaviour
         //Move and rotate the player
         if (grounded)
         {
+            
+
             //angulo para escalar rapido
             float multiplier = Mathf.Clamp(angle / 60, 0, 1)* rampSpeedMultiplier;
             if (multiplier < 1)
