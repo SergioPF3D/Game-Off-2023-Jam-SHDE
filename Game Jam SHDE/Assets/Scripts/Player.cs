@@ -178,6 +178,7 @@ public class Player : MonoBehaviour
             else
             {
                 rigi.isKinematic = true;
+                //revisar si es kinematik para saber si lo hemos puesto en este sitio
             }
         }
     }

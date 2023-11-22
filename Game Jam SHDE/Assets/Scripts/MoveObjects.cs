@@ -150,7 +150,7 @@ public class MoveObjects : MonoBehaviour
 				if (Physics.Raycast(transform.position, transform.forward, out cubeDetected, Mathf.Infinity, targetMask))
 				{
 					//If we are so far of the target, then we dont set it
-					if (Vector3.Distance(cubeDetected.transform.position, transform.position) > maxDistance)
+					if (Vector3.Distance(cubeDetected.point, transform.position) > maxDistance)
 					{
 						return;
                     }
@@ -296,8 +296,6 @@ public class MoveObjects : MonoBehaviour
 				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
-
-			
 		}
 
 		//If its scalable, we scale it
@@ -326,7 +324,7 @@ public class MoveObjects : MonoBehaviour
             }
 
 			float angulo = Vector3.Angle(grabber.position - target.transform.position, transform.parent.position - target.transform.position);
-			Debug.Log(angulo);
+			//Debug.Log(angulo);
 			if (angulo < angle)
             {
 				
@@ -337,8 +335,6 @@ public class MoveObjects : MonoBehaviour
 					return;
 				}
 			}
-            
-
 		}
 
 		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
