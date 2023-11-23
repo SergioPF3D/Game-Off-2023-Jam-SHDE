@@ -19,8 +19,10 @@ public class ScaleWhileGrabbed : ScalableObject
 
     float actualTime; //The time that the objetc has been scalating
     float interpolation; //The percentaje of the time that the object has been scalating
-    
+
+    [SerializeField]
     bool scalating; //If the object is scalating
+    [SerializeField]
     bool deScalating; //If the object is de-scalating
 
     MoveObjects player;
@@ -78,18 +80,32 @@ public class ScaleWhileGrabbed : ScalableObject
 
     private void OnMouseDown()
     {
-        scalating = true;
-        deScalating = false;
+        //scalating = true;
+        //deScalating = false;
     }
     
     private void OnMouseUp()
     {
-        scalating = false;
-        deScalating = true;
+        //scalating = false;
+        //deScalating = true;
     }
 
     void Scalate()
     {
         transform.localScale = Vector3.Lerp(baseScale, grabbedScale, interpolation);
+    }
+
+    public void ChangeMode(bool scale)
+    {
+        if (scale)
+        {
+            scalating = true;
+            deScalating = false;
+        }
+        else
+        {
+            scalating = false;
+            deScalating = true;
+        }
     }
 }

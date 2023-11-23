@@ -145,8 +145,6 @@ public class MoveObjects : MonoBehaviour
 			if (target == null)
 			{
 				RaycastHit cubeDetected;
-				
-
 				if (Physics.Raycast(transform.position, transform.forward, out cubeDetected, Mathf.Infinity, targetMask))
 				{
 					//If we are so far of the target, then we dont set it
@@ -172,6 +170,12 @@ public class MoveObjects : MonoBehaviour
 					target.gameObject.GetComponent<MeshRenderer>().material.SetFloat("_EmisiveIntensity", shaderEmisiveIntensity);
 
 					staffAnimationController.SetBool("Grabbing", true);
+
+
+					if (target.GetComponent<ScaleWhileGrabbed>())
+					{
+						target.GetComponent<ScaleWhileGrabbed>().ChangeMode(true);
+					}
 				}
 
 			}
@@ -181,7 +185,12 @@ public class MoveObjects : MonoBehaviour
 			//If we have a target, we have to release it
 			if (target)
             {
-                if (Vector3.Distance(target.position, grabber.position) < distanceToThrow)
+				if (target.GetComponent<ScaleWhileGrabbed>())
+				{
+					target.GetComponent<ScaleWhileGrabbed>().ChangeMode(false);
+				}
+
+				if (Vector3.Distance(target.position, grabber.position) < distanceToThrow)
                 {
 					//Make Speed 0
 					target.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -279,7 +288,7 @@ public class MoveObjects : MonoBehaviour
 				grabber.position = transform.position + transform.forward * distance;
 			}
         }
-		
+
 		//Set the grabber
 		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, ignoreTargetMask))
 		{
