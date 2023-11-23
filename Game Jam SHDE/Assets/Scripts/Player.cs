@@ -61,9 +61,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     LayerMask jumpLayers;
 
-    [SerializeField]
     [Tooltip("The list of casters that check if the player is touching the ground")]
-    List<Transform> rayCasters;
+    public List<Transform> rayCasters;
 
     [SerializeField]
     float falseGravity;
@@ -122,7 +121,7 @@ public class Player : MonoBehaviour
         foreach (var caster in rayCasters)
         {
             float distance = caster.position.y - (transform.position.y - 1.02f);
-            Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
+            //Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
 
             if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))
             {
@@ -177,7 +176,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                rigi.isKinematic = true;
+                //rigi.isKinematic = true;
                 //revisar si es kinematik para saber si lo hemos puesto en este sitio
             }
         }

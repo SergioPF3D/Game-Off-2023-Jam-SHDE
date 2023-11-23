@@ -116,7 +116,7 @@ public class MoveObjects : MonoBehaviour
 	[Header("Animation")]
 	[SerializeField]
 	Animator staffAnimationController;
-
+	
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
@@ -332,8 +332,25 @@ public class MoveObjects : MonoBehaviour
 				Debug.DrawRay(target.transform.position, transform.parent.position - target.transform.position, Color.red);
 				if (Vector3.Distance(grabber.position, transform.parent.position) < distancetoFly * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3)
 				{
-					return;
+					//return;
 				}
+			}
+
+
+			foreach (var caster in transform.parent.GetComponent<Player>().rayCasters)
+			{
+				float distance = caster.position.y - (transform.parent.position.y - 1.02f);
+				Debug.DrawRay(caster.position, -transform.parent.up * distance, Color.red);
+
+				if (Physics.Raycast(caster.position, -transform.parent.up, out RaycastHit cube, distance))
+				{
+                    if (cube.collider.gameObject.layer == 12)
+                    {
+						Debug.Log(1);
+						//return;
+					}
+				}
+				
 			}
 		}
 
