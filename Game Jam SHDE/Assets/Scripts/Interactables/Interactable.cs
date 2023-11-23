@@ -11,6 +11,8 @@ public class Interactable : MonoBehaviour
     [Tooltip("How important the interactable in question is for activatables. If it is negative, instead of activating, deactivate")]
     public int weight;
 
+    public int Bridgeweight;
+
     //Decalls
     public List<GameObject> decalls;
 
@@ -44,7 +46,15 @@ public class Interactable : MonoBehaviour
                 foreach (var actibable in activables)
                 {
                     //actibable.Activate();
-                    actibable.AddInput(weight);
+                    
+                    if (actibable.gameObject.GetComponent<Bridge>())
+                    {
+                        actibable.AddInput(Bridgeweight);
+                    }
+                    else
+                    {
+                        actibable.AddInput(weight);
+                    }
                 }
                 activated = true;
             }
@@ -64,8 +74,15 @@ public class Interactable : MonoBehaviour
         {
             foreach (var actibable in activables)
             {
-                //actibable.DeActivate();
-                actibable.RemoveInput(weight);
+                if (actibable.gameObject.GetComponent<Bridge>())
+                {
+                    actibable.RemoveInput(Bridgeweight);
+                }
+                else
+                {
+                    actibable.RemoveInput(weight);
+                }
+               
             }
             if (decalls.Count > 0)
             {

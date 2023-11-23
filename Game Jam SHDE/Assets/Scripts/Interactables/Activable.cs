@@ -8,6 +8,7 @@ public class Activable : MonoBehaviour
 
     [SerializeField]
     public bool baseActivated;
+    public bool activated;
 
     //Condition
     [SerializeField]
@@ -21,19 +22,20 @@ public class Activable : MonoBehaviour
     
     public virtual void Start()
     {
-        if (!baseActivated)
+        if (baseActivated)
         {
-            DeActivate();
+            Activate();
+            activated = true;
         }
     }
 
     public virtual void Activate()
     {
-
+        activated = true;
     }
     public virtual void DeActivate()
     {
-
+        activated = false;
     }
 
    

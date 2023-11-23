@@ -103,13 +103,23 @@ public class PreasurePlate : Interactable
 
     public override void Activate()
     {
+        /*
         if (!activated)
         {
             if (activables.Count > 0)
             {
                 foreach (var actibable in activables)
                 {
-                    actibable.AddInput(weight);
+                    //actibable.AddInput(weight);
+
+                    if (actibable.gameObject.GetComponent<Bridge>())
+                    {
+                        actibable.AddInput(Bridgeweight);
+                    }
+                    else
+                    {
+                        actibable.AddInput(weight);
+                    }
                 }
 
                 foreach (var decall in decalls)
@@ -119,10 +129,14 @@ public class PreasurePlate : Interactable
                 activated = true;
             }
         }
+        */
+        base.Activate();
     }
 
     public override void DeActivate()
     {
+        base.DeActivate();
+        /*
         if (activated)
         {
             foreach (var actibable in activables)
@@ -137,57 +151,8 @@ public class PreasurePlate : Interactable
         }
 
         activated = false;
-    }
-    #endregion
 
-    #region Collider
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Rigidbody>())
-        {
-            objectsInThePlate.Add(collision.gameObject.GetComponent<Rigidbody>());
-        }
+        */
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        //Decides the mass
-        massInside = 0;
-        foreach (var rigi in objectsInThePlate)
-        {
-            massInside += rigi.mass;
-        }
-        totalMass = massInside;
-
-        //Activates and set the position of the plate
-        if (totalMass >= massToInteract && totalMass < maximunMass)
-        {
-            Activate();
-            transform.position = initialPosition - Vector3.up;
-            //gameObject.GetComponent<BoxCollider>().center = Vector3.up;
-        }
-        if (totalMass < massToInteract || totalMass > maximunMass)
-        {
-            DeActivate();
-            transform.position = initialPosition - Vector3.up * (massInside / massToInteract);
-            //gameObject.GetComponent<BoxCollider>().center = Vector3.up * (massInside / massToInteract);
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Rigidbody>())
-        {
-            objectsInThePlate.Remove(collision.gameObject.GetComponent<Rigidbody>());
-
-            totalMass -= collision.gameObject.GetComponent<Rigidbody>().mass;
-            if (totalMass < massToInteract)
-            {
-                DeActivate();
-                transform.position = initialPosition;
-                //gameObject.GetComponent<BoxCollider>().center = Vector3.zero;
-            }
-        }
-    }
-    */
     #endregion
 }

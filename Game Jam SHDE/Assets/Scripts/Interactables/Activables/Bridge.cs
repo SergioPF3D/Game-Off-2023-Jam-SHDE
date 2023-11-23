@@ -30,13 +30,6 @@ public class Bridge : Activable
 
         }
         */
-
-
-
-
-
-
-
     
     }
     private void Update()

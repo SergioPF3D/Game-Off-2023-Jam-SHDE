@@ -332,7 +332,7 @@ public class MoveObjects : MonoBehaviour
 				Debug.DrawRay(target.transform.position, transform.parent.position - target.transform.position, Color.red);
 				if (Vector3.Distance(grabber.position, transform.parent.position) < distancetoFly * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3)
 				{
-					//return;
+					return;
 				}
 			}
 

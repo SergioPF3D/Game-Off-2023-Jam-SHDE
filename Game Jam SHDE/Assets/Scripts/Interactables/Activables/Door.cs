@@ -19,19 +19,22 @@ public class Door : ObjectThatMoves
 
     public override void Activate()
     {
-        if (blocked)
+        if (blocked || activated)
         {
             return;
         }
         StartCoroutine(MoveDoor(transform.position, finalPosition.position));
+        base.Activate();
     }
     public override void DeActivate()
     {
-        if (blocked)
+        if (blocked || !activated)
         {
             return;
         }
         StartCoroutine(MoveDoor(transform.position, initialPosition.position));
+
+        base.DeActivate();
     }
 
     public void seeIfActivate()
@@ -77,7 +80,7 @@ public class Door : ObjectThatMoves
     public override IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
         ActivateParticles(true);
-        
+
         //base.MoveDoor(position1, position2);
         float timePassed = 0;
         while (timePassed / timeToMove < 1)
