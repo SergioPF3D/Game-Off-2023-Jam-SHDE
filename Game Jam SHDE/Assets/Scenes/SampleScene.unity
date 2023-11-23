@@ -13261,6 +13261,7 @@ MonoBehaviour:
   angle: 90
   distancetoFly: 1
   rayVFX: {fileID: 734228724}
+  sphereVFX: {fileID: 2019398367}
   rayTarget: {fileID: 1648897781}
   sphereMaterial: {fileID: 2100000, guid: 9babe3cf6b445034fa1a7665a703e97e, type: 2}
   shaderEmisiveIntensity: 2
@@ -18685,14 +18686,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496284150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.331, y: -0.091, z: -0.002}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.297, y: -0.11, z: 0.027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 346746126}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &496367465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24284,7 +24285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &631586176
 Transform:
   m_ObjectHideFlags: 0
@@ -28522,6 +28523,12 @@ VisualEffect:
       m_Array:
       - m_Value: {x: 7.529412, y: 2.8862746, z: 11.984314, w: 0}
         m_Name: Color
+        m_Overridden: 1
+      - m_Value: {x: 0.37521613, y: 0.10194911, z: 0.745283, w: 0}
+        m_Name: MoveColor
+        m_Overridden: 1
+      - m_Value: {x: 0.24705882, y: 0.7490196, z: 0.2784314, w: 0}
+        m_Name: ScalateColor
         m_Overridden: 1
     m_Uint:
       m_Array: []
@@ -32849,7 +32856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36500,11 +36507,11 @@ Transform:
   m_GameObject: {fileID: 916778862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5882352, y: 0.58823526, z: 0.5882352}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 346746126}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &916778864
 MonoBehaviour:
@@ -63725,37 +63732,37 @@ PrefabInstance:
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.88617575
+      value: 0.79951775
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0645335
+      value: -0.09931439
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.34663785
+      value: -0.29074502
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30061632
+      value: 0.5161156
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 5.396
+      value: 8.124
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -41.001
+      value: -34.972
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 35.458
+      value: 63.124
       objectReference: {fileID: 0}
     - target: {fileID: 6304257407517183107, guid: 1efa1bdfd87245349bd4f78945f9c59c,
         type: 3}
@@ -79143,14 +79150,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019398364}
-  m_LocalRotation: {x: -0.00000011175871, y: -0.5833365, z: -0.000000029802322, w: 0.8122307}
-  m_LocalPosition: {x: -0.00000023447414, y: -0.00000035061555, z: -0.0000003634897}
-  m_LocalScale: {x: 0.5882352, y: 0.58823526, z: 0.5882352}
+  m_LocalRotation: {x: -0.000000055879354, y: -0.7071068, z: -0.000000033527613, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -0.048201077}
+  m_LocalScale: {x: 0.5882353, y: 0.58823514, z: 0.5882353}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 346746126}
+  m_Father: {fileID: 2089111375}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -71.371, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!73398921 &2019398366
 VFXRenderer:
   serializedVersion: 1
@@ -79222,7 +79229,13 @@ VisualEffect:
         m_Name: PlayerPosition_scale
         m_Overridden: 1
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.3764706, y: 1.4980392, z: 0.36862746, w: 0}
+        m_Name: SphereParticlesColorScale
+        m_Overridden: 1
+      - m_Value: {x: 0.9411765, y: 0.36078432, z: 1.4980392, w: 0}
+        m_Name: SphereParticlesColorMove
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -81997,14 +82010,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089111374}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.048098963, y: -0.001297512, z: 0.002861322}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2019398365}
   m_Father: {fileID: 346746126}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &2091456954
 PrefabInstance:
   m_ObjectHideFlags: 0

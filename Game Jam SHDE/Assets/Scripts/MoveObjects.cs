@@ -86,6 +86,10 @@ public class MoveObjects : MonoBehaviour
 	VisualEffect rayVFX;
 
 	[SerializeField]
+	[Tooltip("The ray VFX gameobject")]
+	VisualEffect sphereVFX;
+
+	[SerializeField]
 	[Tooltip("Final point of the ray")]
 	Transform rayTarget;
 
@@ -94,15 +98,6 @@ public class MoveObjects : MonoBehaviour
 
 	[SerializeField]
 	float shaderEmisiveIntensity;
-
-	[SerializeField]
-	float rayEmisiveInetnsity;
-
-	[SerializeField]
-	Color moveColor;
-
-	[SerializeField]
-	Color scalateColor;
 
 	[SerializeField]
 	Material outline;
@@ -126,8 +121,6 @@ public class MoveObjects : MonoBehaviour
 
 		//emisiveColor = sphereMaterial.GetColor("_FresnelColor");
 		ChangeColor();
-
-		sphereMaterial.SetColor("_FresnelColor", Color.black);
 	}
 
 	void Update()
@@ -167,6 +160,7 @@ public class MoveObjects : MonoBehaviour
 
 					rayVFX.gameObject.SetActive(true);
 					rayVFX.SetMesh("RendererMeshParticle", target.gameObject.GetComponent<MeshFilter>().mesh);
+					sphereVFX.SetBool("Bool_ParticleActivated", true);
 					target.gameObject.GetComponent<MeshRenderer>().material.SetFloat("_EmisiveIntensity", shaderEmisiveIntensity);
 
 					staffAnimationController.SetBool("Grabbing", true);
@@ -212,7 +206,7 @@ public class MoveObjects : MonoBehaviour
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 				rayVFX.gameObject.SetActive(false);
-				sphereMaterial.SetColor("_FresnelColor", Color.black);
+				sphereVFX.SetBool("Bool_ParticleActivated", false);
 				target.gameObject.GetComponent<MeshRenderer>().material.SetFloat("_EmisiveIntensity", target.gameObject.GetComponent<ScalableObject>().baseEmisiveIntensity);
 
 				staffAnimationController.SetBool("Grabbing", false);
@@ -355,7 +349,6 @@ public class MoveObjects : MonoBehaviour
 				{
                     if (cube.collider.gameObject.layer == 12)
                     {
-						Debug.Log(1);
 						//return;
 					}
 				}
@@ -370,13 +363,16 @@ public class MoveObjects : MonoBehaviour
     {
 		if (moveOrInteract)
 		{
-			rayVFX.SetVector4("Color", moveColor * rayEmisiveInetnsity);
-			sphereMaterial.SetColor("_FresnelColor", moveColor * shaderEmisiveIntensity);
+			rayVFX.SetBool("MoveOrScalate", true);
+			sphereVFX.SetBool("MoveOrScalate", true);
+			sphereMaterial.SetInt("_MoveScaleMode", 1);
 		}
 		else
 		{
-			rayVFX.SetVector4("Color", scalateColor * rayEmisiveInetnsity);
-			sphereMaterial.SetColor("_FresnelColor", scalateColor * shaderEmisiveIntensity);
+			rayVFX.SetBool("MoveOrScalate", false);
+			sphereVFX.SetBool("MoveOrScalate", false);
+			sphereMaterial.SetInt("_MoveScaleMode", 0);
 		}
+
 	}
 }

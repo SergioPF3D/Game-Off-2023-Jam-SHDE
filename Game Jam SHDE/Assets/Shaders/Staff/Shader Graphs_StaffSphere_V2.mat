@@ -43,6 +43,7 @@ Material:
     - _FresnelPower: 8.6
     - _MainColorGradient: 1
     - _MinScale: 1
+    - _MoveScaleMode: 1
     - _NoiseContrast: 0.19
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -52,7 +53,11 @@ Material:
     - Color_c04ff695c45b4f61b10348f36ac90dc5: {r: 2.101961, g: 1.160784, b: 5.427451,
         a: 0}
     - _CenterColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FresnelColor: {r: 0.3657167, g: 2, b: 0.047169805, a: 0}
+    - _FresnelColorMove: {r: 3.562958, g: 0, b: 1.249833, a: 0}
+    - _FresnelColorScale: {r: 0.9327114, g: 4.756828, b: 0, a: 0}
+    - _StarColor: {r: 2.101961, g: 1.160784, b: 5.427451, a: 0}
+    - _StarColorScale: {r: 0.04977088, g: 3.517149, b: 2.200873, a: 0.02745098}
   m_BuildTextureStacks: []
 --- !u!114 &6153292906203608275
 MonoBehaviour:
