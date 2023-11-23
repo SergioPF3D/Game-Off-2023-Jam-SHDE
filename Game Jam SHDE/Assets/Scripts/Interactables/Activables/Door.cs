@@ -12,6 +12,9 @@ public class Door : ObjectThatMoves
 
     public bool blocked;
 
+    [SerializeField]
+    AudioSource audios;
+
     public override void Start()
     {
         base.Start();
@@ -80,9 +83,14 @@ public class Door : ObjectThatMoves
     public override IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
         ActivateParticles(true);
+        audios.Play();
 
         //base.MoveDoor(position1, position2);
+
         float timePassed = 0;
+        float actualDistance = Vector3.Distance(position1, position2);
+        float TimeToUse = (actualDistance / baseDistance) * timeToMove;
+
         while (timePassed / timeToMove < 1)
         {
             timePassed += Time.fixedDeltaTime;
@@ -91,6 +99,7 @@ public class Door : ObjectThatMoves
         }
         transform.position = position2;
 
+        audios.Stop();
         ActivateParticles(false);
     }
 

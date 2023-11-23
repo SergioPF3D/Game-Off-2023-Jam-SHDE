@@ -82,6 +82,20 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject menu;
 
+    [Header("Audio")]
+    [SerializeField]
+    AudioSource audios;
+    [SerializeField]
+    float timeSounds;
+
+    float basePitch;
+    [SerializeField]
+    float audiovariation;
+
+    float baseVolume;
+    [SerializeField]
+    float volumeVariation;
+
     void Start()
     {
         Cursor.visible = false;
@@ -91,6 +105,11 @@ public class Player : MonoBehaviour
         rigi = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
         camRotX = cam.rotation.x;
+
+        basePitch = audios.pitch;
+        baseVolume = audios.volume;
+
+        StartCoroutine(PlayFootsTeps());
     }
     
     void Update()
@@ -126,7 +145,13 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))
             {
                 groundDetected = true;
-                grounded = true;
+                if (!grounded)
+                {
+                    //Mejor que dependa de la altura de la que cae, es decir su velocidad en y
+                    PlaySound();
+                    grounded = true;
+                }
+               
                 
                 angle = Vector3.Angle(floor.normal, transform.up);
 
@@ -147,11 +172,13 @@ public class Player : MonoBehaviour
 
                 staffAnimationController.SetBool("Falling", false);
 
+                /*
                 //Hacer hijo de puente
                 if (floor.collider.gameObject.layer == 11)
                 {
                     transform.SetParent(floor.collider.gameObject.transform);
                 }
+                */
             }
             else
             {
@@ -281,5 +308,23 @@ public class Player : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    IEnumerator PlayFootsTeps()
+    {
+        if (grounded && InputMovement != Vector2.zero)
+        {
+            PlaySound();
+            
+        }
+        yield return new WaitForSeconds(timeSounds);
+        StartCoroutine(PlayFootsTeps());
+    }
+
+    void PlaySound()
+    {
+        audios.volume = baseVolume + Random.Range(-volumeVariation, volumeVariation);
+        audios.pitch = basePitch + Random.Range(-audiovariation, audiovariation);
+        audios.Play();
     }
 }

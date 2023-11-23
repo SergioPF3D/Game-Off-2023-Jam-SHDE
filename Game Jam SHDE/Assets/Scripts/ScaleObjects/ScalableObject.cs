@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody))]
 public class ScalableObject : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class ScalableObject : MonoBehaviour
 
     //Return to initial position
     Vector3 basePosition;
+
+    [Space(20)]
+
+    [SerializeField]
+    AudioSource audiosou;
+    [SerializeField]
+    AudioClip colision;
 
     public virtual void Start()
     {
@@ -40,6 +48,15 @@ public class ScalableObject : MonoBehaviour
             //Habria que recoger la rotacion inicial
             //transform.rotation = Quaternion.Euler(Vector3.zero);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //
         }
+
+        if (true)
+        {
+            
+        }
+        //this.gameObject.GetComponent<AudioSource>().clip = colision;
+        audiosou.pitch = 1 + Random.Range(-0.1f, 0.1f);
+        audiosou.Play();
     }
 }
