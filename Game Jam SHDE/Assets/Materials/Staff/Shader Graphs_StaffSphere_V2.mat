@@ -40,7 +40,7 @@ Material:
     - Vector1_54b771aa5bc94efda58f1ff4e3836ab3: 0
     - Vector1_5c3d863746c94620aed853c45efc487f: 2000
     - Vector1_693c83d18f13490497e12240fdd267ef: 0.197
-    - _FresnelPower: 8.6
+    - _FresnelPower: 1.48
     - _MainColorGradient: 1
     - _MinScale: 1
     - _MoveScaleMode: 1
@@ -54,10 +54,10 @@ Material:
         a: 0}
     - _CenterColor: {r: 0, g: 0, b: 0, a: 0}
     - _FresnelColor: {r: 0.3657167, g: 2, b: 0.047169805, a: 0}
-    - _FresnelColorMove: {r: 2.720863, g: 0, b: 3.5629585, a: 0}
-    - _FresnelColorScale: {r: 0.9327114, g: 4.756828, b: 0, a: 0}
-    - _StarColor: {r: 2.101961, g: 1.160784, b: 5.427451, a: 0}
-    - _StarColorScale: {r: 0.04977088, g: 3.517149, b: 2.200873, a: 0.02745098}
+    - _FresnelColorMove: {r: 2.4784315, g: 0.7529412, b: 2.9960785, a: 0}
+    - _FresnelColorScale: {r: 1.5372549, g: 5.992157, b: 1.882353, a: 0}
+    - _StarColor: {r: 4.9763913, g: 2.7571898, b: 12.844469, a: 0}
+    - _StarColorScale: {r: 0.047058824, g: 2.9960785, b: 1.882353, a: 0.02745098}
   m_BuildTextureStacks: []
 --- !u!114 &6153292906203608275
 MonoBehaviour:
