@@ -136,6 +136,8 @@ MonoBehaviour:
   colision: {fileID: 0}
   grabbedScale: {x: 2, y: 2, z: 2}
   timeToScale: 1
+  scalating: 0
+  deScalating: 0
 --- !u!82 &7675841640249057759
 AudioSource:
   m_ObjectHideFlags: 0
@@ -146,9 +148,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f56babcaa40b8334b8b7858611f90a76, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_audioClip: {fileID: 8300000, guid: 608da47866dea9e4eb81eb524b5a594c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

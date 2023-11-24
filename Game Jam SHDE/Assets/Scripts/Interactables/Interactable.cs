@@ -16,6 +16,9 @@ public class Interactable : MonoBehaviour
     //Decalls
     public List<GameObject> decalls;
 
+    [SerializeField]
+    AudioSource audios;
+
     public virtual void Start()
     {
         foreach (var activable in activables)
@@ -65,6 +68,8 @@ public class Interactable : MonoBehaviour
                     decall.SetActive(true);
                 }
             }
+
+            audios.Play();
         }
     }
 
@@ -91,8 +96,10 @@ public class Interactable : MonoBehaviour
                     decall.SetActive(false);
                 }
             }
+
+            audios.Play();
         }
-        
+
         activated = false;
     }
 }

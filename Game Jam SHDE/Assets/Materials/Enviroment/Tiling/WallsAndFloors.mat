@@ -120,7 +120,7 @@ Material:
     - _Blend: 1
     - _Bridge: 0
     - _FloorTile: 0.08
-    - _Metalic: 0
+    - _Metalic: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Roughness: 1

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CapsuleCollider))]
 public class Player : MonoBehaviour
 {
-
     [Header("Movement")]
 
     Rigidbody rigi;
@@ -320,11 +319,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(timeSounds);
         StartCoroutine(PlayFootsTeps());
     }
-
+    
     void PlaySound()
     {
         audios.volume = baseVolume + Random.Range(-volumeVariation, volumeVariation);
         audios.pitch = basePitch + Random.Range(-audiovariation, audiovariation);
         audios.Play();
+
     }
 }

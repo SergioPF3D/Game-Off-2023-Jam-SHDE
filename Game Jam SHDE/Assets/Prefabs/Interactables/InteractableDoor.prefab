@@ -443,11 +443,14 @@ MonoBehaviour:
   initialPosition: {fileID: 4539588448836478575}
   finalPosition: {fileID: 4539588446899547941}
   timeToMove: 2
+  baseDistance: 0
   particles:
   - {fileID: 1916126699795870460}
   - {fileID: 3498620014848041455}
   blocked: 0
   audios: {fileID: 1689922982622459593}
+  levelDoor: 0
+  levelUp: {fileID: 8300000, guid: fdd4a64f0e46faf4492ffe2ec785e499, type: 3}
 --- !u!1 &3498620014848041455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1051,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4140324117044279228}
     m_Modifications:
+    - target: {fileID: 73391346472760702, guid: 94b72333765ad744eb8e609e1f27cfb0,
+        type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 4539588448542347345}
     - target: {fileID: 9030851221989639204, guid: 94b72333765ad744eb8e609e1f27cfb0,
         type: 3}
       propertyPath: m_Name

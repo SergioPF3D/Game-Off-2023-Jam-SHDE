@@ -15,6 +15,11 @@ public class Door : ObjectThatMoves
     [SerializeField]
     AudioSource audios;
 
+    [SerializeField]
+    bool levelDoor;
+
+    [SerializeField]
+    AudioClip levelUp;
     public override void Start()
     {
         base.Start();
@@ -35,6 +40,7 @@ public class Door : ObjectThatMoves
         {
             return;
         }
+        StopAllCoroutines();
         StartCoroutine(MoveDoor(transform.position, initialPosition.position));
 
         base.DeActivate();
@@ -100,6 +106,10 @@ public class Door : ObjectThatMoves
         transform.position = position2;
 
         audios.Stop();
+        if (levelDoor && activated)
+        {
+            audios.PlayOneShot(levelUp,1);
+        }
         ActivateParticles(false);
     }
 

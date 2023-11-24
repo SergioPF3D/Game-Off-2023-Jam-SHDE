@@ -23,6 +23,8 @@ public class PreasurePlate : Interactable
     Vector3 initialPosition;
     BoxCollider coll;
 
+    
+
     public override void Start()
     {
         base.Start();
