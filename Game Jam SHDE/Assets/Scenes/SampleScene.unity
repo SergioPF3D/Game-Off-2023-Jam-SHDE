@@ -23774,7 +23774,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604728379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -0.809, y: 1.62, z: 44.4}
+=======
+  m_LocalPosition: {x: -0.559, y: 15.91, z: 50.2}
+>>>>>>> 0d973910c0466a7d6f8354df29129825ee980e5b
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24750,7 +24754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &631586176
 Transform:
   m_ObjectHideFlags: 0
@@ -28830,7 +28834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &734228719
 Transform:
   m_ObjectHideFlags: 0
@@ -28854,7 +28858,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734228718}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -28943,31 +28947,31 @@ VisualEffect:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: POS_3
         m_Overridden: 1
-      - m_Value: {x: 2.4875531, y: 2.0585365, z: 45.14025}
+      - m_Value: {x: -0.18838024, y: 16.501923, z: 50.945835}
         m_Name: RayOrigin
         m_Overridden: 1
-      - m_Value: {x: 4.631939, y: 2.15, z: 46.101536}
+      - m_Value: {x: -0.559, y: 16.56, z: 53.2}
         m_Name: RayCurve
         m_Overridden: 1
-      - m_Value: {x: 4.631939, y: 2.15, z: 46.101536}
+      - m_Value: {x: -0.559, y: 16.56, z: 53.2}
         m_Name: RayTarget
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
         m_Name: ScaleGrabbed_scale
         m_Overridden: 1
-      - m_Value: {x: -0, y: 76.08326, z: -0}
+      - m_Value: {x: -0, y: 0, z: 0}
         m_Name: ScaleGrabbed_angles
         m_Overridden: 1
-      - m_Value: {x: 4.631939, y: 2.15, z: 46.101536}
+      - m_Value: {x: -0.559, y: 16.56, z: 53.2}
         m_Name: ScaleGrabbed_position
         m_Overridden: 1
       - m_Value: {x: 100, y: 100, z: 100}
         m_Name: BoundSize
         m_Overridden: 1
-      - m_Value: {x: -0, y: 76.08326, z: -0}
+      - m_Value: {x: -0, y: 0, z: 0}
         m_Name: PlayerPosition_angles
         m_Overridden: 1
-      - m_Value: {x: 1.72, y: 1.5, z: 45.38}
+      - m_Value: {x: -0.559, y: 15.91, z: 50.2}
         m_Name: PlayerPosition_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -28982,7 +28986,7 @@ VisualEffect:
       - m_Value: {x: 1, y: 1, z: 1}
         m_Name: (PickCamera)StaffOrientation_scale
         m_Overridden: 1
-      - m_Value: {x: 1.5371873, y: 2.5303617, z: 45.6865}
+      - m_Value: {x: -0.5267567, y: 16.530504, z: 51.261364}
         m_Name: SecondRayPosition
         m_Overridden: 1
     m_Vector4f:
@@ -28990,10 +28994,10 @@ VisualEffect:
       - m_Value: {x: 7.529412, y: 2.8862746, z: 11.984314, w: 0}
         m_Name: Color
         m_Overridden: 1
-      - m_Value: {x: 0.31810865, y: 0, z: 0.745283, w: 1}
+      - m_Value: {x: 4.67451, y: 1.4431373, z: 5.992157, w: 0}
         m_Name: MoveColor
         m_Overridden: 1
-      - m_Value: {x: 0.0738252, y: 0.745283, z: 0.11579131, w: 1}
+      - m_Value: {x: 1.5058824, y: 5.992157, z: 1.7882353, w: 1}
         m_Name: ScalateColor
         m_Overridden: 1
     m_Uint:
@@ -29082,7 +29086,10 @@ VisualEffect:
         m_Name: RendererMeshParticle
         m_Overridden: 1
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: MoveOrScalate
+        m_Overridden: 1
 --- !u!114 &734228725
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -33420,7 +33427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68776,7 +68783,7 @@ PrefabInstance:
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.89
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
@@ -68786,7 +68793,7 @@ PrefabInstance:
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.67
+      value: 10.61
       objectReference: {fileID: 0}
     - target: {fileID: 7900290982954845779, guid: 66bf7c46ffc24fa4b8b9339914ac7f7c,
         type: 3}
@@ -80554,10 +80561,10 @@ VisualEffect:
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.3764706, y: 1.4980392, z: 0.36862746, w: 0}
+      - m_Value: {x: 3.0117648, y: 11.984314, z: 2.9490197, w: 0}
         m_Name: SphereParticlesColorScale
         m_Overridden: 1
-      - m_Value: {x: 0.9411765, y: 0.36078432, z: 1.4980392, w: 0}
+      - m_Value: {x: 30.117647, y: 11.545098, z: 47.937256, w: 0}
         m_Name: SphereParticlesColorMove
         m_Overridden: 1
     m_Uint:
