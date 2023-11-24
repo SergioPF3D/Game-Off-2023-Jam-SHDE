@@ -21,6 +21,9 @@ public class MoveObjects : MonoBehaviour
 	LayerMask ignoreTargetMask;
 
 	[SerializeField]
+	LayerMask blockcubes;
+
+	[SerializeField]
 	[Tooltip("")]
 	float maxDistance;
 
@@ -111,6 +114,8 @@ public class MoveObjects : MonoBehaviour
 	[Header("Animation")]
 	[SerializeField]
 	Animator staffAnimationController;
+
+
 	
 	void Start()
 	{
@@ -127,10 +132,14 @@ public class MoveObjects : MonoBehaviour
 	{
 		DetectInputs();
 
-		MoveTarget();
+		
+	}
+    private void FixedUpdate()
+    {
+		MoveTarget(); 
 	}
 
-	void DetectInputs()
+    void DetectInputs()
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -331,8 +340,8 @@ public class MoveObjects : MonoBehaviour
 			if (angulo < angle)
             {
 				
-				Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
-				Debug.DrawRay(target.transform.position, transform.parent.position - target.transform.position, Color.red);
+				//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
+				//Debug.DrawRay(target.transform.position, transform.parent.position - target.transform.position, Color.red);
 				if (Vector3.Distance(grabber.position, transform.parent.position) < distancetoFly * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3)
 				{
 					return;
@@ -343,7 +352,7 @@ public class MoveObjects : MonoBehaviour
 			foreach (var caster in transform.parent.GetComponent<Player>().rayCasters)
 			{
 				float distance = caster.position.y - (transform.parent.position.y - 1.02f);
-				Debug.DrawRay(caster.position, -transform.parent.up * distance, Color.red);
+				//Debug.DrawRay(caster.position, -transform.parent.up * distance, Color.red);
 
 				if (Physics.Raycast(caster.position, -transform.parent.up, out RaycastHit cube, distance))
 				{
@@ -356,7 +365,16 @@ public class MoveObjects : MonoBehaviour
 			}
 		}
 
-		target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+		//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
+        if (Physics.Raycast(target.transform.position,grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position), blockcubes))
+        {
+			//Se pega un poco al muro
+			target.GetComponent<Rigidbody>().velocity = (obstacle.point - target.transform.position).normalized * Vector3.Distance(obstacle.point, target.transform.position) * mouseSensibility * chasingSpeed;
+		}
+		else
+        {
+			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+		}
 	}
 
 	void ChangeColor()

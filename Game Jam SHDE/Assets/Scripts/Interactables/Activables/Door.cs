@@ -31,6 +31,7 @@ public class Door : ObjectThatMoves
         {
             return;
         }
+        StopAllCoroutines();
         StartCoroutine(MoveDoor(transform.position, finalPosition.position));
         base.Activate();
     }
@@ -109,6 +110,7 @@ public class Door : ObjectThatMoves
         if (levelDoor && activated)
         {
             audios.PlayOneShot(levelUp,1);
+            blocked = true;
         }
         ActivateParticles(false);
     }
