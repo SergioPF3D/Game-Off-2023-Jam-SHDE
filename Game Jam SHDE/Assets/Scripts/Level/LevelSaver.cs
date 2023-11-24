@@ -15,6 +15,7 @@ public class LevelSaver : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerPrefs.SetInt("ActualLevel", level);
+        door.blocked = false;
         door.DeActivate();
         door.blocked = true;
     }
