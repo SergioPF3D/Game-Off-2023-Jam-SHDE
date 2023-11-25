@@ -16152,7 +16152,7 @@ MonoBehaviour:
   distance: 0
   moveOrInteract: 1
   scrollWheel: 6
-  chasingSpeed: 2
+  chasingSpeed: 20
   maxSpeed: 10
   distanceToThrow: 1
   fly: 0
