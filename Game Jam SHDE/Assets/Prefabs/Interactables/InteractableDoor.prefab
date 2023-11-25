@@ -131,7 +131,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8057052348942949713
 Transform:
@@ -186,7 +186,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &419527206554801065
 Transform:
@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 9139766040985310612}
   - component: {fileID: 1689922982622459593}
   - component: {fileID: 4539588448542347345}
+  - component: {fileID: 1311092142948995376}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -448,9 +449,20 @@ MonoBehaviour:
   - {fileID: 1916126699795870460}
   - {fileID: 3498620014848041455}
   blocked: 0
+  portal: {fileID: 1311092142948995376}
   audios: {fileID: 1689922982622459593}
   levelDoor: 0
   levelUp: {fileID: 8300000, guid: fdd4a64f0e46faf4492ffe2ec785e499, type: 3}
+--- !u!41 &1311092142948995376
+OcclusionPortal:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3384361093467439802}
+  m_Open: 0
+  m_Center: {x: 0, y: 2.63, z: -0.04}
+  m_Size: {x: 5.2, y: 5.2, z: 1.26}
 --- !u!1 &3498620014848041455
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +593,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4140324117044279228
 Transform:
@@ -623,7 +635,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4539588446899547941
 Transform:
@@ -654,7 +666,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4539588448836478575
 Transform:
@@ -686,7 +698,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6533245215134621505
 Transform:
@@ -741,7 +753,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8471134993758594253
 Transform:
@@ -802,7 +814,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1277324532896675708
 Transform:
@@ -838,7 +850,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -949,7 +961,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6906435605665779617
 Transform:
@@ -1004,7 +1016,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9209854670325763702
 Transform:
@@ -1056,10 +1068,20 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 4539588448542347345}
+    - target: {fileID: 6788462231603338900, guid: 94b72333765ad744eb8e609e1f27cfb0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 9030851221989639204, guid: 94b72333765ad744eb8e609e1f27cfb0,
         type: 3}
       propertyPath: m_Name
       value: LevelSaver
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030851221989639204, guid: 94b72333765ad744eb8e609e1f27cfb0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 9030851221989639224, guid: 94b72333765ad744eb8e609e1f27cfb0,
         type: 3}
@@ -1129,6 +1151,11 @@ PrefabInstance:
     - target: {fileID: 9030851221989639224, guid: 94b72333765ad744eb8e609e1f27cfb0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030851221989639226, guid: 94b72333765ad744eb8e609e1f27cfb0,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

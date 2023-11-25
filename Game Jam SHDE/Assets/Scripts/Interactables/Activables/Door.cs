@@ -13,6 +13,9 @@ public class Door : ObjectThatMoves
     public bool blocked;
 
     [SerializeField]
+    OcclusionPortal portal;
+
+    [SerializeField]
     AudioSource audios;
 
     [SerializeField]
@@ -31,6 +34,8 @@ public class Door : ObjectThatMoves
         {
             return;
         }
+
+        portal.open = true;
         StopAllCoroutines();
         StartCoroutine(MoveDoor(transform.position, finalPosition.position));
         base.Activate();
@@ -41,6 +46,7 @@ public class Door : ObjectThatMoves
         {
             return;
         }
+
         StopAllCoroutines();
         StartCoroutine(MoveDoor(transform.position, initialPosition.position));
 
@@ -111,6 +117,10 @@ public class Door : ObjectThatMoves
         {
             audios.PlayOneShot(levelUp,1);
             blocked = true;
+        }
+        if (!activated)
+        {
+            portal.open = false;
         }
         ActivateParticles(false);
     }
