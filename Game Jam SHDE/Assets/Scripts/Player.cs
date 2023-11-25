@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -46,6 +47,8 @@ public class Player : MonoBehaviour
     //Cambialo con un metodo
     public float mouseSensibility;
 
+    float sliderSensibility = 1;
+
     [SerializeField]
     float maxCamRotationUp;
 
@@ -62,9 +65,6 @@ public class Player : MonoBehaviour
 
     [Tooltip("The list of casters that check if the player is touching the ground")]
     public List<Transform> rayCasters;
-
-    [SerializeField]
-    float falseGravity;
 
     [SerializeField]
     bool grounded;
@@ -94,6 +94,10 @@ public class Player : MonoBehaviour
     float baseVolume;
     [SerializeField]
     float volumeVariation;
+
+    [Header("UI")]
+    [SerializeField]
+    Slider slid;
 
     void Start()
     {
@@ -249,19 +253,12 @@ public class Player : MonoBehaviour
             rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeedInAir * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
         }
         
-
-
-
-        transform.Rotate(0, inputRotation.x * mouseSensibility, 0);// * Time.deltaTime
-
+        //Mirar por ahi
+        transform.Rotate(new Vector3(0, inputRotation.x, 0) * Time.fixedDeltaTime * mouseSensibility * sliderSensibility);
         //Rotate the Camera
-        camRotX -= inputRotation.y * mouseSensibility;// * Time.deltaTime
+        camRotX -= inputRotation.y * Time.fixedDeltaTime * mouseSensibility * sliderSensibility;
         camRotX = Mathf.Clamp(camRotX, -maxCamRotationUp, maxCamRotationDown);
-
-        
         cam.localRotation = Quaternion.Euler(camRotX, cam.localRotation.y, cam.localRotation.z);
-        rigi.AddForce(-Vector3.up * falseGravity, ForceMode.Force);
-        
     }
 
     void Death()
@@ -326,5 +323,21 @@ public class Player : MonoBehaviour
         audios.pitch = basePitch + Random.Range(-audiovariation, audiovariation);
         audios.Play();
 
+    }
+
+    public void ChangeSensibility()
+    {
+        if (slid.value > 0)
+        {
+            sliderSensibility = Mathf.Lerp(1,10, Mathf.Abs(slid.value) / 10);
+        }
+        else if (slid.value < 0)
+        {
+            sliderSensibility = Mathf.Lerp(1, 0.1f, Mathf.Abs(slid.value) / 10);
+        }
+        else
+        {
+            sliderSensibility = 1;
+        }
     }
 }

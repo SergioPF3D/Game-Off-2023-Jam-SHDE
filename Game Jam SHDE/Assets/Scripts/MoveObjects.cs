@@ -73,6 +73,7 @@ public class MoveObjects : MonoBehaviour
 
 
 	//Mouse
+	[SerializeField]
 	float mouseSensibility;
 
 	[Header("Scale")]
@@ -120,8 +121,8 @@ public class MoveObjects : MonoBehaviour
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
-		mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
-
+		//mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
+		
 		//staffAnimationController = GameObject.FindObjectOfType<Player>().staffAnimationController;
 
 		//emisiveColor = sphereMaterial.GetColor("_FresnelColor");
