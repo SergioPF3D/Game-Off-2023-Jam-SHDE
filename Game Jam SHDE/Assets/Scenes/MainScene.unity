@@ -16152,7 +16152,7 @@ MonoBehaviour:
   distance: 0
   moveOrInteract: 1
   scrollWheel: 6
-  chasingSpeed: 20
+  chasingSpeed: 2
   maxSpeed: 10
   distanceToThrow: 1
   fly: 0
@@ -32470,7 +32470,7 @@ PrefabInstance:
     - target: {fileID: 7588758820057040590, guid: 2edc8824356038d4baadb4f9ad33f021,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.639
       objectReference: {fileID: 0}
     - target: {fileID: 7588758820057040590, guid: 2edc8824356038d4baadb4f9ad33f021,
         type: 3}
