@@ -107,7 +107,7 @@ public class MoveObjects : MonoBehaviour
 	Material outline;
 
 	[SerializeField]
-	GameObject outlined;
+	public GameObject outlined;
 
 	[SerializeField]
 	float outlineWidth;

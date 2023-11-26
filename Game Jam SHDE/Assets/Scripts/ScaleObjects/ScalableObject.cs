@@ -49,6 +49,13 @@ public class ScalableObject : MonoBehaviour
             //transform.rotation = Quaternion.Euler(Vector3.zero);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             //
+
+            transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
+            gameObject.layer = layer;
+            GameObject.Find("Player").GetComponentInChildren<MoveObjects>().outlined = null;
+            //outlined = null;
+
+            
         }
 
         //Podria setear el rigidbody en este script y no en los otros
