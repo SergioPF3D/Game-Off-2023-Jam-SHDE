@@ -153,9 +153,11 @@ public class Player : MonoBehaviour
                     //Mejor que dependa de la altura de la que cae, es decir su velocidad en y
                     PlaySound();
                     grounded = true;
+                    staffAnimationController.SetBool("Grounded", true);
+
                 }
-               
-                
+
+
                 angle = Vector3.Angle(floor.normal, transform.up);
 
                 //Jump
@@ -170,6 +172,10 @@ public class Player : MonoBehaviour
 
                         //quitar hijo de puente
                         transform.SetParent(null);
+
+                        staffAnimationController.SetTrigger("Jump");
+                        staffAnimationController.SetBool("Grounded", false);
+
                     }
                 }
 

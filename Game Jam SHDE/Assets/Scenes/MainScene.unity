@@ -9,7 +9,7 @@ OcclusionCullingSettings:
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 99c9720ab356a0642a771bea13969a05
-  m_OcclusionCullingData: {fileID: 36300000, guid: efe229a8044b1854c97627e625396142,
+  m_OcclusionCullingData: {fileID: 36300000, guid: 38116ba854637c2438a42a6a0bd075c3,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -15981,7 +15981,7 @@ MonoBehaviour:
   scrollWheel: 6
   chasingSpeed: 2
   maxSpeed: 10
-  distanceToThrow: 1
+  distanceToThrow: 0.6
   fly: 0
   angle: 90
   distancetoFly: 1
