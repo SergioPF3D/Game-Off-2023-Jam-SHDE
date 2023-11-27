@@ -155,6 +155,7 @@ public class Player : MonoBehaviour
                     grounded = true;
                     staffAnimationController.SetBool("Grounded", true);
 
+                    StartCoroutine(PlayFootsTeps());
                 }
 
 
@@ -176,6 +177,9 @@ public class Player : MonoBehaviour
                         staffAnimationController.SetTrigger("Jump");
                         staffAnimationController.SetBool("Grounded", false);
 
+                        //StopCoroutine(PlayFootsTeps());
+                        //StopCoroutine("PlayFootsTeps");
+                        StopAllCoroutines();
                     }
                 }
 
@@ -314,10 +318,9 @@ public class Player : MonoBehaviour
 
     IEnumerator PlayFootsTeps()
     {
-        if (grounded && InputMovement != Vector2.zero)
+        if (InputMovement != Vector2.zero)//grounded && 
         {
-            PlaySound();
-            
+            PlaySound(); 
         }
         yield return new WaitForSeconds(timeSounds);
         StartCoroutine(PlayFootsTeps());

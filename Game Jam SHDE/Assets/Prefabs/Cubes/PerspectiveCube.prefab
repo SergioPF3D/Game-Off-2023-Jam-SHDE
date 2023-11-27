@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1235415826161580495}
   - component: {fileID: 9213891341537009991}
   - component: {fileID: 2204898697716238168}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: PerspectiveCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 519036258218418924}
   - component: {fileID: 156665011280618501}
   - component: {fileID: 8274189831374446628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ScrollWheelCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
