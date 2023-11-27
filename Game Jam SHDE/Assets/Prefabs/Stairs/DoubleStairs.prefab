@@ -210,6 +210,41 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.06403231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.02383559
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.0059047043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 7800669796106357644}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 7096544773156701484}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 2089222748700350739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43323ebdb6eb310468b5335fd444802c, type: 3}
 --- !u!4 &5253594521370068045 stripped
@@ -295,11 +330,49 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.06403231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.02383559
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.0059047043
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43323ebdb6eb310468b5335fd444802c, type: 3}
+--- !u!23 &2089222748700350739 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6024782870331667573, guid: 43323ebdb6eb310468b5335fd444802c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5720201670437711206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5253594520640309901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 43323ebdb6eb310468b5335fd444802c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5720201670437711206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7096544773156701484 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5973531484787562422, guid: 43323ebdb6eb310468b5335fd444802c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5720201670437711206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7800669796106357644 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2532068374029068010, guid: 43323ebdb6eb310468b5335fd444802c,
     type: 3}
   m_PrefabInstance: {fileID: 5720201670437711206}
   m_PrefabAsset: {fileID: 0}
@@ -380,6 +453,41 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.06403231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.02383559
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.0059047043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 7800669796106357644}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 7096544773156701484}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 2089222748700350739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43323ebdb6eb310468b5335fd444802c, type: 3}
 --- !u!4 &5253594520550751022 stripped
@@ -465,6 +573,41 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.06403231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.02383559
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.0059047043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 7800669796106357644}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 7096544773156701484}
+    - target: {fileID: 4742473837712756890, guid: 43323ebdb6eb310468b5335fd444802c,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 2089222748700350739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43323ebdb6eb310468b5335fd444802c, type: 3}
 --- !u!4 &5253594519873958049 stripped
