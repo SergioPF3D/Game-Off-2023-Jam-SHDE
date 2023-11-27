@@ -15,7 +15,7 @@ public class ObjectThatMoves : Activable
         baseDistance = Vector3.Distance(initialPosition.position, finalPosition.position);
     }
 
-    public virtual IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
+    public virtual IEnumerator Move(Vector3 position1, Vector3 position2)
     {
 
         float timePassed = 0;
@@ -28,5 +28,42 @@ public class ObjectThatMoves : Activable
             yield return new WaitForFixedUpdate();
         }
         transform.position = position2;
+    }
+
+    public virtual void SeeIfActivate()
+    {
+        if (actualInputs >= inputs)
+        {
+            if (baseActivated)
+            {
+                DeActivate();
+            }
+            else
+            {
+                Activate();
+            }
+        }
+        else
+        {
+            if (baseActivated)
+            {
+                Activate();
+            }
+            else
+            {
+                DeActivate();
+            }
+        }
+    }
+
+    public override void AddInput(float inputs)
+    {
+        base.AddInput(inputs);
+        SeeIfActivate();
+    }
+    public override void RemoveInput(float inputs)
+    {
+        base.RemoveInput(inputs);
+        SeeIfActivate();
     }
 }

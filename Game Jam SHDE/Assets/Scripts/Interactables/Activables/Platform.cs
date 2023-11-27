@@ -5,15 +5,35 @@ using UnityEngine;
 public class Platform : ObjectThatMoves
 {
     //no usa los puntos
-    List<Transform> pointsToMove;
+    //List<Transform> pointsToMove;
 
-    public override void Start()
+    public override void Activate()
     {
-        base.Start();
-        StartCoroutine(MoveDoor(transform.position, finalPosition.position));
+        base.Activate();
+        StartCoroutine(Move(transform.position, finalPosition.position));
     }
 
-    public override IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
+    public override void DeActivate()
+    {
+        base.DeActivate();
+        StopAllCoroutines();
+    }
+
+    /*
+    public override void AddInput(float inputs)
+    {
+        base.AddInput(inputs);
+        SeeIfActivate();
+    }
+
+    public override void RemoveInput(float inputs)
+    {
+        base.RemoveInput(inputs);
+        SeeIfActivate();
+    }
+    */
+
+    public override IEnumerator Move(Vector3 position1, Vector3 position2)
     {      
         
         float timePassed = 0;
@@ -25,6 +45,6 @@ public class Platform : ObjectThatMoves
         }
         transform.position = position2;
 
-
+        StartCoroutine(Move(position2, position1));
     }
 }

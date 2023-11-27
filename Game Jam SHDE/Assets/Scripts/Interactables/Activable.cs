@@ -42,9 +42,12 @@ public class Activable : MonoBehaviour
     public virtual void AddInput(float inputs)
     {
         actualInputs += inputs;
+
     }
     public virtual void RemoveInput(float inputs)
     {
         actualInputs -= inputs;
     }
+
+
 }
