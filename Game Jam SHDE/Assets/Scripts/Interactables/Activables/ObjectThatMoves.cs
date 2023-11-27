@@ -17,6 +17,7 @@ public class ObjectThatMoves : Activable
 
     public virtual IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
     {
+
         float timePassed = 0;
         float actualDistance = Vector3.Distance(position1, position2);
         Debug.Log(actualDistance);
