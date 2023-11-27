@@ -37,7 +37,7 @@ public class Door : ObjectThatMoves
 
         portal.open = true;
         StopAllCoroutines();
-        StartCoroutine(MoveDoor(transform.position, finalPosition.position));
+        StartCoroutine(Move(transform.position, finalPosition.position));
         base.Activate();
     }
     public override void DeActivate()
@@ -48,17 +48,20 @@ public class Door : ObjectThatMoves
         }
 
         StopAllCoroutines();
-        StartCoroutine(MoveDoor(transform.position, initialPosition.position));
+        StartCoroutine(Move(transform.position, initialPosition.position));
 
         base.DeActivate();
     }
 
-    public void seeIfActivate()
+    public override void SeeIfActivate()
     {
         if (blocked)
         {
             return;
         }
+
+        base.SeeIfActivate();
+        /*
         if (actualInputs >= inputs)
         {
             if (baseActivated)
@@ -81,19 +84,24 @@ public class Door : ObjectThatMoves
                 DeActivate();
             }
         }
+        */
     }
 
+    /*
     public override void AddInput(float inputs)
     {
         base.AddInput(inputs);
-        seeIfActivate();
+        SeeIfActivate();
     }
     public override void RemoveInput(float inputs)
     {
         base.RemoveInput(inputs);
-        seeIfActivate();
+        SeeIfActivate();
     }
-    public override IEnumerator MoveDoor(Vector3 position1, Vector3 position2)
+
+    */
+
+    public override IEnumerator Move(Vector3 position1, Vector3 position2)
     {
         ActivateParticles(true);
         audios.Play();
