@@ -42,6 +42,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
         type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
       propertyPath: m_Shadows.m_Type
       value: 1
       objectReference: {fileID: 0}
@@ -60,6 +65,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6548424670943822080, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
+      propertyPath: _lt
+      value: 
+      objectReference: {fileID: 815504659383880919}
     - target: {fileID: 6663160951882792361, guid: f932567c87c9fe9499ca3502d74409cd,
         type: 3}
       propertyPath: m_RootOrder
@@ -137,6 +147,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f932567c87c9fe9499ca3502d74409cd, type: 3}
+--- !u!108 &815504659383880919 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 3654007344285331880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7984294745926110209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6663160951882792361, guid: f932567c87c9fe9499ca3502d74409cd,
@@ -228,7 +244,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5bf8da96ee1aba444b9bb45ef133b98a,
         type: 3}
       propertyPath: m_DynamicOccludee
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5bf8da96ee1aba444b9bb45ef133b98a,
         type: 3}

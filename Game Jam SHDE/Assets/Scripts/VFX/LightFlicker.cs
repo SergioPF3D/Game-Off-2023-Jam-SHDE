@@ -4,26 +4,26 @@ using UnityEngine;
 
 [RequireComponent(typeof(Light))]
 public class LightFlicker : MonoBehaviour 
-
-
 {
-
-    public float MinLightIntensity = 0.6F;
-    public float MaxLightIntensity = 1.0F;
-
-    public float AccelerateTime = 0.15f;
+    [SerializeField]
+    float MinLightIntensity = 0.6F;
+    [SerializeField]
+    float MaxLightIntensity = 1.0F;
+    [SerializeField]
+    float AccelerateTime = 0.15f;
 
     private float _targetIntensity = 1.0f;
     private float _lastIntensity = 1.0f;
 
     private float _timePassed = 0.0f;
 
-    public Light _lt;
+    [SerializeField]
+    Light _lt;
     private const double Tolerance = 0.0001;
 
     private void Start()
     {
-        _lt = GetComponent<Light>();
+        //_lt = GetComponent<Light>();
         _lastIntensity = _lt.intensity;
         FixedUpdate();
     }
