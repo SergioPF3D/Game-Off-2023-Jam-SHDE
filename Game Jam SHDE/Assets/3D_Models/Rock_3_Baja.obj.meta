@@ -45,10 +45,17 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 0
+<<<<<<< Updated upstream
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+=======
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+>>>>>>> Stashed changes
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
