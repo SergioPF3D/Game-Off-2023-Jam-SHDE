@@ -45,7 +45,12 @@ Material:
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
     - _Float: 103.65
+    - _Hardness: 0.48
+    - _MoveOrScale: 0
+    - _Size: -0.03
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 0}
+    - _MoveColor: {r: 0.5882353, g: 0.07058824, b: 0.9882353, a: 0}
+    - _ScaleColor: {r: 0.03137255, g: 0.5882353, b: 0, a: 0}
     - _Vector2: {r: 0.16, g: -18.81, b: 0, a: 0}
   m_BuildTextureStacks: []
