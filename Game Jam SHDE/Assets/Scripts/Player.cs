@@ -82,8 +82,13 @@ public class Player : MonoBehaviour
     GameObject menu;
 
     [Header("Audio")]
+
     [SerializeField]
     AudioSource audios;
+
+    [SerializeField]
+    List<AudioClip> footsteps;
+
     [SerializeField]
     float timeSounds;
 
@@ -94,6 +99,7 @@ public class Player : MonoBehaviour
     float baseVolume;
     [SerializeField]
     float volumeVariation;
+
 
     [Header("UI")]
     [SerializeField]
@@ -329,10 +335,11 @@ public class Player : MonoBehaviour
     
     void PlaySound()
     {
-        audios.volume = baseVolume + Random.Range(-volumeVariation, volumeVariation);
-        audios.pitch = basePitch + Random.Range(-audiovariation, audiovariation);
-        audios.Play();
-
+        audios.clip = footsteps[Random.Range(0, footsteps.Count)];
+        
+        audios.volume = baseVolume + Random.Range(-volumeVariation / 100 * baseVolume, volumeVariation / 100 * baseVolume);
+        audios.pitch = basePitch + Random.Range(-audiovariation / 100 * basePitch, audiovariation / 100 * basePitch);
+        audios.Play();       
     }
 
     public void ChangeSensibility()
