@@ -57,6 +57,7 @@ Material:
     - _FresnelColorMove: {r: 3.5629585, g: 0.23659758, b: 0, a: 0}
     - _FresnelColorScale: {r: 0.9327114, g: 4.756828, b: 0, a: 0}
     - _StarColor: {r: 5.427451, g: 2.1968498, b: 1.1650549, a: 0}
+    - _StarColorMove: {r: 38.733288, g: 2.038594, b: 0, a: 1}
     - _StarColorScale: {r: 6.269088, g: 0.32822448, b: 0, a: 0.02745098}
   m_BuildTextureStacks: []
 --- !u!114 &6153292906203608275
