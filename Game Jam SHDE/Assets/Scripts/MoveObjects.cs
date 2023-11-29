@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Camera))]
 public class MoveObjects : MonoBehaviour
@@ -403,6 +404,10 @@ public class MoveObjects : MonoBehaviour
         if (Physics.Raycast(target.transform.position, -Vector3.up, out RaycastHit decallPoint))
         {
 			cubeShadow.transform.position = decallPoint.point + Vector3.up * 0.01f;
+
+			//cubeShadow.GetComponent<DecalProjector>().size = new Vector2((target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3);
+			float mediumScale = (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3;
+			cubeShadow.transform.localScale = new Vector3(mediumScale, mediumScale, mediumScale);
 		}
 	}
 
@@ -413,7 +418,8 @@ public class MoveObjects : MonoBehaviour
 			rayVFX.SetBool("MoveOrScalate", true);
 			sphereVFX.SetBool("MoveOrScalate", true);
 			sphereMaterial.SetInt("_MoveScaleMode", 1);
-
+			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 1);//_MoveOrScale
+			
 			sphereLight.color = sphereMaterial.GetColor("_StarColorMove");
 		}
 		else
@@ -421,7 +427,8 @@ public class MoveObjects : MonoBehaviour
 			rayVFX.SetBool("MoveOrScalate", false);
 			sphereVFX.SetBool("MoveOrScalate", false);
 			sphereMaterial.SetInt("_MoveScaleMode", 0);
-
+			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 0);//_MoveOrScale
+			
 			sphereLight.color = sphereMaterial.GetColor("_StarColorScale");
 		}
 	}
