@@ -43,7 +43,7 @@ Material:
     - _FresnelPower: 8.6
     - _MainColorGradient: 1
     - _MinScale: 1
-    - _MoveScaleMode: 1
+    - _MoveScaleMode: 0
     - _NoiseContrast: 0.19
     - _QueueControl: 0
     - _QueueOffset: 0
