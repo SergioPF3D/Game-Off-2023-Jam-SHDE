@@ -5934,7 +5934,7 @@
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_c04ff695c45b4f61b10348f36ac90dc5",
-    "m_OverrideReferenceName": "_StarColor",
+    "m_OverrideReferenceName": "_StarColorMove",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",

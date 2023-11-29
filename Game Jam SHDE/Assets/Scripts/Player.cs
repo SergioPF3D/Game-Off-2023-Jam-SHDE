@@ -155,6 +155,7 @@ public class Player : MonoBehaviour
                     grounded = true;
                     staffAnimationController.SetBool("Grounded", true);
 
+                    StopAllCoroutines();
                     StartCoroutine(PlayFootsTeps());
                 }
 

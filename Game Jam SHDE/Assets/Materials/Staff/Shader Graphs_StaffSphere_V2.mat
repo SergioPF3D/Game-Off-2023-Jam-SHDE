@@ -43,7 +43,7 @@ Material:
     - _FresnelPower: 8.6
     - _MainColorGradient: 1
     - _MinScale: 1
-    - _MoveScaleMode: 1
+    - _MoveScaleMode: 0
     - _NoiseContrast: 0.19
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -57,6 +57,7 @@ Material:
     - _FresnelColorMove: {r: 2.720863, g: 0, b: 3.5629585, a: 0}
     - _FresnelColorScale: {r: 0.9327114, g: 4.756828, b: 0, a: 0}
     - _StarColor: {r: 2.101961, g: 1.160784, b: 5.427451, a: 0}
+    - _StarColorMove: {r: 2.077862, g: 1.151248, b: 5.363131, a: 0}
     - _StarColorScale: {r: 0.04977088, g: 3.517149, b: 2.200873, a: 0.02745098}
   m_BuildTextureStacks: []
 --- !u!114 &6153292906203608275

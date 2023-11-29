@@ -72,11 +72,6 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	float distancetoFly;
 
-
-	//Mouse
-	[SerializeField]
-	float mouseSensibility;
-
 	[Header("Scale")]
 	float baseDistance;
 	Vector3 baseScale;
@@ -86,6 +81,7 @@ public class MoveObjects : MonoBehaviour
 
 	[Header("Aesthetics")]
 
+	//VFX
 	[SerializeField]
 	[Tooltip("The ray VFX gameobject")]
 	VisualEffect rayVFX;
@@ -98,12 +94,14 @@ public class MoveObjects : MonoBehaviour
 	[Tooltip("Final point of the ray")]
 	Transform rayTarget;
 
+	[Space(10)] //Spherematerial
 	[SerializeField]
 	Material sphereMaterial;
 
 	[SerializeField]
 	float shaderEmisiveIntensity;
 
+	[Space(10)] //Outline
 	[SerializeField]
 	Material outline;
 
@@ -112,6 +110,16 @@ public class MoveObjects : MonoBehaviour
 
 	[SerializeField]
 	float outlineWidth;
+
+	[Space(10)]//Light
+
+	[SerializeField]
+	Light sphereLight;
+
+	[Space(10)]//Decall
+
+	[SerializeField]
+	GameObject cubeShadow;
 
 	[Header("Animation")]
 	[SerializeField]
@@ -178,6 +186,12 @@ public class MoveObjects : MonoBehaviour
 
 					staffAnimationController.SetBool("Grabbing", true);
 
+					cubeShadow.SetActive(true);
+					//cubeShadow.transform.position = target.transform.position;
+					//cubeShadow.transform.rotation = Quaternion.Euler(new Vector3(90,0,0));
+					//cubeShadow.transform.parent = target.transform;
+
+					sphereLight.intensity += 0.01f;
 
 					if (target.GetComponent<ScaleWhileGrabbed>())
 					{
@@ -223,6 +237,10 @@ public class MoveObjects : MonoBehaviour
 				target.gameObject.GetComponent<MeshRenderer>().material.SetFloat("_EmisiveIntensity", target.gameObject.GetComponent<ScalableObject>().baseEmisiveIntensity);
 
 				staffAnimationController.SetBool("Grabbing", false);
+
+				cubeShadow.SetActive(false);
+
+				sphereLight.intensity -= 0.01f;
 
 				target = null;
 			}
@@ -301,7 +319,7 @@ public class MoveObjects : MonoBehaviour
 		{
             if (moveOrInteract)
             {
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * chasingSpeed, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
 			}
 			grabber.position = hit.point;
         }
@@ -309,7 +327,7 @@ public class MoveObjects : MonoBehaviour
         {
 			if (moveOrInteract)
 			{
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * mouseSensibility, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * chasingSpeed, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
 		}
@@ -369,15 +387,22 @@ public class MoveObjects : MonoBehaviour
 			}
 		}
 
+		//Bloquea los muros azules
 		//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
         if (Physics.Raycast(target.transform.position,grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position), blockcubes))
         {
 			//Se pega un poco al muro
-			target.GetComponent<Rigidbody>().velocity = (obstacle.point - target.transform.position).normalized * Vector3.Distance(obstacle.point, target.transform.position) * mouseSensibility * chasingSpeed;
+			target.GetComponent<Rigidbody>().velocity = (obstacle.point - target.transform.position).normalized * Vector3.Distance(obstacle.point, target.transform.position) * chasingSpeed;
 		}
 		else
         {
-			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * mouseSensibility * chasingSpeed;
+			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * chasingSpeed;
+		}
+
+		//Decall
+        if (Physics.Raycast(target.transform.position, -Vector3.up, out RaycastHit decallPoint))
+        {
+			cubeShadow.transform.position = decallPoint.point + Vector3.up * 0.01f;
 		}
 	}
 
@@ -388,14 +413,17 @@ public class MoveObjects : MonoBehaviour
 			rayVFX.SetBool("MoveOrScalate", true);
 			sphereVFX.SetBool("MoveOrScalate", true);
 			sphereMaterial.SetInt("_MoveScaleMode", 1);
+
+			sphereLight.color = sphereMaterial.GetColor("_StarColorMove");
 		}
 		else
 		{
 			rayVFX.SetBool("MoveOrScalate", false);
 			sphereVFX.SetBool("MoveOrScalate", false);
 			sphereMaterial.SetInt("_MoveScaleMode", 0);
-		}
 
+			sphereLight.color = sphereMaterial.GetColor("_StarColorScale");
+		}
 	}
 
 	public void ChangeVolume()
