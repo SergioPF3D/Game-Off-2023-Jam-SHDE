@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Camera))]
 public class MoveObjects : MonoBehaviour
@@ -40,13 +41,15 @@ public class MoveObjects : MonoBehaviour
 	Transform grabber;
 
 
-		//Scrollwheel
+	//Scrollwheel
 	[SerializeField]
 	float distance;
 	[SerializeField]
 	bool moveOrInteract;
 	[SerializeField]
-	float scrollWheel;
+	float scrollWheelMoveSensitivity;
+	[SerializeField]
+	float scrollWheelScaleSensitivity;
 
 
 	[SerializeField]
@@ -143,12 +146,7 @@ public class MoveObjects : MonoBehaviour
 	void Update()
 	{
 		DetectInputs();
-
-		
-	}
-    private void FixedUpdate()
-    {
-		MoveTarget(); 
+		MoveTarget();
 	}
 
     void DetectInputs()
@@ -307,7 +305,7 @@ public class MoveObjects : MonoBehaviour
 			//Interact
 			if (target.GetComponent<ScaleWithMouseWheel>())
 			{
-				target.GetComponent<ScaleWithMouseWheel>().Scalate();
+				target.GetComponent<ScaleWithMouseWheel>().Scalate(scrollWheelScaleSensitivity);
 
 				distance = Mathf.Clamp(distance, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
@@ -319,7 +317,7 @@ public class MoveObjects : MonoBehaviour
 		{
             if (moveOrInteract)
             {
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * chasingSpeed, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * scrollWheelMoveSensitivity, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
 			}
 			grabber.position = hit.point;
         }
@@ -327,12 +325,15 @@ public class MoveObjects : MonoBehaviour
         {
 			if (moveOrInteract)
 			{
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * chasingSpeed, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * scrollWheelMoveSensitivity, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
 		}
 
+
+
 		//If its scalable, we scale it
+		//Esta bugueado
 		if (target.gameObject.layer == 6)
 		{
 			currentDistance = Vector3.Distance(transform.position, target.position);
@@ -403,6 +404,10 @@ public class MoveObjects : MonoBehaviour
         if (Physics.Raycast(target.transform.position, -Vector3.up, out RaycastHit decallPoint))
         {
 			cubeShadow.transform.position = decallPoint.point + Vector3.up * 0.01f;
+
+			//cubeShadow.GetComponent<DecalProjector>().size = new Vector2((target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3);
+			float mediumScale = (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3;
+			cubeShadow.transform.localScale = new Vector3(mediumScale, mediumScale, mediumScale);
 		}
 	}
 
@@ -413,7 +418,8 @@ public class MoveObjects : MonoBehaviour
 			rayVFX.SetBool("MoveOrScalate", true);
 			sphereVFX.SetBool("MoveOrScalate", true);
 			sphereMaterial.SetInt("_MoveScaleMode", 1);
-
+			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 1);//_MoveOrScale
+			
 			sphereLight.color = sphereMaterial.GetColor("_StarColorMove");
 		}
 		else
@@ -421,7 +427,8 @@ public class MoveObjects : MonoBehaviour
 			rayVFX.SetBool("MoveOrScalate", false);
 			sphereVFX.SetBool("MoveOrScalate", false);
 			sphereMaterial.SetInt("_MoveScaleMode", 0);
-
+			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 0);//_MoveOrScale
+			
 			sphereLight.color = sphereMaterial.GetColor("_StarColorScale");
 		}
 	}

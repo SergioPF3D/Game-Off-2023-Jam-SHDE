@@ -45,11 +45,6 @@ public class ScalableObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 10)
-        {
-            StartCoroutine(ResPawn());
-        }
-
         //Podria setear el rigidbody en este script y no en los otros
         if (this.GetComponent<Rigidbody>().velocity != Vector3.zero)
         {            
@@ -84,4 +79,16 @@ public class ScalableObject : MonoBehaviour
         timePassed = 0;
         yield return null;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(1);
+        if (other.gameObject.layer == 16)
+        {
+            StartCoroutine(ResPawn());
+            Debug.Log(2);
+        }
+    }
 }
+
+

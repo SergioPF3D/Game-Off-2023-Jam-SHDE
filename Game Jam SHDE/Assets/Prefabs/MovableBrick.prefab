@@ -271,7 +271,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 608da47866dea9e4eb81eb524b5a594c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -372,6 +372,7 @@ MonoBehaviour:
   baseEmisiveIntensity: 0
   layer: 7
   audiosou: {fileID: 7565709039727919602}
+  timeToRespawn: 0
 --- !u!4 &8031172902047753749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58f0757a3ca672a4997fb04464a9a0fe,
