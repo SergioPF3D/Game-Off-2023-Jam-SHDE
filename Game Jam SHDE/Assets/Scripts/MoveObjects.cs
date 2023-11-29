@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Camera))]
 public class MoveObjects : MonoBehaviour
@@ -116,8 +117,10 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	Animator staffAnimationController;
 
+	[Header("UI")]
+	[SerializeField]
+	Slider slid;
 
-	
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
@@ -393,5 +396,10 @@ public class MoveObjects : MonoBehaviour
 			sphereMaterial.SetInt("_MoveScaleMode", 0);
 		}
 
+	}
+
+	public void ChangeVolume()
+    {
+		AudioListener.volume = slid.value;
 	}
 }

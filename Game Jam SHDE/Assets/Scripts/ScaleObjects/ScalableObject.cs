@@ -20,8 +20,11 @@ public class ScalableObject : MonoBehaviour
 
     [SerializeField]
     AudioSource audiosou;
+
     [SerializeField]
-    AudioClip colision;
+    float timeToRespawn;
+
+    float timePassed;
 
     public virtual void Start()
     {
@@ -44,7 +47,24 @@ public class ScalableObject : MonoBehaviour
     {
         if (collision.gameObject.layer == 10)
         {
-            transform.position = basePosition;
+            StartCoroutine(ResPawn());
+        }
+
+        //Podria setear el rigidbody en este script y no en los otros
+        if (this.GetComponent<Rigidbody>().velocity != Vector3.zero)
+        {            
+            audiosou.pitch = 1 + Random.Range(-0.1f, 0.1f);
+            audiosou.Play();
+        }
+        
+    }
+
+    public IEnumerator ResPawn()
+    {
+        while (timePassed < timeToRespawn)
+        {
+            timePassed += Time.fixedDeltaTime;
+
             //Habria que recoger la rotacion inicial
             //transform.rotation = Quaternion.Euler(Vector3.zero);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -55,16 +75,13 @@ public class ScalableObject : MonoBehaviour
             GameObject.Find("Player").GetComponentInChildren<MoveObjects>().outlined = null;
             //outlined = null;
 
-            
+            gameObject.GetComponent<MeshRenderer>().material.SetFloat("_DissolveAmount", timePassed / timeToRespawn);
+            yield return new WaitForFixedUpdate();
         }
 
-        //Podria setear el rigidbody en este script y no en los otros
-        if (this.GetComponent<Rigidbody>().velocity != Vector3.zero)
-        {
-            //this.gameObject.GetComponent<AudioSource>().clip = colision;
-            audiosou.pitch = 1 + Random.Range(-0.1f, 0.1f);
-            audiosou.Play();
-        }
-        
+        transform.position = basePosition;
+        gameObject.GetComponent<MeshRenderer>().material.SetFloat("_DissolveAmount", 0);
+        timePassed = 0;
+        yield return null;
     }
 }
