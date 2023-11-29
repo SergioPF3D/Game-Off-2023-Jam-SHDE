@@ -41,13 +41,15 @@ public class MoveObjects : MonoBehaviour
 	Transform grabber;
 
 
-		//Scrollwheel
+	//Scrollwheel
 	[SerializeField]
 	float distance;
 	[SerializeField]
 	bool moveOrInteract;
 	[SerializeField]
-	float scrollWheel;
+	float scrollWheelMoveSensitivity;
+	[SerializeField]
+	float scrollWheelScaleSensitivity;
 
 
 	[SerializeField]
@@ -144,12 +146,7 @@ public class MoveObjects : MonoBehaviour
 	void Update()
 	{
 		DetectInputs();
-
-		
-	}
-    private void FixedUpdate()
-    {
-		MoveTarget(); 
+		MoveTarget();
 	}
 
     void DetectInputs()
@@ -308,7 +305,7 @@ public class MoveObjects : MonoBehaviour
 			//Interact
 			if (target.GetComponent<ScaleWithMouseWheel>())
 			{
-				target.GetComponent<ScaleWithMouseWheel>().Scalate();
+				target.GetComponent<ScaleWithMouseWheel>().Scalate(scrollWheelScaleSensitivity);
 
 				distance = Mathf.Clamp(distance, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
@@ -320,7 +317,7 @@ public class MoveObjects : MonoBehaviour
 		{
             if (moveOrInteract)
             {
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * chasingSpeed, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * scrollWheelMoveSensitivity, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
 			}
 			grabber.position = hit.point;
         }
@@ -328,12 +325,15 @@ public class MoveObjects : MonoBehaviour
         {
 			if (moveOrInteract)
 			{
-				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * chasingSpeed, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
+				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * scrollWheelMoveSensitivity, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
 		}
 
+
+
 		//If its scalable, we scale it
+		//Esta bugueado
 		if (target.gameObject.layer == 6)
 		{
 			currentDistance = Vector3.Distance(transform.position, target.position);
