@@ -47,9 +47,8 @@ public class ScalableObject : MonoBehaviour
     {
         //Podria setear el rigidbody en este script y no en los otros
         if (this.GetComponent<Rigidbody>().velocity != Vector3.zero)
-        {            
-            audiosou.pitch = 1 + Random.Range(-0.1f, 0.1f);
-            audiosou.Play();
+        {
+            PlayCollision();
         }
         
     }
@@ -88,6 +87,14 @@ public class ScalableObject : MonoBehaviour
         {
             StartCoroutine(ResPawn());
         }
+    }
+
+    void PlayCollision()
+    {
+        audiosou.pitch = 1 + Random.Range(-0.1f, 0.1f);
+        //audiosou.volume Que dependa de la velocidad
+        audiosou.Play();
+
     }
 }
 

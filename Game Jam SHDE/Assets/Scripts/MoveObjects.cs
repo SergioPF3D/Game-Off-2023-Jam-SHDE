@@ -397,8 +397,8 @@ public class MoveObjects : MonoBehaviour
 
 		//Bloquea los muros azules
 		//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
-        if (Physics.Raycast(target.transform.position,grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position), blockcubes))
-        {
+        if (Physics.Raycast(target.transform.position,grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position)))//blockcubes
+		{
 			//Se pega un poco al muro
 			target.GetComponent<Rigidbody>().velocity = (obstacle.point - target.transform.position).normalized * Vector3.Distance(obstacle.point, target.transform.position) * chasingSpeed;
 		}

@@ -4,47 +4,47 @@ using UnityEngine;
 
 public class Platform : ObjectThatMoves
 {
-    //no usa los puntos
-    //List<Transform> pointsToMove;
+    [SerializeField]
+    float timeWaitingToMove;
 
+    bool moving;
+    public override void Start()
+    {
+        base.Start();
+        //baseDistance = Vector3.Distance(initialPosition.position, finalPosition.position);
+        StartCoroutine(Move(initialPosition.position, finalPosition.position));
+    }
     public override void Activate()
     {
         base.Activate();
-        StartCoroutine(Move(transform.position, finalPosition.position));
+        //StartCoroutine(Move(transform.position, finalPosition.position));
+        moving = true;
     }
 
     public override void DeActivate()
     {
         base.DeActivate();
-        StopAllCoroutines();
+        //StopAllCoroutines();
+        moving = false;
     }
-
-    /*
-    public override void AddInput(float inputs)
-    {
-        base.AddInput(inputs);
-        SeeIfActivate();
-    }
-
-    public override void RemoveInput(float inputs)
-    {
-        base.RemoveInput(inputs);
-        SeeIfActivate();
-    }
-    */
 
     public override IEnumerator Move(Vector3 position1, Vector3 position2)
     {      
-        
         float timePassed = 0;
-        while (timePassed / timeToMove < 1)
+        float time = Vector3.Distance(position1, position2) * timeToMove / Vector3.Distance(initialPosition.position, finalPosition.position);
+
+        while (timePassed / time < 1)
         {
-            timePassed += Time.fixedDeltaTime;
-            transform.position = Vector3.Lerp(position1, position2, timePassed / timeToMove);
+            if (moving)
+            {
+                timePassed += Time.fixedDeltaTime;
+                transform.position = Vector3.Lerp(position1, position2, timePassed / time);
+            }
             yield return new WaitForFixedUpdate();
         }
         transform.position = position2;
-
+        yield return new WaitForSeconds(timeWaitingToMove);
+        
         StartCoroutine(Move(position2, position1));
     }
 }
