@@ -165,9 +165,11 @@ public class Player : MonoBehaviour
                 if (!grounded)
                 {
                     //Mejor que dependa de la altura de la que cae, es decir su velocidad en y
-                    PlaySound();
+                    //PlaySound();
                     grounded = true;
                     staffAnimationController.SetBool("Grounded", true);
+
+                    audios.PlayOneShot(footsteps[0],0.75f);
 
                     StopAllCoroutines();
                     StartCoroutine(PlayFootsTeps());
@@ -349,7 +351,7 @@ public class Player : MonoBehaviour
     
     void PlaySound()
     {
-        audios.clip = footsteps[Random.Range(0, footsteps.Count)];
+        audios.clip = footsteps[Random.Range(1, footsteps.Count)];
         
         audios.volume = baseVolume + Random.Range(-volumeVariation / 100 * baseVolume, volumeVariation / 100 * baseVolume);
         audios.pitch = basePitch + Random.Range(-audiovariation / 100 * basePitch, audiovariation / 100 * basePitch);

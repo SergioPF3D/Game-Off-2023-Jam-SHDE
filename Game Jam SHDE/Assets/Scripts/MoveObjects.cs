@@ -9,7 +9,7 @@ using UnityEngine.Rendering.Universal;
 public class MoveObjects : MonoBehaviour
 {
 	[Header("Components")]
-	
+
 	[Tooltip("The target that we moves")]
 	public Transform target;
 
@@ -138,11 +138,22 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	AudioClip changeMode;
 
+	[Header("TimeToFade")]
+
+	[SerializeField]
+	Image blackImage;
+
+	[SerializeField]
+	float timeToBlackFade;
+
+	[SerializeField]
+	float timeToStartBlackFade;
+
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
 		//mouseSensibility = GameObject.FindObjectOfType<Player>().mouseSensibility;
-		
+
 		//staffAnimationController = GameObject.FindObjectOfType<Player>().staffAnimationController;
 
 		//emisiveColor = sphereMaterial.GetColor("_FresnelColor");
@@ -154,7 +165,10 @@ public class MoveObjects : MonoBehaviour
 		if (PlayerPrefs.HasKey("Volume"))
 		{
 			slid.value = PlayerPrefs.GetFloat("Volume");
-        }
+		}
+
+		blackImage.gameObject.SetActive(true);
+		StartCoroutine(FadeImage(blackImage, timeToBlackFade, timeToStartBlackFade));
 	}
 
 	void Update()
@@ -163,7 +177,7 @@ public class MoveObjects : MonoBehaviour
 		MoveTarget();
 	}
 
-    void DetectInputs()
+	void DetectInputs()
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -177,7 +191,7 @@ public class MoveObjects : MonoBehaviour
 					if (Vector3.Distance(cubeDetected.point, transform.position) > maxDistance)
 					{
 						return;
-                    }
+					}
 					//Si hay algo en medio
 					if (Physics.Raycast(transform.position, transform.forward, out RaycastHit obstacle, Vector3.Distance(transform.position, cubeDetected.point), ignoreTargetMask))
 					{
@@ -216,24 +230,24 @@ public class MoveObjects : MonoBehaviour
 
 			}
 		}
-        if (Input.GetMouseButtonUp(0))
-        {
+		if (Input.GetMouseButtonUp(0))
+		{
 			//If we have a target, we have to release it
 			if (target)
-            {
+			{
 				if (target.GetComponent<ScaleWhileGrabbed>())
 				{
 					target.GetComponent<ScaleWhileGrabbed>().ChangeMode(false);
 				}
 
 				if (Vector3.Distance(target.position, grabber.position) < distanceToThrow)
-                {
+				{
 					//Make Speed 0
 					target.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
 				}
-                else
-                {
+				else
+				{
 					//Limit the speed
 					float media = (Mathf.Abs(target.GetComponent<Rigidbody>().velocity.x) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.y) + Mathf.Abs(target.GetComponent<Rigidbody>().velocity.z)) / 3;
 					if (maxSpeed > 0)
@@ -244,7 +258,7 @@ public class MoveObjects : MonoBehaviour
 						}
 					}
 				}
-				
+
 				target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
 				rayVFX.gameObject.SetActive(false);
@@ -264,16 +278,16 @@ public class MoveObjects : MonoBehaviour
 			}
 		}
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+		if (Input.GetKeyDown(KeyCode.E))
+		{
 			moveOrInteract = !moveOrInteract;
 			ChangeColor();
 			wandsource.PlayOneShot(changeMode, 0.07f);
 		}
 
 		//Set outline
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit cubeToOutline, maxDistance, targetMask))
-        {
+		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit cubeToOutline, maxDistance, targetMask))
+		{
 			//Si hay algo en medio
 			if (Physics.Raycast(transform.position, transform.forward, out RaycastHit obstacle, Vector3.Distance(transform.position, cubeToOutline.point), ignoreTargetMask))
 			{
@@ -281,7 +295,7 @@ public class MoveObjects : MonoBehaviour
 			}
 
 			if (!target)
-            {
+			{
 				if (outlined && outlined != cubeToOutline.collider.gameObject)
 				{
 
@@ -301,10 +315,10 @@ public class MoveObjects : MonoBehaviour
 				}
 			}
 		}
-        else
-        {
-            if (!target && outlined)
-            {
+		else
+		{
+			if (!target && outlined)
+			{
 				outlined.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
 				outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().layer;
 				outlined = null;
@@ -320,8 +334,8 @@ public class MoveObjects : MonoBehaviour
 			return;
 		}
 
-        if (!moveOrInteract)
-        {
+		if (!moveOrInteract)
+		{
 			//Interact
 			if (target.GetComponent<ScaleWithMouseWheel>())
 			{
@@ -330,19 +344,19 @@ public class MoveObjects : MonoBehaviour
 				distance = Mathf.Clamp(distance, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
 				grabber.position = transform.position + transform.forward * distance;
 			}
-        }
+		}
 
 		//Set the grabber
 		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, ignoreTargetMask))
 		{
-            if (moveOrInteract)
-            {
+			if (moveOrInteract)
+			{
 				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * scrollWheelMoveSensitivity, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, distance);
 			}
 			grabber.position = hit.point;
-        }
-        else
-        {
+		}
+		else
+		{
 			if (moveOrInteract)
 			{
 				distance = Mathf.Clamp(distance + Input.GetAxis("Mouse ScrollWheel") * scrollWheelMoveSensitivity, minDistance * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, maxDistance);
@@ -368,21 +382,21 @@ public class MoveObjects : MonoBehaviour
 
 		//We move the target
 		if (!fly)
-        {
+		{
 			//Si el jugador esta entre el objeto y el grabber
-            if (Physics.Raycast(target.position, grabber.position - target.position, out RaycastHit hitted, distance))
-            {
-                if (hitted.collider.gameObject.layer == 3)
-                {
+			if (Physics.Raycast(target.position, grabber.position - target.position, out RaycastHit hitted, distance))
+			{
+				if (hitted.collider.gameObject.layer == 3)
+				{
 					return;
 				}
-            }
+			}
 
 			float angulo = Vector3.Angle(grabber.position - target.transform.position, transform.parent.position - target.transform.position);
 			//Debug.Log(angulo);
 			if (angulo < angle)
-            {
-				
+			{
+
 				//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
 				//Debug.DrawRay(target.transform.position, transform.parent.position - target.transform.position, Color.red);
 				if (Vector3.Distance(grabber.position, transform.parent.position) < distancetoFly * (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3)
@@ -399,30 +413,30 @@ public class MoveObjects : MonoBehaviour
 
 				if (Physics.Raycast(caster.position, -transform.parent.up, out RaycastHit cube, distance))
 				{
-                    if (cube.collider.gameObject.layer == 12)
-                    {
+					if (cube.collider.gameObject.layer == 12)
+					{
 						//return;
 					}
 				}
-				
+
 			}
 		}
 
 		//Bloquea los muros azules
 		//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
-        if (Physics.Raycast(target.transform.position,grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position)))//blockcubes
+		if (Physics.Raycast(target.transform.position, grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position)))//blockcubes
 		{
 			//Se pega un poco al muro
 			target.GetComponent<Rigidbody>().velocity = (obstacle.point - target.transform.position).normalized * Vector3.Distance(obstacle.point, target.transform.position) * chasingSpeed;
 		}
 		else
-        {
+		{
 			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * chasingSpeed;
 		}
 
 		//Decall
-        if (Physics.Raycast(target.transform.position, -Vector3.up, out RaycastHit decallPoint))
-        {
+		if (Physics.Raycast(target.transform.position, -Vector3.up, out RaycastHit decallPoint))
+		{
 			cubeShadow.transform.position = decallPoint.point + Vector3.up * 0.01f;
 
 			//cubeShadow.GetComponent<DecalProjector>().size = new Vector2((target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3, (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3);
@@ -432,14 +446,14 @@ public class MoveObjects : MonoBehaviour
 	}
 
 	void ChangeColor()
-    {
+	{
 		if (moveOrInteract)
 		{
 			rayVFX.SetBool("MoveOrScalate", true);
 			sphereVFX.SetBool("MoveOrScalate", true);
 			sphereMaterial.SetInt("_MoveScaleMode", 1);
 			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 1);//_MoveOrScale
-			
+
 			sphereLight.color = sphereMaterial.GetColor("_StarColorMove");
 		}
 		else
@@ -448,14 +462,31 @@ public class MoveObjects : MonoBehaviour
 			sphereVFX.SetBool("MoveOrScalate", false);
 			sphereMaterial.SetInt("_MoveScaleMode", 0);
 			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 0);//_MoveOrScale
-			
+
 			sphereLight.color = sphereMaterial.GetColor("_StarColorScale");
 		}
 	}
 
 	public void ChangeVolume()
-    {
+	{
 		PlayerPrefs.SetFloat("Volume", slid.value);
 		AudioListener.volume = slid.value;
 	}
+
+	IEnumerator FadeImage(Image imageToFade, float timeToFade, float TimeToStart)
+	{
+		yield return new WaitForSeconds(TimeToStart);
+		float timePassed = 0;
+		while (timePassed / timeToFade < 1)
+		{
+			timePassed += Time.fixedDeltaTime;
+			imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(1, 0, timePassed / timeToFade));
+
+			//new Vector4(imageToFade.color.r, imageToFade.color.g, imageToFade.color.b, 
+			yield return new WaitForFixedUpdate();
+		}
+		yield return null;
+	}
+
 }
+
