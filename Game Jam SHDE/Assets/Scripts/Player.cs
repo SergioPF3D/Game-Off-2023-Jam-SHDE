@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
     Slider slid;
 
 
+
     void Start()
     {
         Cursor.visible = false;
@@ -169,7 +170,7 @@ public class Player : MonoBehaviour
                     grounded = true;
                     staffAnimationController.SetBool("Grounded", true);
 
-                    audios.PlayOneShot(footsteps[0],0.75f);
+                    //audios.PlayOneShot(footsteps[0],0.75f);
 
                     StopAllCoroutines();
                     StartCoroutine(PlayFootsTeps());
@@ -373,5 +374,21 @@ public class Player : MonoBehaviour
             sliderSensibility = 1;
         }
         PlayerPrefs.SetFloat("Sensitivity", slid.value);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "FinalVolume")
+        {
+            this.gameObject.GetComponentInChildren<MoveObjects>().StartCoroutine("SeeDistanceToFinal");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "FinalVolume")
+        {
+            this.gameObject.GetComponentInChildren<MoveObjects>().StopCoroutine("SeeDistanceToFinal");
+        }
     }
 }
