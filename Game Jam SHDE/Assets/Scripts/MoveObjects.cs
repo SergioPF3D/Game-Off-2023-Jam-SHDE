@@ -205,10 +205,13 @@ public class MoveObjects : MonoBehaviour
 
 					sphereLight.intensity += 0.01f;
 
+					wandsource.Play();
+
 					if (target.GetComponent<ScaleWhileGrabbed>())
 					{
 						target.GetComponent<ScaleWhileGrabbed>().ChangeMode(true);
 					}
+
 				}
 
 			}
@@ -253,6 +256,9 @@ public class MoveObjects : MonoBehaviour
 				cubeShadow.SetActive(false);
 
 				sphereLight.intensity -= 0.01f;
+
+				wandsource.Stop();
+
 
 				target = null;
 			}

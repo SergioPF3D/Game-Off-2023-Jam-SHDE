@@ -103,6 +103,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioListener listener;
 
+    //[SerializeField]
+    //AudioClip fallingInVoid;
+
     [Header("UI")]
     [SerializeField]
     Slider slid;
@@ -285,6 +288,7 @@ public class Player : MonoBehaviour
 
     void Death()
     {
+        //audios.PlayOneShot(fallingInVoid,1);
         SceneManager.LoadScene(0);
     }
 
