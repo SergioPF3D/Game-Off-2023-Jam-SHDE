@@ -56,14 +56,10 @@ public class ScalableObject : MonoBehaviour
 
     public IEnumerator ResPawn()
     {
+        
         while (timePassed < timeToRespawn)
         {
             timePassed += Time.fixedDeltaTime;
-
-            //Habria que recoger la rotacion inicial
-            //transform.rotation = Quaternion.Euler(Vector3.zero);
-            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            //
 
             transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
             gameObject.layer = layer;
@@ -74,19 +70,23 @@ public class ScalableObject : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = basePosition;
+        transform.localScale = Vector3.one;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
         gameObject.GetComponent<MeshRenderer>().material.SetFloat("_DissolveAmount", 0);
         timePassed = 0;
+        
+        
         yield return null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(1);
         if (other.gameObject.layer == 16)
         {
             StartCoroutine(ResPawn());
-            Debug.Log(2);
         }
     }
 }

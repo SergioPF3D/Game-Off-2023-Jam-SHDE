@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ScaleWithSpeed : ScalableObject
 {
-    [Header("ScaleWithSpeed")]
+    
     Vector3 previousPosition;
     
     Vector3 baseScale;
 
     float speed;
+
+    [Header("ScaleWithSpeed")]
 
     [SerializeField]
     [Tooltip("The scale when the object isnt moving")]

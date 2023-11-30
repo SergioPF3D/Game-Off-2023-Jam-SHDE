@@ -13,12 +13,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //Set Player
-        //player.transform.position = levelSpawns[PlayerPrefs.GetInt("ActualLevel")].transform.position;
-        
-        
-        
         Time.timeScale = 1;
-        //player.transform.position = levelSpawns[PlayerPrefs.GetInt("ActualLevel")].transform.position;
+        player.transform.position = levelSpawns[PlayerPrefs.GetInt("ActualLevel")].transform.position;
     }
 
     public void ResetGame()

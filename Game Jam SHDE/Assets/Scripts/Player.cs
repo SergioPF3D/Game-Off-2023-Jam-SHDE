@@ -119,6 +119,8 @@ public class Player : MonoBehaviour
         baseVolume = audios.volume;
 
         StartCoroutine(PlayFootsTeps());
+
+        slid.value = PlayerPrefs.GetFloat("Sensitivity");
     }
     
     void Update()
@@ -356,5 +358,6 @@ public class Player : MonoBehaviour
         {
             sliderSensibility = 1;
         }
+        PlayerPrefs.SetFloat("Sensitivity", slid.value);
     }
 }

@@ -141,6 +141,14 @@ public class MoveObjects : MonoBehaviour
 
 		//emisiveColor = sphereMaterial.GetColor("_FresnelColor");
 		ChangeColor();
+
+
+		//PlayerPrefs.DeleteKey("Volume");
+		//slid.value = PlayerPrefs.GetFloat("Volume");
+		if (PlayerPrefs.HasKey("Volume"))
+		{
+			slid.value = PlayerPrefs.GetFloat("Volume");
+        }
 	}
 
 	void Update()
@@ -289,7 +297,6 @@ public class MoveObjects : MonoBehaviour
 				outlined = null;
 			}
 		}
-
 	}
 
 	void MoveTarget()
@@ -435,6 +442,7 @@ public class MoveObjects : MonoBehaviour
 
 	public void ChangeVolume()
     {
+		PlayerPrefs.SetFloat("Volume", slid.value);
 		AudioListener.volume = slid.value;
 	}
 }
