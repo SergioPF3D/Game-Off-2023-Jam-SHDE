@@ -61,63 +61,33 @@ public class Door : ObjectThatMoves
         }
 
         base.SeeIfActivate();
-        /*
-        if (actualInputs >= inputs)
-        {
-            if (baseActivated)
-            {
-                DeActivate();
-            }
-            else
-            {
-                Activate();
-            }
-        }
-        else
-        {
-            if (baseActivated)
-            {
-                Activate();
-            }
-            else
-            {
-                DeActivate();
-            }
-        }
-        */
     }
 
-    /*
-    public override void AddInput(float inputs)
-    {
-        base.AddInput(inputs);
-        SeeIfActivate();
-    }
-    public override void RemoveInput(float inputs)
-    {
-        base.RemoveInput(inputs);
-        SeeIfActivate();
-    }
-
-    */
 
     public override IEnumerator Move(Vector3 position1, Vector3 position2)
     {
         ActivateParticles(true);
         audios.Play();
 
-        //base.MoveDoor(position1, position2);
-
         float timePassed = 0;
-        float actualDistance = Vector3.Distance(position1, position2);
-        float TimeToUse = (actualDistance / baseDistance) * timeToMove;
 
+        float time = Vector3.Distance(position1, position2) * timeToMove / Vector3.Distance(initialPosition.position, finalPosition.position);
+        while (timePassed / time < 1)
+        {
+            timePassed += Time.fixedDeltaTime;
+            transform.position = Vector3.Lerp(position1, position2, timePassed / time);
+            yield return new WaitForFixedUpdate();
+        }
+
+        /*
         while (timePassed / timeToMove < 1)
         {
             timePassed += Time.fixedDeltaTime;
             transform.position = Vector3.Lerp(position1, position2, timePassed / timeToMove);
             yield return new WaitForFixedUpdate();
         }
+        */
+
         transform.position = position2;
 
         audios.Stop();
