@@ -100,10 +100,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     float volumeVariation;
 
+    [SerializeField]
+    AudioListener listener;
 
     [Header("UI")]
     [SerializeField]
     Slider slid;
+
 
     void Start()
     {
@@ -307,6 +310,8 @@ public class Player : MonoBehaviour
 
             menu.SetActive(false);
             menuactivated = false;
+
+            listener.enabled = true;
         }
         else
         {
@@ -317,6 +322,9 @@ public class Player : MonoBehaviour
 
             menu.SetActive(true);
             menuactivated = true;
+
+            listener.enabled = false; ;
+
         }
     }
 

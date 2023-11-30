@@ -16,15 +16,18 @@ public class ScalableObject : MonoBehaviour
     //Return to initial position
     Vector3 basePosition;
 
+    [SerializeField]
+    float timeToRespawn;
+
+    float timePassed;
+
     [Space(20)]
 
     [SerializeField]
     AudioSource audiosou;
 
     [SerializeField]
-    float timeToRespawn;
-
-    float timePassed;
+    AudioClip respawn;
 
     public virtual void Start()
     {
@@ -76,8 +79,8 @@ public class ScalableObject : MonoBehaviour
 
         gameObject.GetComponent<MeshRenderer>().material.SetFloat("_DissolveAmount", 0);
         timePassed = 0;
-        
-        
+
+        audiosou.PlayOneShot(respawn, 2);
         yield return null;
     }
 

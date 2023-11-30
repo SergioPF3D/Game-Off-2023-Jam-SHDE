@@ -132,8 +132,9 @@ MonoBehaviour:
   emisiveColor: {r: 0.14098358, g: 1, b: 0, a: 0}
   baseEmisiveIntensity: 0
   layer: 0
-  audiosou: {fileID: 7675841640249057759}
   timeToRespawn: 1
+  audiosou: {fileID: 7675841640249057759}
+  respawn: {fileID: 8300000, guid: f63b84d88a241c94eb197bedf3d8316c, type: 3}
   grabbedScale: {x: 2, y: 2, z: 2}
   timeToScale: 1
   scalating: 0

@@ -132,6 +132,12 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	Slider slid;
 
+	[SerializeField]
+	AudioSource wandsource;
+
+	[SerializeField]
+	AudioClip changeMode;
+
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
@@ -256,6 +262,7 @@ public class MoveObjects : MonoBehaviour
         {
 			moveOrInteract = !moveOrInteract;
 			ChangeColor();
+			wandsource.PlayOneShot(changeMode, 0.07f);
 		}
 
 		//Set outline

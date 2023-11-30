@@ -8,6 +8,9 @@ public class Platform : ObjectThatMoves
     float timeWaitingToMove;
 
     bool moving;
+
+    [SerializeField]
+    AudioSource audios;
     public override void Start()
     {
         base.Start();
@@ -32,17 +35,23 @@ public class Platform : ObjectThatMoves
     {      
         float timePassed = 0;
         float time = Vector3.Distance(position1, position2) * timeToMove / Vector3.Distance(initialPosition.position, finalPosition.position);
-
+        audios.Play();
         while (timePassed / time < 1)
         {
             if (moving)
             {
                 timePassed += Time.fixedDeltaTime;
                 transform.position = Vector3.Lerp(position1, position2, timePassed / time);
+                audios.UnPause();
+            }
+            else
+            {
+                audios.Pause();
             }
             yield return new WaitForFixedUpdate();
         }
         transform.position = position2;
+        audios.Stop();
         yield return new WaitForSeconds(timeWaitingToMove);
         
         StartCoroutine(Move(position2, position1));

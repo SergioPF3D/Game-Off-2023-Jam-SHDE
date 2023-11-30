@@ -228,8 +228,9 @@ MonoBehaviour:
   emisiveColor: {r: 1, g: 1, b: 1, a: 0}
   baseEmisiveIntensity: 0
   layer: 7
-  audiosou: {fileID: 7804790211230116703}
   timeToRespawn: 1
+  audiosou: {fileID: 7804790211230116703}
+  respawn: {fileID: 8300000, guid: f63b84d88a241c94eb197bedf3d8316c, type: 3}
 --- !u!1001 &7804790210116038115
 PrefabInstance:
   m_ObjectHideFlags: 0
