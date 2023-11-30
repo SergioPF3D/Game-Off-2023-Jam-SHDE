@@ -49,7 +49,7 @@ public class ScalableObject : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Podria setear el rigidbody en este script y no en los otros
-        if (this.GetComponent<Rigidbody>().velocity != Vector3.zero)
+        if (this.GetComponent<Rigidbody>().velocity.magnitude >= Vector3.one.magnitude * 0.1)
         {
             PlayCollision();
         }
@@ -97,7 +97,6 @@ public class ScalableObject : MonoBehaviour
         audiosou.pitch = 1 + Random.Range(-0.1f, 0.1f);
         //audiosou.volume Que dependa de la velocidad
         audiosou.Play();
-
     }
 }
 
