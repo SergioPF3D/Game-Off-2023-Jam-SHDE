@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Camera))]
 public class MoveObjects : MonoBehaviour
@@ -149,6 +150,11 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	float timeToStartBlackFade;
 
+	[Space(20)]
+
+	[SerializeField]
+	Volume finalVolume;
+
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
@@ -168,7 +174,9 @@ public class MoveObjects : MonoBehaviour
 		}
 
 		blackImage.gameObject.SetActive(true);
-		StartCoroutine(FadeImage(blackImage, timeToBlackFade, timeToStartBlackFade));
+		StartCoroutine(FadeImage(blackImage, timeToBlackFade, timeToStartBlackFade, false));
+
+		//StartCoroutine(SeeDistanceToFinal());
 	}
 
 	void Update()
@@ -473,14 +481,21 @@ public class MoveObjects : MonoBehaviour
 		AudioListener.volume = slid.value;
 	}
 
-	IEnumerator FadeImage(Image imageToFade, float timeToFade, float TimeToStart)
+	IEnumerator FadeImage(Image imageToFade, float timeToFade, float TimeToStart, bool toBlack)
 	{
 		yield return new WaitForSeconds(TimeToStart);
 		float timePassed = 0;
 		while (timePassed / timeToFade < 1)
 		{
 			timePassed += Time.fixedDeltaTime;
-			imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(1, 0, timePassed / timeToFade));
+            if (toBlack)
+            {
+				imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(0, 1, timePassed / timeToFade));
+            }
+            else
+            {
+				imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(1, 0, timePassed / timeToFade));
+			}
 
 			//new Vector4(imageToFade.color.r, imageToFade.color.g, imageToFade.color.b, 
 			yield return new WaitForFixedUpdate();
@@ -488,5 +503,22 @@ public class MoveObjects : MonoBehaviour
 		yield return null;
 	}
 
+	IEnumerator SeeDistanceToFinal()
+    {
+		finalVolume.weight = Mathf.Lerp(1, 0, Mathf.Clamp(Vector3.Distance(finalVolume.gameObject.transform.position, this.transform.position), 0, 35) / 35);
+        
+		if (finalVolume.weight > 0.9f)
+        {
+			StartCoroutine(FadeImage(blackImage, 2, 0, true));
+			//Esperamos al fundido
+			yield return new WaitForSeconds(2 + 0 + 0);
+			//Ponemos las cosas en negro y tal
+			//StopCoroutine(SeeDistanceToFinal());
+			//yield return ;
+			yield break;
+        }
+		yield return new WaitForFixedUpdate();
+		StartCoroutine(SeeDistanceToFinal());
+	}
 }
 
