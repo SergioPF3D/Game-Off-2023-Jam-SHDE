@@ -40,6 +40,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1189014403415940610}
     m_Modifications:
+    - target: {fileID: 3766605479870305799, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
         type: 3}
       propertyPath: m_Lightmapping
@@ -47,8 +52,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
         type: 3}
+      propertyPath: m_ShadowRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
       propertyPath: m_Shadows.m_Type
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.725
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171711472865066367, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5358756086862655357, guid: f932567c87c9fe9499ca3502d74409cd,
         type: 3}
@@ -70,6 +90,11 @@ PrefabInstance:
       propertyPath: _lt
       value: 
       objectReference: {fileID: 815504659383880919}
+    - target: {fileID: 6548424670943822080, guid: f932567c87c9fe9499ca3502d74409cd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6663160951882792361, guid: f932567c87c9fe9499ca3502d74409cd,
         type: 3}
       propertyPath: m_RootOrder
