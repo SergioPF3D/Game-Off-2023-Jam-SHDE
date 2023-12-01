@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 69bf5e8ad4e2eb9489996bfc8304af18
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Leluja Original
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 74ca8f7187c09b44eb2d6ad3b5063a47, type: 3}
+  - {fileID: 12800000, guid: c25fcca803a07ef4ca7dd67b287b69f4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

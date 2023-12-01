@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         
         foreach (var caster in rayCasters)
         {
-            float distance = caster.position.y - (transform.position.y - 1.02f); //0.2f;
+            float distance = caster.position.y - (transform.position.y - 1.03f); //0.2f;
             Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
 
             if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))

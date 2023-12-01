@@ -10,11 +10,16 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     Transform player;
-    void Start()
+    void Awake()
     {
         //Set Player
         Time.timeScale = 1;
         player.transform.position = levelSpawns[PlayerPrefs.GetInt("ActualLevel")].transform.position;
+        if (PlayerPrefs.GetInt("ActualLevel") == 0)
+        {
+            //PlayerPrefs.SetFloat("Light", lighttofade.intensity);
+            PlayerPrefs.DeleteKey("Light");
+        }
     }
 
     private void Update()
