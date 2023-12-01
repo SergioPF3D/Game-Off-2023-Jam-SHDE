@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera))]
 public class MoveObjects : MonoBehaviour
@@ -598,7 +599,8 @@ public class MoveObjects : MonoBehaviour
 			}
 
 
-
+			yield return new WaitForSeconds(5 + 0 + 0);
+			SceneManager.LoadScene(0);
 			//Devolverle al juego sin sonido de la bola?
 			//dejarle el boton de exit, molaria uno diferente
 
