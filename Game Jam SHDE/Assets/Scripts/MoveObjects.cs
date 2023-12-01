@@ -160,6 +160,7 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	List<TMPro.TextMeshProUGUI> creditTexts;
 
+	public bool blocked;
 	void Start()
 	{
 		//Esto habra que cambiarlo con un método cuando se cambie la sensibilidad
@@ -444,7 +445,11 @@ public class MoveObjects : MonoBehaviour
 		}
 		else
 		{
-			target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * chasingSpeed;
+			if (!blocked)
+			{
+				target.GetComponent<Rigidbody>().velocity = (grabber.position - target.transform.position).normalized * Vector3.Distance(grabber.position, target.transform.position) * chasingSpeed;
+
+			}
 		}
 
 		//Decall
@@ -456,6 +461,8 @@ public class MoveObjects : MonoBehaviour
 			float mediumScale = (target.transform.localScale.x + target.transform.localScale.y + target.transform.localScale.z) / 3;
 			cubeShadow.transform.localScale = new Vector3(mediumScale, mediumScale, mediumScale);
 		}
+
+        
 	}
 
 	void ChangeColor()

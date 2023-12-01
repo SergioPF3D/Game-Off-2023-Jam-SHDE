@@ -2428,7 +2428,7 @@ PrefabInstance:
     - target: {fileID: 765053532276140771, guid: 5e2092267d17bfa4c8e4b60253571637,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.623
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 765053532276140771, guid: 5e2092267d17bfa4c8e4b60253571637,
         type: 3}
@@ -3367,7 +3367,7 @@ PrefabInstance:
     - target: {fileID: 765053532276140771, guid: 5e2092267d17bfa4c8e4b60253571637,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.302
+      value: 0.436
       objectReference: {fileID: 0}
     - target: {fileID: 765053532276140771, guid: 5e2092267d17bfa4c8e4b60253571637,
         type: 3}
@@ -9803,7 +9803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -12967,7 +12967,7 @@ PrefabInstance:
     - target: {fileID: 765053532276140771, guid: 5e2092267d17bfa4c8e4b60253571637,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.603
+      value: 0.441
       objectReference: {fileID: 0}
     - target: {fileID: 765053532276140771, guid: 5e2092267d17bfa4c8e4b60253571637,
         type: 3}
@@ -41781,10 +41781,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.57420003, g: 0.67815, b: 0.99, a: 1}
-  m_Intensity: 212.56
+  m_Intensity: 236.17
   m_Range: 63.989895
   m_SpotAngle: 88.67106
-  m_InnerSpotAngle: 35.410973
+  m_InnerSpotAngle: 64.89289
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0

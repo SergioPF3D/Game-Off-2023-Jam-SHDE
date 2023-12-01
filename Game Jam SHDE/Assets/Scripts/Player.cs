@@ -111,6 +111,10 @@ public class Player : MonoBehaviour
     public bool blockMovement;
 
     float timeafterJump;
+
+
+    [SerializeField]
+    MoveObjects mover;
     void Start()
     {
         Cursor.visible = false;
@@ -208,6 +212,18 @@ public class Player : MonoBehaviour
 
                     staffAnimationController.SetBool("Falling", false);
 
+                    if (mover.target)
+                    {
+                        if (floor.collider.gameObject == mover.target.gameObject)
+                        {
+                            mover.blocked = true;
+                        }
+                        else
+                        {
+                            mover.blocked = false;
+                        }
+                    }
+
                     /*
                     //Hacer hijo de puente
                     if (floor.collider.gameObject.layer == 11)
@@ -295,7 +311,23 @@ public class Player : MonoBehaviour
 
             //La velocidad son los inputs
             //Problema: No te pegas al puente
-            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;  //+ new Vector3(0, rigi.velocity.y, 0); 
+
+            if (timeafterJump > 0.2f)
+            {
+                rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;  //+ new Vector3(0, rigi.velocity.y, 0); 
+
+            }
+            else
+            {
+                //grounded = false;
+                timeafterJump += Time.fixedDeltaTime;
+                //Debug.Log(timeafterJump);
+
+
+                rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeedInAir * Time.fixedDeltaTime + new Vector3(0, rigi.velocity.y, 0);
+
+            }
+
 
         }
         else
