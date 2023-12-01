@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     {
         //Set Player
         Time.timeScale = 1;
-        //player.transform.position = levelSpawns[PlayerPrefs.GetInt("ActualLevel")].transform.position;
+        player.transform.position = levelSpawns[PlayerPrefs.GetInt("ActualLevel")].transform.position;
     }
 
     private void Update()

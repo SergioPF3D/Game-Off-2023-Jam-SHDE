@@ -11,7 +11,7 @@ public class ScalableObject : MonoBehaviour
     public Color emisiveColor;
     public float baseEmisiveIntensity;
 
-    public int layer;
+    public int baseLayer;
 
     //Return to initial position
     Vector3 basePosition;
@@ -33,7 +33,7 @@ public class ScalableObject : MonoBehaviour
     {
         basePosition = transform.position;
 
-        layer = gameObject.layer;
+        baseLayer = gameObject.layer;
         this.gameObject.GetComponent<MeshRenderer>().material.SetColor("_EmisiveColor",emisiveColor);
         this.gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", emisiveColor);
         baseEmisiveIntensity = this.gameObject.GetComponent<MeshRenderer>().material.GetFloat("_EmisiveIntensity");
@@ -64,9 +64,13 @@ public class ScalableObject : MonoBehaviour
             timePassed += Time.fixedDeltaTime;
 
             transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
-            gameObject.layer = layer;
-            GameObject.Find("Player").GetComponentInChildren<MoveObjects>().outlined = null;
-            //outlined = null;
+            gameObject.layer = baseLayer;
+
+            if (GameObject.Find("Player").GetComponentInChildren<MoveObjects>().outlined = this.gameObject)
+            {
+                GameObject.Find("Player").GetComponentInChildren<MoveObjects>().outlined = null;
+            }
+            
 
             gameObject.GetComponent<MeshRenderer>().material.SetFloat("_DissolveAmount", timePassed / timeToRespawn);
             yield return new WaitForFixedUpdate();

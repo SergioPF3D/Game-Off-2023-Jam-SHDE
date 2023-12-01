@@ -139,21 +139,25 @@ public class MoveObjects : MonoBehaviour
 	[SerializeField]
 	AudioClip changeMode;
 
-	[Header("TimeToFade")]
+	[Header("Images")]
+
+	[SerializeField]
+	Volume finalVolume;
+
+	[SerializeField]
+	Image moveImage;
+
+	[SerializeField]
+	Image scaleImage;
 
 	[SerializeField]
 	Image blackImage;
 
 	[SerializeField]
-	float timeToBlackFade;
+	List<TMPro.TextMeshProUGUI> finaltexts;
 
 	[SerializeField]
-	float timeToStartBlackFade;
-
-	[Space(20)]
-
-	[SerializeField]
-	Volume finalVolume;
+	List<TMPro.TextMeshProUGUI> creditTexts;
 
 	void Start()
 	{
@@ -174,8 +178,8 @@ public class MoveObjects : MonoBehaviour
 		}
 
 		blackImage.gameObject.SetActive(true);
-		StartCoroutine(FadeImage(blackImage, timeToBlackFade, timeToStartBlackFade, false));
-
+		StartCoroutine(FadeImage(blackImage, 2, 1, true));
+		StartCoroutine(FadeSound(2, false));
 		//StartCoroutine(SeeDistanceToFinal());
 	}
 
@@ -308,7 +312,7 @@ public class MoveObjects : MonoBehaviour
 				{
 
 					outlined.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
-					outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().layer;
+					outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().baseLayer;
 
 					cubeToOutline.collider.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", outlineWidth);
 					cubeToOutline.collider.gameObject.layer = 12;
@@ -328,7 +332,7 @@ public class MoveObjects : MonoBehaviour
 			if (!target && outlined)
 			{
 				outlined.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.1f);
-				outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().layer;
+				outlined.gameObject.layer = outlined.gameObject.GetComponent<ScalableObject>().baseLayer;
 				outlined = null;
 			}
 		}
@@ -432,7 +436,7 @@ public class MoveObjects : MonoBehaviour
 
 		//Bloquea los muros azules
 		//Debug.DrawRay(target.transform.position, grabber.position - target.transform.position, Color.red);
-		if (Physics.Raycast(target.transform.position, grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position)))//blockcubes
+		if (Physics.Raycast(target.transform.position, grabber.position - target.transform.position, out RaycastHit obstacle, Vector3.Distance(grabber.position, target.transform.position), blockcubes))//
 		{
 			//Se pega un poco al muro
 			target.GetComponent<Rigidbody>().velocity = (obstacle.point - target.transform.position).normalized * Vector3.Distance(obstacle.point, target.transform.position) * chasingSpeed;
@@ -455,6 +459,7 @@ public class MoveObjects : MonoBehaviour
 
 	void ChangeColor()
 	{
+		
 		if (moveOrInteract)
 		{
 			rayVFX.SetBool("MoveOrScalate", true);
@@ -463,6 +468,16 @@ public class MoveObjects : MonoBehaviour
 			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 1);//_MoveOrScale
 
 			sphereLight.color = sphereMaterial.GetColor("_StarColorMove");
+
+			/*
+			StopCoroutine("FadeImage");
+
+			moveImage.gameObject.SetActive(true);
+			StartCoroutine(FadeImage(moveImage, 2, 2, true));
+			*/
+			moveImage.gameObject.SetActive(true);
+			scaleImage.gameObject.SetActive(false);
+
 		}
 		else
 		{
@@ -472,6 +487,15 @@ public class MoveObjects : MonoBehaviour
 			cubeShadow.GetComponent<DecalProjector>().material.SetFloat("_MoveOrScale", 0);//_MoveOrScale
 
 			sphereLight.color = sphereMaterial.GetColor("_StarColorScale");
+
+			/*
+			StopCoroutine("FadeImage");
+
+			scaleImage.gameObject.SetActive(true);
+			StartCoroutine(FadeImage(scaleImage, 2, 2, true));
+			*/
+			moveImage.gameObject.SetActive(false);
+			scaleImage.gameObject.SetActive(true);
 		}
 	}
 
@@ -481,26 +505,58 @@ public class MoveObjects : MonoBehaviour
 		AudioListener.volume = slid.value;
 	}
 
-	IEnumerator FadeImage(Image imageToFade, float timeToFade, float TimeToStart, bool toBlack)
+	IEnumerator FadeImage(Image imageToFade, float timeToFade, float TimeToStart, bool toTransparent)
 	{
 		yield return new WaitForSeconds(TimeToStart);
+		imageToFade.gameObject.SetActive(true);
 		float timePassed = 0;
 		while (timePassed / timeToFade < 1)
 		{
 			timePassed += Time.fixedDeltaTime;
-            if (toBlack)
+            if (toTransparent)
             {
-				imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(0, 1, timePassed / timeToFade));
+				imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(1, 0, timePassed / timeToFade));
             }
             else
             {
-				imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(1, 0, timePassed / timeToFade));
+				imageToFade.color = new Color(imageToFade.color.r, imageToFade.color.b, imageToFade.color.g, Mathf.Lerp(0, 1, timePassed / timeToFade));
 			}
 
 			//new Vector4(imageToFade.color.r, imageToFade.color.g, imageToFade.color.b, 
 			yield return new WaitForFixedUpdate();
 		}
-		yield return null;
+
+        if (toTransparent)
+        {
+			imageToFade.gameObject.SetActive(false);
+		}
+	}
+
+	IEnumerator FadeText(TMPro.TextMeshProUGUI textToFade, float timeToFade, float TimeToStart, bool toTransparent)
+	{
+		yield return new WaitForSeconds(TimeToStart);
+		textToFade.gameObject.SetActive(true);
+		float timePassed = 0;
+		while (timePassed / timeToFade < 1)
+		{
+			timePassed += Time.fixedDeltaTime;
+			if (toTransparent)
+			{
+				textToFade.color = new Color(textToFade.color.r, textToFade.color.b, textToFade.color.g, Mathf.Lerp(1, 0, timePassed / timeToFade));
+			}
+			else
+			{
+				textToFade.color = new Color(textToFade.color.r, textToFade.color.b, textToFade.color.g, Mathf.Lerp(0, 1, timePassed / timeToFade));
+			}
+
+			//new Vector4(imageToFade.color.r, imageToFade.color.g, imageToFade.color.b, 
+			yield return new WaitForFixedUpdate();
+		}
+
+		if (toTransparent)
+		{
+			textToFade.gameObject.SetActive(false);
+		}
 	}
 
 	IEnumerator SeeDistanceToFinal()
@@ -509,16 +565,68 @@ public class MoveObjects : MonoBehaviour
         
 		if (finalVolume.weight > 0.9f)
         {
-			StartCoroutine(FadeImage(blackImage, 2, 0, true));
+			GameObject.FindObjectOfType<Player>().blockUI = true;
+			GameObject.FindObjectOfType<Player>().SetMenu(true);
+
+			StartCoroutine(FadeImage(blackImage, 2, 0, false));
+			StartCoroutine(FadeSound(2, true));
 			//Esperamos al fundido
 			yield return new WaitForSeconds(2 + 0 + 0);
-			//Ponemos las cosas en negro y tal
-			//StopCoroutine(SeeDistanceToFinal());
-			//yield return ;
+
+
+			GameObject.FindObjectOfType<Player>().blockMovement = true;
+
+
+			foreach (var text in finaltexts)
+            {
+				StartCoroutine(FadeText(text, 2, 0, false));
+				yield return new WaitForSeconds(2 + 0 + 0);
+			}
+			yield return new WaitForSeconds(3);
+			foreach (var text in finaltexts)
+			{
+				StartCoroutine(FadeText(text, 2, 0, true));
+				yield return new WaitForSeconds(2 + 0 + 0);
+			}
+
+			yield return new WaitForSeconds(2 );
+
+			foreach (var text in creditTexts)
+			{
+				StartCoroutine(FadeText(text, 2, 0, false));
+				yield return new WaitForSeconds(2 + 0 + 0);
+			}
+
+
+
+			//Devolverle al juego sin sonido de la bola?
+			//dejarle el boton de exit, molaria uno diferente
+
+
+
 			yield break;
         }
 		yield return new WaitForFixedUpdate();
 		StartCoroutine(SeeDistanceToFinal());
+	}
+
+	IEnumerator FadeSound(float time, bool toNull)
+    {
+		float timePassed = 0;
+		float basevolume = AudioListener.volume;
+		while (timePassed / time < 1)
+		{
+			timePassed += Time.fixedDeltaTime;
+            if (toNull)
+            {
+				AudioListener.volume = Mathf.Lerp(basevolume, 0, timePassed / time);
+            }
+            else
+            {
+				AudioListener.volume = Mathf.Lerp(0, basevolume, timePassed / time);
+			}
+			yield return new WaitForFixedUpdate();
+		}
 	}
 }
 

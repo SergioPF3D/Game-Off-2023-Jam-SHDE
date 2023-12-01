@@ -100,9 +100,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     float volumeVariation;
 
-    [SerializeField]
-    AudioListener listener;
-
     //[SerializeField]
     //AudioClip fallingInVoid;
 
@@ -110,8 +107,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     Slider slid;
 
-
-
+    public bool blockUI;
+    public bool blockMovement;
     void Start()
     {
         Cursor.visible = false;
@@ -132,14 +129,17 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !blockUI)
         {
-            SetMenu();
+            SetMenu(menuactivated);
         }
 
         //Detect Input
-        InputMovement = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-        inputRotation = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        if (!blockMovement)
+        {
+            InputMovement = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+            inputRotation = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        }
 
         if (InputMovement != Vector2.zero)
         {
@@ -274,7 +274,8 @@ public class Player : MonoBehaviour
 
             //La velocidad son los inputs
             //Problema: No te pegas al puente
-            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier + new Vector3(0, rigi.velocity.y, 0);  //+ new Vector3(0, rigi.velocity.y, 0);
+
         }
         else
         {
@@ -306,9 +307,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetMenu()
+    public void SetMenu(bool activated)
     {
-        if (menuactivated)
+        
+        if (activated)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -318,7 +320,15 @@ public class Player : MonoBehaviour
             menu.SetActive(false);
             menuactivated = false;
 
-            listener.enabled = true;
+            
+            if (PlayerPrefs.HasKey("Volume"))
+            {
+                AudioListener.volume = PlayerPrefs.GetFloat("Volume");
+            }
+            else
+            {
+                AudioListener.volume = 0.5f;
+            }
         }
         else
         {
@@ -330,8 +340,7 @@ public class Player : MonoBehaviour
             menu.SetActive(true);
             menuactivated = true;
 
-            listener.enabled = false; ;
-
+            AudioListener.volume = 0;
         }
     }
 

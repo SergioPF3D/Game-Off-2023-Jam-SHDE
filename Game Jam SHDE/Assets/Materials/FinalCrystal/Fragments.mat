@@ -64,9 +64,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - Color_55fccb53c55e49c7979a0c72cb2c9086: {r: 0.5019608, g: 0.5019608, b: 0.5019608,
+    - Color_55fccb53c55e49c7979a0c72cb2c9086: {r: 0.20784314, g: 0.095380075, b: 0,
         a: 0}
-    - Color_7156b9d37006439a912a56959fbffe11: {r: 29.857058, g: 0.7041758, b: 0.7041758,
+    - Color_7156b9d37006439a912a56959fbffe11: {r: 766.9961, g: 20.078432, b: 20.078432,
         a: 0}
     - SpherePosition_: {r: 25.950054, g: 101.81899, b: 190.796, a: 0}
     - SphereRadius_: {r: 1.5, g: 1.5, b: 1.5, a: 0}
