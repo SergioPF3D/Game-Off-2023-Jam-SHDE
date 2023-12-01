@@ -157,13 +157,13 @@ public class Player : MonoBehaviour
         
         foreach (var caster in rayCasters)
         {
-            float distance = caster.position.y - (transform.position.y - 1.02f);
-            //Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
+            float distance = caster.position.y - (transform.position.y - 1.02f); //0.2f;
+            Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
 
             if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))
             {
                 groundDetected = true;
-                if (!grounded)
+                if (!grounded && rigi.velocity.y < 0)
                 {
                     //Mejor que dependa de la altura de la que cae, es decir su velocidad en y
                     //PlaySound();
@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
 
             //La velocidad son los inputs
             //Problema: No te pegas al puente
-            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier + new Vector3(0, rigi.velocity.y, 0);  //+ new Vector3(0, rigi.velocity.y, 0);
+            rigi.velocity = ((transform.forward * InputMovement.x) + (transform.right * InputMovement.y)) * movementSpeed * Time.fixedDeltaTime * multiplier;  //+ new Vector3(0, rigi.velocity.y, 0); 
 
         }
         else

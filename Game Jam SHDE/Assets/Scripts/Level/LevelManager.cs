@@ -19,39 +19,42 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha0))
+        if (Input.GetKey(KeyCode.L))
         {
-            player.transform.position = levelSpawns[0].transform.position;
+            if (Input.GetKey(KeyCode.Alpha0))
+            {
+                player.transform.position = levelSpawns[0].transform.position;
 
-        }
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            player.transform.position = levelSpawns[1].transform.position;
+            }
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                player.transform.position = levelSpawns[1].transform.position;
 
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            player.transform.position = levelSpawns[2].transform.position;
+            }
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                player.transform.position = levelSpawns[2].transform.position;
 
-        }
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            player.transform.position = levelSpawns[3].transform.position;
+            }
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                player.transform.position = levelSpawns[3].transform.position;
 
-        }
-        if (Input.GetKey(KeyCode.Alpha4))
-        {
-            player.transform.position = levelSpawns[4].transform.position;
+            }
+            if (Input.GetKey(KeyCode.Alpha4))
+            {
+                player.transform.position = levelSpawns[4].transform.position;
 
-        }
-        if (Input.GetKey(KeyCode.Alpha5))
-        {
-            player.transform.position = levelSpawns[5].transform.position;
+            }
+            if (Input.GetKey(KeyCode.Alpha5))
+            {
+                player.transform.position = levelSpawns[5].transform.position;
 
-        }
-        if (Input.GetKey(KeyCode.Alpha6))
-        {
-            player.transform.position = levelSpawns[6].transform.position;
+            }
+            if (Input.GetKey(KeyCode.Alpha6))
+            {
+                player.transform.position = levelSpawns[6].transform.position;
+            }
         }
     }
 
