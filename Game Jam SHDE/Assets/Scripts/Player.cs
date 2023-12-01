@@ -109,6 +109,8 @@ public class Player : MonoBehaviour
 
     public bool blockUI;
     public bool blockMovement;
+
+    float timeafterJump;
     void Start()
     {
         Cursor.visible = false;
@@ -150,23 +152,48 @@ public class Player : MonoBehaviour
             staffAnimationController.SetBool("Walking", false);
         }
         
-
-        //Player is in the ground
-        bool jumped = false;
-        bool groundDetected = false;
-        
-        foreach (var caster in rayCasters)
+        //Jump
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            float distance = caster.position.y - (transform.position.y - 1.03f); //0.2f;
-            Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
-
-            if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))
+            if (grounded)
             {
-                groundDetected = true;
-                if (!grounded && rigi.velocity.y < 0)
+                //rigi.isKinematic = false;
+
+                rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+
+                //quitar hijo de puente
+                transform.SetParent(null);
+
+                staffAnimationController.SetTrigger("Jump");
+                staffAnimationController.SetBool("Grounded", false);
+
+                //StopCoroutine(PlayFootsTeps());
+                //StopCoroutine("PlayFootsTeps");
+                StopAllCoroutines();
+
+                timeafterJump = 0;
+            }
+        }
+        else
+        {
+
+            bool groundDetected = false;
+
+            foreach (var caster in rayCasters)
+            {
+                float distance = caster.position.y - (transform.position.y - 1.015f); //0.2f;
+                Debug.DrawRay(caster.position, -transform.up * distance, Color.red);
+
+                if (Physics.Raycast(caster.position, -transform.up, out RaycastHit floor, distance, jumpLayers))
                 {
-                    //Mejor que dependa de la altura de la que cae, es decir su velocidad en y
-                    //PlaySound();
+                    groundDetected = true;
+                    if (!grounded && rigi.velocity.y < 0)
+                    {
+                        //Mejor que dependa de la altura de la que cae, es decir su velocidad en y
+                        //PlaySound();
+
+                    }
+
                     grounded = true;
                     staffAnimationController.SetBool("Grounded", true);
 
@@ -174,58 +201,51 @@ public class Player : MonoBehaviour
 
                     StopAllCoroutines();
                     StartCoroutine(PlayFootsTeps());
-                }
+
+                    angle = Vector3.Angle(floor.normal, transform.up);
 
 
-                angle = Vector3.Angle(floor.normal, transform.up);
 
-                //Jump
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (!jumped)
+                    staffAnimationController.SetBool("Falling", false);
+
+                    /*
+                    //Hacer hijo de puente
+                    if (floor.collider.gameObject.layer == 11)
                     {
-                        rigi.isKinematic = false;
+                        transform.SetParent(floor.collider.gameObject.transform);
+                    }
+                    */
+                }
+                else
+                {
+                    if (rigi.velocity.y < 0)
+                    {
+                        staffAnimationController.SetBool("Falling", true);
+                    }
 
-                        rigi.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-                        jumped = true;
-
-                        //quitar hijo de puente
-                        transform.SetParent(null);
-
-                        staffAnimationController.SetTrigger("Jump");
-                        staffAnimationController.SetBool("Grounded", false);
-
-                        //StopCoroutine(PlayFootsTeps());
-                        //StopCoroutine("PlayFootsTeps");
-                        StopAllCoroutines();
+                    if (!groundDetected)
+                    {
+                        grounded = false;
                     }
                 }
+            }
 
-                staffAnimationController.SetBool("Falling", false);
-
-                /*
-                //Hacer hijo de puente
-                if (floor.collider.gameObject.layer == 11)
-                {
-                    transform.SetParent(floor.collider.gameObject.transform);
-                }
-                */
+            if (timeafterJump > 0.2f)
+            {
+                
             }
             else
             {
-                if (rigi.velocity.y < 0)
-                {
-                    staffAnimationController.SetBool("Falling", true);
-                }
-
-                if (!groundDetected)
-                {
-                    grounded = false;
-                }
+                //grounded = false;
+                //timeafterJump += Time.fixedDeltaTime;
+                //Debug.Log(timeafterJump);
             }
         }
 
+        
+
         //Lo ponemos kinematiko
+        /*
         if (grounded)
         {
             if (InputMovement != Vector2.zero)
@@ -238,6 +258,7 @@ public class Player : MonoBehaviour
                 //revisar si es kinematik para saber si lo hemos puesto en este sitio
             }
         }
+        */
     }
 
     private void FixedUpdate()
@@ -293,7 +314,7 @@ public class Player : MonoBehaviour
     void Death()
     {
         //audios.PlayOneShot(fallingInVoid,1);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     //check if your height is very low, so you went through the ground somehow

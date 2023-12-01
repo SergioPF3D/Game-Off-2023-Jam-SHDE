@@ -66,11 +66,11 @@ public class LevelManager : MonoBehaviour
     public void ResetGame()
     {
         PlayerPrefs.SetInt("ActualLevel", 0);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void ResetLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 
