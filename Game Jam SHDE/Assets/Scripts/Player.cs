@@ -130,7 +130,10 @@ public class Player : MonoBehaviour
 
         StartCoroutine(PlayFootsTeps());
 
-        slid.value = PlayerPrefs.GetFloat("Sensitivity");
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            //slid.value = PlayerPrefs.GetFloat("Sensitivity");
+        }
     }
     
     void Update()

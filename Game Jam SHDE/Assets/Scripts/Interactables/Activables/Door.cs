@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : ObjectThatMoves
 {
@@ -23,6 +24,9 @@ public class Door : ObjectThatMoves
 
     [SerializeField]
     AudioClip levelUp;
+
+    [SerializeField]
+    Scene sceneToLoad;
     public override void Start()
     {
         base.Start();
@@ -95,6 +99,8 @@ public class Door : ObjectThatMoves
         {
             audios.PlayOneShot(levelUp,1);
             blocked = true;
+
+            SceneManager.LoadSceneAsync(sceneToLoad.buildIndex, LoadSceneMode.Additive);
         }
         if (!activated)
         {
